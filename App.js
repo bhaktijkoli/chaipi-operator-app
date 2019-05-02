@@ -11,6 +11,7 @@ import OTPVerify from './app/screens/OTPVerify/OTPVerify';
 import Logout from './app/screens/Login/Logout';
 import NotAMember from './app/screens/NotAMember/NotAMember';
 import Home from './app/screens/Home/Home';
+import ShopMain from './app/screens/ShopMain/ShopMain';
 
 const App = () => {
   return(
@@ -31,6 +32,7 @@ const AppNavigator = createStackNavigator(
     OTPVerify: { screen: OTPVerify },
     NotAMember: { screen: NotAMember },
     Home: { screen: Home },
+    ShopMain: { screen: ShopMain },
   },
   {
     defaultNavigationOptions: {

@@ -14,3 +14,8 @@ module.exports.setupAction = StackActions.reset({
   index: 0,
   actions: [NavigationActions.navigate({ routeName: 'NotAMember' })],
 });
+
+module.exports.shopAction = StackActions.reset({
+  index: 0,
+  actions: [NavigationActions.navigate({ routeName: 'ShopMain' })],
+});
