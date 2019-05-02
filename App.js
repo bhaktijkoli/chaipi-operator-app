@@ -1,49 +1,43 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
+import React from 'react';
+import { createStackNavigator, createDrawerNavigator, createAppContainer } from "react-navigation";
+import { Provider } from "react-redux";
+import { Root, StyleProvider } from 'native-base';
+import store from "./app/store";
+import getTheme from './native-base-theme/components';
+import commonColor from './native-base-theme/variables/commonColor';
 
-import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import Login from './app/screens/Login/Login';
+import OTPVerify from './app/screens/OTPVerify/OTPVerify';
+import Logout from './app/screens/Login/Logout';
+import NotAMember from './app/screens/NotAMember/NotAMember';
+import Home from './app/screens/Home/Home';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
-
-type Props = {};
-export default class App extends Component<Props> {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
-      </View>
-    );
-  }
+const App = () => {
+  return(
+    <Root>
+      <StyleProvider style={getTheme(commonColor)}>
+        <Provider store={store}>
+          <AppContainer />
+        </Provider>
+      </StyleProvider>
+    </Root>
+  )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+const AppNavigator = createStackNavigator(
+  {
+    Login: { screen: Login },
+    Logout: { screen: Logout },
+    OTPVerify: { screen: OTPVerify },
+    NotAMember: { screen: NotAMember },
+    Home: { screen: Home },
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+  {
+    defaultNavigationOptions: {
+      header: null
+    }
+  }
+);
+
+const AppContainer =  createAppContainer(AppNavigator);
+export default App;
