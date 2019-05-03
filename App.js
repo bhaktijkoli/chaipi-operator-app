@@ -12,6 +12,7 @@ import Logout from './app/screens/Login/Logout';
 import NotAMember from './app/screens/NotAMember/NotAMember';
 import Home from './app/screens/Home/Home';
 import ShopMain from './app/screens/ShopMain/ShopMain';
+import ShopMenu from './app/screens/ShopMenu/ShopMenu';
 
 const App = () => {
   return(
@@ -33,6 +34,7 @@ const AppNavigator = createStackNavigator(
     NotAMember: { screen: NotAMember },
     Home: { screen: Home },
     ShopMain: { screen: ShopMain },
+    ShopMenu: { screen: ShopMenu },
   },
   {
     defaultNavigationOptions: {

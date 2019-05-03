@@ -35,6 +35,8 @@ class Login extends Component {
           AuthActions.setUser(this, res.data);
           Request.setToken(user._user.uid)
           if(res.data.type == 1) {
+            // Shop
+            AuthActions.getShopProducts(this, res.data.shop.id);
             this.props.navigation.dispatch(NavigationActions.shopAction);
           } else {
             this.props.navigation.dispatch(NavigationActions.setupAction);
