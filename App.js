@@ -10,6 +10,9 @@ import Login from './app/screens/Login/Login';
 import OTPVerify from './app/screens/OTPVerify/OTPVerify';
 import Logout from './app/screens/Login/Logout';
 import NotAMember from './app/screens/NotAMember/NotAMember';
+import WaitingApproval from './app/screens/WaitingApproval/WaitingApproval';
+import RegisterShop from './app/screens/RegisterShop/RegisterShop';
+import ShopAddress from './app/screens/ShopAddress/ShopAddress';
 import Home from './app/screens/Home/Home';
 import ShopMain from './app/screens/ShopMain/ShopMain';
 import ShopMenu from './app/screens/ShopMenu/ShopMenu';
@@ -32,6 +35,9 @@ const AppNavigator = createStackNavigator(
     Logout: { screen: Logout },
     OTPVerify: { screen: OTPVerify },
     NotAMember: { screen: NotAMember },
+    WaitingApproval: { screen: WaitingApproval },
+    RegisterShop: { screen: RegisterShop },
+    ShopAddress: { screen: ShopAddress },
     Home: { screen: Home },
     ShopMain: { screen: ShopMain },
     ShopMenu: { screen: ShopMenu },

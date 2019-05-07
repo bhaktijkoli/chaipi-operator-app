@@ -15,6 +15,11 @@ module.exports.setupAction = StackActions.reset({
   actions: [NavigationActions.navigate({ routeName: 'NotAMember' })],
 });
 
+module.exports.waitingAction = StackActions.reset({
+  index: 0,
+  actions: [NavigationActions.navigate({ routeName: 'WaitingApproval' })],
+});
+
 module.exports.shopAction = StackActions.reset({
   index: 0,
   actions: [NavigationActions.navigate({ routeName: 'ShopMain' })],

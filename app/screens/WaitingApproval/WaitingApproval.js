@@ -3,17 +3,12 @@ import { connect } from "react-redux";
 import { Container, Content, View, Text, Button } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 
-class NotAMember extends Component {
+class WaitingApproval extends Component {
   render() {
     return(
       <Container>
         <Content contentContainerStyle={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-          <Button primary transparent block onPress={e=>this.props.navigation.navigate('RegisterShop')}>
-            <Text>Register your shop</Text>
-          </Button>
-          <Button primary transparent block onPress={e=>this.props.navigation.navigate('Logout')}>
-            <Text>Register as Driver</Text>
-          </Button>
+          <Text>Your request is waiting for approval.</Text>
           <Button primary transparent block onPress={e=>this.props.navigation.navigate('Logout')}>
             <Text>Logout</Text>
           </Button>
@@ -29,4 +24,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(NotAMember);
+export default connect(mapStateToProps)(WaitingApproval);

@@ -36,13 +36,18 @@ class Login extends Component {
           Request.setToken(user._user.uid)
           if(res.data.type == 1) {
             // Shop
-            AuthActions.getShopProducts(this, res.data.shop.id);
-            this.props.navigation.dispatch(NavigationActions.shopAction);
+            if(res.data.shop.verified == 0) {
+              this.props.navigation.dispatch(NavigationActions.waitingAction);
+            } else {
+              AuthActions.getShopProducts(this, res.data.shop.id);
+              this.props.navigation.dispatch(NavigationActions.shopAction);
+            }
           } else {
             this.props.navigation.dispatch(NavigationActions.setupAction);
           }
         })
         .catch(err => {
+          console.log(err);
           this.props.navigation.dispatch(NavigationActions.setupAction);
         })
       } else {
