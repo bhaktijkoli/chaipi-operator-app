@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { FlatList } from "react-native";
-import { Container, Content, View, Title } from 'native-base';
+import { Container, Content, View, Text, Title, Button, Icon } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 
 import HeaderEx from './../../components/Header'
@@ -24,6 +24,8 @@ class ShopMenu extends Component {
               return <MenuItem item={item} update={this.update.bind(this)}/>
             }}
             keyExtractor={(item, index) => index.toString()}
+            ListEmptyComponent={this.renderEmptyComponent.bind(this)}
+            ListFooterComponent={this.renderFooterComponent.bind(this)}
             >
           </FlatList>
         </Content>
@@ -33,6 +35,22 @@ class ShopMenu extends Component {
   }
   update() {
     authActions.getShopProducts(this, this.props.auth.shop.id)
+  }
+  renderEmptyComponent() {
+    return(
+      <View style={{paddingLeft:20, paddingRight:20, paddingTop: 50, paddingBottom: 50, alignItems: 'center'}}>
+        <Text>Your shop menu is empty.</Text>
+      </View>
+    )
+  }
+  renderFooterComponent() {
+    return(
+      <View>
+        <Button block bordered style={{margin:10}}>
+          <Icon name="plus" type="Entypo"/>
+        </Button>
+      </View>
+    )
   }
 }
 
