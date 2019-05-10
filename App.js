@@ -16,6 +16,7 @@ import ShopAddress from './app/screens/ShopAddress/ShopAddress';
 import Home from './app/screens/Home/Home';
 import ShopMain from './app/screens/ShopMain/ShopMain';
 import ShopMenu from './app/screens/ShopMenu/ShopMenu';
+import ShopAddItem from './app/screens/ShopAddItem/ShopAddItem';
 
 const App = () => {
   return(
@@ -41,6 +42,7 @@ const AppNavigator = createStackNavigator(
     Home: { screen: Home },
     ShopMain: { screen: ShopMain },
     ShopMenu: { screen: ShopMenu },
+    ShopAddItem: { screen: ShopAddItem },
   },
   {
     defaultNavigationOptions: {

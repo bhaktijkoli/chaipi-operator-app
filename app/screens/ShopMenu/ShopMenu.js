@@ -46,7 +46,7 @@ class ShopMenu extends Component {
   renderFooterComponent() {
     return(
       <View>
-        <Button block bordered style={{margin:10}}>
+        <Button block bordered style={{margin:10}} onPress={e=>this.props.navigation.navigate('ShopAddItem')}>
           <Icon name="plus" type="Entypo"/>
         </Button>
       </View>
