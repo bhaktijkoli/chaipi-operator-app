@@ -42,6 +42,9 @@ class Login extends Component {
               AuthActions.getShopProducts(this, res.data.shop.id);
               this.props.navigation.dispatch(NavigationActions.shopAction);
             }
+          } else if(res.data.type == 2) {
+            // Driver
+            this.props.navigation.dispatch(NavigationActions.driverAction);
           } else {
             this.props.navigation.dispatch(NavigationActions.setupAction);
           }

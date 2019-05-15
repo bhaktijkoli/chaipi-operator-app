@@ -14,9 +14,12 @@ import WaitingApproval from './app/screens/WaitingApproval/WaitingApproval';
 import RegisterShop from './app/screens/RegisterShop/RegisterShop';
 import ShopAddress from './app/screens/ShopAddress/ShopAddress';
 import Home from './app/screens/Home/Home';
+import Account from './app/screens/Account/Account';
 import ShopMain from './app/screens/ShopMain/ShopMain';
 import ShopMenu from './app/screens/ShopMenu/ShopMenu';
 import ShopAddItem from './app/screens/ShopAddItem/ShopAddItem';
+import DriverMain from './app/screens/DriverMain/DriverMain';
+import DriverTasks from './app/screens/DriverTasks/DriverTasks';
 
 const App = () => {
   return(
@@ -40,9 +43,12 @@ const AppNavigator = createStackNavigator(
     RegisterShop: { screen: RegisterShop },
     ShopAddress: { screen: ShopAddress },
     Home: { screen: Home },
+    Account: { screen: Account },
     ShopMain: { screen: ShopMain },
     ShopMenu: { screen: ShopMenu },
     ShopAddItem: { screen: ShopAddItem },
+    DriverMain: { screen: DriverMain },
+    DriverTasks: { screen: DriverTasks },
   },
   {
     defaultNavigationOptions: {

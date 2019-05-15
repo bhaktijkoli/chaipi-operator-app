@@ -24,3 +24,8 @@ module.exports.shopAction = StackActions.reset({
   index: 0,
   actions: [NavigationActions.navigate({ routeName: 'ShopMain' })],
 });
+
+module.exports.driverAction = StackActions.reset({
+  index: 0,
+  actions: [NavigationActions.navigate({ routeName: 'DriverMain' })],
+});

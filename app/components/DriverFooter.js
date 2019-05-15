@@ -2,22 +2,17 @@ import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
 import { Footer, FooterTab, Button, Icon, Text } from 'native-base';
 
-class FooterEx extends Component {
-  componentDidMount() {
-  }
+class DriverFooter extends Component {
   render() {
     let tab = this.props.tab;
     return(
       <Footer>
         <FooterTab>
-          <Button vertical active={tab=='home'} onPress={e=>this.onClick('ShopMain')}>
+          <Button vertical active={tab=='home'} onPress={e=>this.onClick('DriverMain')}>
             <Icon name="dashboard" type="AntDesign" />
           </Button>
-          <Button vertical active={tab=='orders'} onPress={e=>this.onClick('ShopMain')}>
+          <Button vertical active={tab=='tasks'} onPress={e=>this.onClick('DriverTasks')}>
             <Icon name="profile" type="AntDesign" />
-          </Button>
-          <Button vertical active={tab=='menu'}>
-            <Icon name="menuunfold" type="AntDesign"onPress={e=>this.onClick('ShopMenu')} />
           </Button>
           <Button vertical active={tab=='account'} onPress={e=>this.onClick('Account')}>
             <Icon name="user" type="AntDesign" />
@@ -31,4 +26,4 @@ class FooterEx extends Component {
   }
 }
 
-export default FooterEx;
+export default DriverFooter;
