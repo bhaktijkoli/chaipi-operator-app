@@ -16,6 +16,7 @@ import ShopAddress from './app/screens/ShopAddress/ShopAddress';
 import Home from './app/screens/Home/Home';
 import Account from './app/screens/Account/Account';
 import ShopMain from './app/screens/ShopMain/ShopMain';
+import ShopOrders from './app/screens/ShopOrders/ShopOrders';
 import ShopMenu from './app/screens/ShopMenu/ShopMenu';
 import ShopAddItem from './app/screens/ShopAddItem/ShopAddItem';
 import DriverMain from './app/screens/DriverMain/DriverMain';
@@ -45,6 +46,7 @@ const AppNavigator = createStackNavigator(
     Home: { screen: Home },
     Account: { screen: Account },
     ShopMain: { screen: ShopMain },
+    ShopOrders: { screen: ShopOrders },
     ShopMenu: { screen: ShopMenu },
     ShopAddItem: { screen: ShopAddItem },
     DriverMain: { screen: DriverMain },

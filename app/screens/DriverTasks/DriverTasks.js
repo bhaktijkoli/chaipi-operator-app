@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { FlatList } from "react-native";
 import { connect } from "react-redux";
 import { Container, Content, View, Text, Title } from 'native-base';
-import { Col, Row, Grid } from 'react-native-easy-grid';
 import { If, Else, Then } from 'react-if';
 
 import HeaderEx from './../../components/Header';
