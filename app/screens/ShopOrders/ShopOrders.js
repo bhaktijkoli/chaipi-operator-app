@@ -10,13 +10,18 @@ import SpinnerBox from './../../components/SpinnerBox';
 
 import Style from './../../styles/style';
 import Request from './../../utils/request';
+import ws from './../../utils/ws';
 import shopActions from './../../actions/shopActions';
 
 import Order from './Order';
 
+
 class ShopOrders extends Component {
   state = {
     loading: false,
+  }
+  componentDidMount() {
+    ws.init(this);
   }
   render() {
     return(

@@ -44,7 +44,7 @@ class Order extends Component {
             </If>
             <Col>
               <View style={CustomStyle.headerTime}>
-                <Text note>{createdAt.format('h:MM A')}</Text>
+                <Text note>{createdAt.format('h:mm A')}</Text>
               </View>
             </Col>
           </CardItem>

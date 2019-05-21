@@ -7,9 +7,7 @@ getActiveOrders = (component, callback) => {
   .then(res => {
     component.props.dispatch({type: 'SHOP_SET_ACTIVE_ORDERS', payload: res.data})
     res.data.forEach((el) => {
-      ws.subscribeOrder(el.trackid, (data) => {
-        getActiveOrders(component);
-      });
+      ws.subscribeOrder(el.trackid);
     })
     if(callback) callback();
   })

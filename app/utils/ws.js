@@ -2,26 +2,35 @@ import io from 'socket.io-client';
 const host = '192.168.0.105';
 const port = 8080;
 
+import shopActions from './../actions/shopActions';
+
 const socket = io(`http://${host}:${port}`);
 
 let shopid = null;
+let store = null;
+
+socket.init = (component) => {
+  store = component;
+}
 
 socket.subscribeShop = (id) => {
   shopid = id;
   socket.on('shop'+id, (data) => {
-    console.log("Recieved ", data);
+    data = JSON.parse(data);
+    console.log("Recieved", data);
+    if(data.action == "NEW_ORDER") {
+      shopActions.getActiveOrders(store)
+    }
   })
-  console.log("Subscribe");
 }
 
-socket.subscribeOrder = (id, callback) => {
+socket.subscribeOrder = (id) => {
   socket.on(id, (data) => {
-    callback(data);
+    shopActions.getActiveOrders(store)
   })
 }
 
 socket.on('connect', () => {
-  console.log("Socket connected");
   if(shopid) socket.subscribeShop(shopid)
 });
 
