@@ -19,7 +19,8 @@ export default StyleSheet.create({
   heading: {
     fontSize: 18,
     fontWeight: "500",
-    marginBottom: 10,
+    marginBottom: 5,
+    marginLeft: 10,
   },
   label: {
     marginLeft: 10,

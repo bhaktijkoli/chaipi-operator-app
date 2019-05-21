@@ -7,7 +7,14 @@ import HeaderEx from './../../components/Header';
 
 import ShopFooter from './../../components/ShopFooter';
 
+import shopActions from './../../actions/shopActions';
+import ws from './../../utils/ws';
+
 class Shop extends Component {
+  componentDidMount() {
+    shopActions.getActiveOrders(this);
+    ws.subscribeShop(this.props.auth.shop.id);
+  }
   render() {
     return(
       <Container>
@@ -24,6 +31,7 @@ class Shop extends Component {
 function mapStateToProps(state) {
   return {
     auth: state.auth,
+    shop: state.shop,
   };
 }
 

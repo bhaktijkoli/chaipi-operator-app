@@ -4,6 +4,8 @@ import { View, Text, Card, CardItem, Body, Button, Icon} from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import { If, Then, Else } from 'react-if';
 
+import Request from './../../utils/request';
+
 const moment = require('moment');
 
 class Order extends Component {
@@ -30,11 +32,16 @@ class Order extends Component {
       <TouchableWithoutFeedback onPress={e=>this.setState({layoutOpen: !this.state.layoutOpen})}>
         <Card style={CustomStyle.container}>
           <CardItem>
-            <Col size={4}>
+            <Col size={3}>
               <View style={CustomStyle.headerid}>
                 <Text style={CustomStyle.headeridText}>#{order.trackid}</Text>
               </View>
             </Col>
+            <If condition={order.status == 0}>
+              <Col>
+                <Text style={CustomStyle.newText}>New</Text>
+              </Col>
+            </If>
             <Col>
               <View style={CustomStyle.headerTime}>
                 <Text note>{createdAt.format('h:MM A')}</Text>
@@ -68,14 +75,23 @@ class Order extends Component {
                       })}
                     </Col>
                   </Row>
-                  <Row>
-                    <Col>
-                      <Button dark transparent full iconLeft><Text>MARK READY</Text></Button>
-                    </Col>
-                    <Col>
-                      <Button dark transparent full iconLeft><Text>VIEW DETAILS</Text></Button>
-                    </Col>
-                  </Row>
+                  <If condition={order.status == 1}>
+                    <Row>
+                      <Col>
+                        <Button dark transparent full iconLeft><Text>MARK READY</Text></Button>
+                      </Col>
+                      <Col>
+                        <Button dark transparent full iconLeft><Text>VIEW DETAILS</Text></Button>
+                      </Col>
+                    </Row>
+                  </If>
+                  <If condition={order.status == 0}>
+                    <Row>
+                      <Col>
+                        <Button dark transparent full onPress={this.onPrepareClick.bind(this)}><Text>PREPARE</Text></Button>
+                      </Col>
+                    </Row>
+                  </If>
                 </Grid>
               </CardItem>
             </Then>
@@ -100,6 +116,12 @@ class Order extends Component {
       </TouchableWithoutFeedback>
     )
   }
+  onPrepareClick() {
+    Request.post('/order/prepare', {order: this.props.order.id})
+    .then(res => {
+      console.log(res.data);
+    })
+  }
 }
 
 const CustomStyle = StyleSheet.create({
@@ -121,7 +143,18 @@ const CustomStyle = StyleSheet.create({
     fontSize: 14,
   },
   headerTime: {
-    paddingTop: 5,
+    marginTop: 5,
+    alignItems: 'flex-end',
+  },
+  newText: {
+    marginTop: 5,
+    color: '#FFF',
+    backgroundColor: '#27ae60',
+    fontSize: 14,
+    paddingTop: 3,
+    paddingBottom: 3,
+    alignItems: 'center',
+    textAlign: 'center',
   },
   statusContainer: {
     marginTop: -15,

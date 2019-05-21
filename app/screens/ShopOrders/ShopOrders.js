@@ -10,21 +10,18 @@ import SpinnerBox from './../../components/SpinnerBox';
 
 import Style from './../../styles/style';
 import Request from './../../utils/request';
+import shopActions from './../../actions/shopActions';
 
 import Order from './Order';
 
 class ShopOrders extends Component {
   state = {
-    orders: [],
     loading: false,
-  }
-  componentDidMount() {
-    this.getShopOders();
   }
   render() {
     return(
       <Container>
-        <HeaderEx title="Orders"/>
+        <HeaderEx title="Your Orders"/>
         <Content contentContainerStyle={{flex: 1}}>
           <Content contentContainerStyle={{flex: 1}}>
             <If condition={this.state.loading}>
@@ -33,11 +30,12 @@ class ShopOrders extends Component {
               </Then>
               <Else>
                 <FlatList
-                  data={this.state.orders}
+                  data={this.props.shop.active_orders}
                   renderItem={({item, index}) => {
                     return <Order order={item}/>
                   }}
                   keyExtractor={(item, index) => index.toString()}
+                  ListHeaderComponent={this.renderActiveOrdersHeader.bind(this)}
                   ListEmptyComponent={this.renderEmptyComponent.bind(this)}
                   />
               </Else>
@@ -46,6 +44,11 @@ class ShopOrders extends Component {
         </Content>
         <ShopFooter tab='orders' navigation={this.props.navigation}/>
       </Container>
+    )
+  }
+  renderActiveOrdersHeader() {
+    return(
+      <Text style={[Style.heading]}>Active Orders</Text>
     )
   }
   renderEmptyComponent() {
@@ -57,17 +60,16 @@ class ShopOrders extends Component {
   }
   getShopOders() {
     this.setState({loading: true})
-    Request.get('/order/get/shop')
-    .then(res => {
-      console.log(res.data);
-      this.setState({orders: res.data, loading: false});
-    }).catch(err => console.error(err));
+    shopActions.getShopOders(this, () => {
+      this.setState({oading: false});
+    });
   }
 }
 
 function mapStateToProps(state) {
   return {
     auth: state.auth,
+    shop: state.shop,
   };
 }
 
