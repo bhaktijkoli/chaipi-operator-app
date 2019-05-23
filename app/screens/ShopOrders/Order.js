@@ -27,6 +27,7 @@ class Order extends Component {
   }
   render() {
     let order = this.props.order;
+    let navigation = this.props.navigation;
     let createdAt = moment(order.createdAt, 'YYYY-MM-DD HH:mm:ss');
     return(
       <TouchableWithoutFeedback onPress={e=>this.setState({layoutOpen: !this.state.layoutOpen})}>
@@ -78,10 +79,10 @@ class Order extends Component {
                   <If condition={order.status == 1}>
                     <Row>
                       <Col>
-                        <Button dark transparent full iconLeft><Text>MARK READY</Text></Button>
+                        <Button dark transparent full><Text>MARK READY</Text></Button>
                       </Col>
                       <Col>
-                        <Button dark transparent full iconLeft><Text>VIEW DETAILS</Text></Button>
+                        <Button dark transparent full onPress={e=>navigation.navigate("ShopOrderDetails", {order})}><Text>VIEW DETAILS</Text></Button>
                       </Col>
                     </Row>
                   </If>

@@ -8,4 +8,5 @@ target 'chaipioperator' do
   # Pods for chaipioperator
   pod 'Firebase/Core', '~> 5.15.0'
   pod 'Firebase/Auth', '~> 5.15.0'
+  pod 'Firebase/Messaging', '~> 5.15.0'
 end

@@ -1,0 +1,91 @@
+{
+  "project_info": {
+    "project_number": "778753524039",
+    "firebase_url": "https://chaipi-238608.firebaseio.com",
+    "project_id": "chaipi-238608",
+    "storage_bucket": "chaipi-238608.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:778753524039:android:0ec74af41884f37c",
+        "android_client_info": {
+          "package_name": "com.chaipi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "778753524039-kj99dkbfvs2ftgnj2ogct203kpt2cqvk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.chaipi",
+            "certificate_hash": "05a76769cefbd0aeaf0a102771d48b878366dd58"
+          }
+        },
+        {
+          "client_id": "778753524039-3tmudt36sao8v223dmm91ve3r47h5pak.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3htbm-RLjQWYMeZyRdBddlawqpcUPhJk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "778753524039-3tmudt36sao8v223dmm91ve3r47h5pak.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "778753524039-l2tpfvstn14kb6f115b3061a04kq08g7.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.chaipioperator"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:778753524039:android:ee07e56296b71d5b",
+        "android_client_info": {
+          "package_name": "com.chaipioperator"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "778753524039-3tmudt36sao8v223dmm91ve3r47h5pak.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3htbm-RLjQWYMeZyRdBddlawqpcUPhJk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "778753524039-3tmudt36sao8v223dmm91ve3r47h5pak.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "778753524039-l2tpfvstn14kb6f115b3061a04kq08g7.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.chaipioperator"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

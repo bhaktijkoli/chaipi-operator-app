@@ -7,6 +7,8 @@ import com.agontuk.RNFusedLocation.RNFusedLocationPackage;
 import com.airbnb.android.react.maps.MapsPackage;
 import com.imagepicker.ImagePickerPackage;
 import io.invertase.firebase.RNFirebasePackage;
+import io.invertase.firebase.auth.RNFirebaseAuthPackage;
+import io.invertase.firebase.messaging.RNFirebaseMessagingPackage;
 import com.BV.LinearGradient.LinearGradientPackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import com.facebook.react.ReactNativeHost;
@@ -33,6 +35,8 @@ public class MainApplication extends Application implements ReactApplication {
             new MapsPackage(),
             new ImagePickerPackage(),
             new RNFirebasePackage(),
+            new RNFirebaseAuthPackage(),
+            new RNFirebaseMessagingPackage(),
             new LinearGradientPackage(),
             new RNGestureHandlerPackage()
       );

@@ -37,7 +37,7 @@ class ShopOrders extends Component {
                 <FlatList
                   data={this.props.shop.active_orders}
                   renderItem={({item, index}) => {
-                    return <Order order={item}/>
+                    return <Order order={item} navigation={this.props.navigation}/>
                   }}
                   keyExtractor={(item, index) => index.toString()}
                   ListHeaderComponent={this.renderActiveOrdersHeader.bind(this)}

@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { createStackNavigator, createDrawerNavigator, createAppContainer } from "react-navigation";
 import { Provider } from "react-redux";
 import { Root, StyleProvider } from 'native-base';
+import firebase from 'react-native-firebase';
+import type { RemoteMessage } from 'react-native-firebase';
 import store from "./app/store";
 import getTheme from './native-base-theme/components';
 import commonColor from './native-base-theme/variables/commonColor';
@@ -17,21 +19,42 @@ import Home from './app/screens/Home/Home';
 import Account from './app/screens/Account/Account';
 import ShopMain from './app/screens/ShopMain/ShopMain';
 import ShopOrders from './app/screens/ShopOrders/ShopOrders';
+import ShopOrderDetails from './app/screens/ShopOrderDetails/ShopOrderDetails';
 import ShopMenu from './app/screens/ShopMenu/ShopMenu';
 import ShopAddItem from './app/screens/ShopAddItem/ShopAddItem';
 import DriverMain from './app/screens/DriverMain/DriverMain';
 import DriverTasks from './app/screens/DriverTasks/DriverTasks';
 
-const App = () => {
-  return(
-    <Root>
-      <StyleProvider style={getTheme(commonColor)}>
-        <Provider store={store}>
-          <AppContainer />
-        </Provider>
-      </StyleProvider>
-    </Root>
-  )
+class App extends Component {
+  async componentDidMount() {
+    const fcmToken = await firebase.messaging().getToken();
+    if (fcmToken) {
+      console.log(fcmToken);
+      firebase.messaging().requestPermission()
+      .then(() => {
+        console.log("Authorized");
+        this.messageListener = firebase.messaging().onMessage((message) => {
+          console.log(message);
+        });
+      })
+      .catch(error => {
+        console.error(error);
+      });
+    } else {
+      // user doesn't have a device token yet
+    }
+  }
+  render() {
+    return(
+      <Root>
+        <StyleProvider style={getTheme(commonColor)}>
+          <Provider store={store}>
+            <AppContainer />
+          </Provider>
+        </StyleProvider>
+      </Root>
+    )
+  }
 }
 
 const AppNavigator = createStackNavigator(
@@ -47,6 +70,7 @@ const AppNavigator = createStackNavigator(
     Account: { screen: Account },
     ShopMain: { screen: ShopMain },
     ShopOrders: { screen: ShopOrders },
+    ShopOrderDetails: { screen: ShopOrderDetails },
     ShopMenu: { screen: ShopMenu },
     ShopAddItem: { screen: ShopAddItem },
     DriverMain: { screen: DriverMain },
