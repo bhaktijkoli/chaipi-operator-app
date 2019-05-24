@@ -3,7 +3,7 @@ import { createStackNavigator, createDrawerNavigator, createAppContainer } from 
 import { Provider } from "react-redux";
 import { Root, StyleProvider } from 'native-base';
 import firebase from 'react-native-firebase';
-import type { RemoteMessage } from 'react-native-firebase';
+import type { Notification } from 'react-native-firebase';
 import store from "./app/store";
 import getTheme from './native-base-theme/components';
 import commonColor from './native-base-theme/variables/commonColor';
@@ -33,8 +33,14 @@ class App extends Component {
       firebase.messaging().requestPermission()
       .then(() => {
         console.log("Authorized");
-        this.messageListener = firebase.messaging().onMessage((message) => {
-          console.log(message);
+        this.notificationDisplayedListener = firebase.notifications().onNotificationDisplayed((notification: Notification) => {
+          console.log("Notification displayed");
+          // Process your notification as required
+          // ANDROID: Remote notifications do not contain the channel ID. You will have to specify this manually if you'd like to re-display the notification.
+        });
+        this.notificationListener = firebase.notifications().onNotification((notification: Notification) => {
+          console.log("Notification recieved");
+          // Process your notification as required
         });
       })
       .catch(error => {
@@ -43,6 +49,10 @@ class App extends Component {
     } else {
       // user doesn't have a device token yet
     }
+  }
+  componentWillUnmount() {
+    this.notificationDisplayedListener();
+    this.notificationListener();
   }
   render() {
     return(
