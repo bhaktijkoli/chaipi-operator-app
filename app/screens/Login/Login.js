@@ -47,9 +47,9 @@ class Login extends Component {
           } else if(res.data.type == 2) {
             // Driver
             if(res.data.driver.verified == 0) {
-              NavigationActions.resetNavigation(this, 'DriverMain');
-            } else {
               NavigationActions.resetNavigation(this, 'WaitingApproval');
+            } else {
+              NavigationActions.resetNavigation(this, 'DriverMain');
             }
           } else {
             this.props.navigation.dispatch(NavigationActions.setupAction);
