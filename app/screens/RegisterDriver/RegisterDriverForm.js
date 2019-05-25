@@ -9,6 +9,7 @@ const ImagePicker = require('react-native-image-picker');
 
 import Style from './../../styles/style';
 import Request from './../../utils/request';
+import NavigationActions from './../../actions/navigationActions';
 
 const options = {
   title: 'Select Image',
@@ -51,7 +52,7 @@ class RegisterDriverForm extends Component {
             </Else>
           </If>
           <Text style={Style.error}>{this.state.licence_error}</Text>
-            <ButtonEx onPress={this.onClickRegister.bind(this)} loading={this.state.process} text="REGISTER"/>
+          <ButtonEx onPress={this.onClickRegister.bind(this)} loading={this.state.process} text="REGISTER"/>
         </Form>
       </ScrollView>
     )
@@ -70,6 +71,10 @@ class RegisterDriverForm extends Component {
   }
   onClickRegister() {
     this.setState({process: true, number_error: '', licence_error: ''});
+    if(this.state.licence == null) {
+      this.setState({process: false, licence_error: "Upload your licence"});
+      return;
+    }
     let data = new FormData();
     data.append('number', this.state.number)
     data.append('licence', this.state.licence)
@@ -77,9 +82,7 @@ class RegisterDriverForm extends Component {
     .then(res => {
       console.log(res.data);
       if(res.data.success) {
-        alert("We have recieved your application, we will come back to you soon.")
-        this.props.update();
-        this.props.navigation.navigate('Login');
+        this.props.navigation.navigate('Login')
       } else {
         let messages = res.data.messages;
         Object.keys(messages).forEach(el => {

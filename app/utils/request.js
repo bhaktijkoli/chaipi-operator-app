@@ -6,6 +6,7 @@ const host = '192.168.0.105';
 const port = 3000;
 
 module.exports.post = (url, data) => {
+  console.log(url);
   return axios.post(route(url), data)
 }
 
@@ -18,7 +19,7 @@ module.exports.setToken = (token) => {
 }
 
 const route = (url) => {
-  // return `https://chaipaan.tk/api/v1${url}`;
+  return `https://chaipaan.tk/api/v1${url}`;
   return `http://${host}:${port}/api/v1${url}`;
 }
 
