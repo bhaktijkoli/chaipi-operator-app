@@ -52,8 +52,7 @@ class Login extends Component {
           }
         })
         .catch(err => {
-          console.log(err);
-          this.props.navigation.dispatch(NavigationActions.setupAction);
+          NavigationActions.resetNavigation(this, 'ProfileSetup')
         })
       } else {
         this.setState({loading:false})

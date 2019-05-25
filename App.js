@@ -8,6 +8,7 @@ import commonColor from './native-base-theme/variables/commonColor';
 
 import Login from './app/screens/Login/Login';
 import OTPVerify from './app/screens/OTPVerify/OTPVerify';
+import ProfileSetup from './app/screens/ProfileSetup/ProfileSetup';
 import Logout from './app/screens/Login/Logout';
 import NotAMember from './app/screens/NotAMember/NotAMember';
 import WaitingApproval from './app/screens/WaitingApproval/WaitingApproval';
@@ -47,6 +48,7 @@ const AppNavigator = createStackNavigator(
     Login: { screen: Login },
     Logout: { screen: Logout },
     OTPVerify: { screen: OTPVerify },
+    ProfileSetup: { screen: ProfileSetup },
     NotAMember: { screen: NotAMember },
     WaitingApproval: { screen: WaitingApproval },
     RegisterShop: { screen: RegisterShop },

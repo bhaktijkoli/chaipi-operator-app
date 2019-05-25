@@ -71,7 +71,7 @@ class RegisterShopForm extends Component {
     .then(res => {
       console.log(res.data);
       if(res.data.success) {
-        this.props.navigation.navigate('Home');
+        NavigationActions.resetNavigation(this, 'Login');
       } else {
         let messages = res.data.messages;
         Object.keys(messages).forEach(el => {

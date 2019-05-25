@@ -29,3 +29,10 @@ module.exports.driverAction = StackActions.reset({
   index: 0,
   actions: [NavigationActions.navigate({ routeName: 'DriverMain' })],
 });
+
+module.exports.resetNavigation = (component, routeName) => {
+  component.props.navigation.dispatch(StackActions.reset({
+    index: 0,
+    actions: [NavigationActions.navigate({ routeName })],
+  }));
+}
