@@ -15,6 +15,7 @@ import Logout from './app/screens/Login/Logout';
 import NotAMember from './app/screens/NotAMember/NotAMember';
 import WaitingApproval from './app/screens/WaitingApproval/WaitingApproval';
 import RegisterShop from './app/screens/RegisterShop/RegisterShop';
+import RegisterDriver from './app/screens/RegisterDriver/RegisterDriver';
 import ShopAddress from './app/screens/ShopAddress/ShopAddress';
 import Home from './app/screens/Home/Home';
 import Account from './app/screens/Account/Account';
@@ -64,6 +65,7 @@ const AppNavigator = createStackNavigator(
     NotAMember: { screen: NotAMember },
     WaitingApproval: { screen: WaitingApproval },
     RegisterShop: { screen: RegisterShop },
+    RegisterDriver: { screen: RegisterDriver },
     ShopAddress: { screen: ShopAddress },
     Home: { screen: Home },
     Account: { screen: Account },

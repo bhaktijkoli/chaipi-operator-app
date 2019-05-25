@@ -13,7 +13,7 @@ class RegisterDriver extends Component {
       <Container>
         <HeaderEx title="Register As Driver"/>
         <Content contentContainerStyle={{flex: 1}}>
-          <RegisterDriverForm auth={this.props.auth} />
+          <RegisterDriverForm auth={this.props.auth} navigation={this.props.navigation}/>
         </Content>
       </Container>
     )

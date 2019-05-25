@@ -43,7 +43,7 @@ let startListining = () => {
 let syncToken = async () => {
   console.log("Start token sync");
   if(fcmToken) {
-    Request.post('/device/sync')
+    Request.post('/device/sync', {token: fcmToken})
     .then(res => {
       startListining();
     });
@@ -54,34 +54,3 @@ let syncToken = async () => {
 module.exports.init = init;
 module.exports.syncToken = syncToken;
 module.exports.startListining = startListining;
-
-
-//
-//
-// const fcmToken = await firebase.messaging().getToken();
-// if (fcmToken) {
-//   console.log(fcmToken);
-//   firebase.messaging().requestPermission()
-//   .then(() => {
-//     console.log("Authorized");
-//     this.notificationDisplayedListener = firebase.notifications().onNotificationDisplayed((notification: Notification) => {
-//       console.log("Notification displayed");
-//       // Process your notification as required
-//       // ANDROID: Remote notifications do not contain the channel ID. You will have to specify this manually if you'd like to re-display the notification.
-//     });
-//     this.notificationListener = firebase.notifications().onNotification((notification: Notification) => {
-//       console.log("Notification recieved");
-//       console.log(notification);
-//       // Process your notification as required
-//     });
-//     this.messageListener = firebase.messaging().onMessage((message: RemoteMessage) => {
-//       console.log("Remote message recieved");
-//       console.log(message);
-//     });
-//   })
-//   .catch(error => {
-//     console.error(error);
-//   });
-// } else {
-//   // user doesn't have a device token yet
-// }

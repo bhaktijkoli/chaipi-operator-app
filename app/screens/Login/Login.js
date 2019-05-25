@@ -33,6 +33,7 @@ class Login extends Component {
         AuthActions.setUserUID(this, data);
         Request.get('/user/get/'+user._user.uid)
         .then(res => {
+          console.log(res.data);
           AuthActions.setUser(this, res.data);
           Request.setToken(user._user.uid);
           Fcm.syncToken();
@@ -45,7 +46,11 @@ class Login extends Component {
             }
           } else if(res.data.type == 2) {
             // Driver
-            this.props.navigation.dispatch(NavigationActions.driverAction);
+            if(res.data.driver.verified == 0) {
+              NavigationActions.resetNavigation(this, 'DriverMain');
+            } else {
+              NavigationActions.resetNavigation(this, 'WaitingApproval');
+            }
           } else {
             this.props.navigation.dispatch(NavigationActions.setupAction);
           }

@@ -11,7 +11,7 @@ class NotAMember extends Component {
           <Button primary transparent block onPress={e=>this.props.navigation.navigate('RegisterShop')}>
             <Text>Register your shop</Text>
           </Button>
-          <Button primary transparent block onPress={e=>this.props.navigation.navigate('Logout')}>
+          <Button primary transparent block onPress={e=>this.props.navigation.navigate('RegisterDriver')}>
             <Text>Register as Driver</Text>
           </Button>
           <Button primary transparent block onPress={e=>this.props.navigation.navigate('Logout')}>
