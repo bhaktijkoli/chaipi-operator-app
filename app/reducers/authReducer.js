@@ -2,7 +2,6 @@ var initialState = {
   user: null,
   uid: null,
   shop: null,
-  products: [],
   update: 0,
 }
 export default function reducer(state=initialState, action) {
@@ -13,9 +12,6 @@ export default function reducer(state=initialState, action) {
     }
     case "AUTH_SET_UID": {
       return {...state, uid: action.payload.uid, phone: action.payload.phone}
-    }
-    case "AUTH_SET_PRODUCTS": {
-      return {...state, products: action.payload}
     }
   }
 

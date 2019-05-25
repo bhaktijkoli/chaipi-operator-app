@@ -8,7 +8,7 @@ import HeaderEx from './../../components/Header'
 
 import ShopFooter from './../../components/ShopFooter'
 import Request from './../../utils/request';
-import authActions from './../../actions/authActions';
+import shopActions from './../../actions/shopActions';
 
 import MenuItem from './MenuItem';
 
@@ -19,7 +19,7 @@ class ShopMenu extends Component {
         <HeaderEx title="Shop Menu"/>
         <Content contentContainerStyle={{flex: 1}}>
           <FlatList
-            data={this.props.auth.products}
+            data={this.props.shop.products}
             renderItem={({item, index}) => {
               return <MenuItem item={item} update={this.update.bind(this)}/>
             }}
@@ -34,7 +34,7 @@ class ShopMenu extends Component {
     )
   }
   update() {
-    authActions.getShopProducts(this, this.props.auth.shop.id)
+    shopActions.getShopProducts(this, this.props.auth.shop.id)
   }
   renderEmptyComponent() {
     return(
@@ -57,6 +57,7 @@ class ShopMenu extends Component {
 function mapStateToProps(state) {
   return {
     auth: state.auth,
+    shop: state.shop,
   };
 }
 

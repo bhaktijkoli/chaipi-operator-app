@@ -15,7 +15,7 @@ class ShopAddItem extends Component {
     return(
       <Container>
         <HeaderEx title="Add item"/>
-        <Content contentContainerStyle={{flex: 1}} style={Style.content}>
+        <Content contentContainerStyle={{flex: 1}}>
           <ShopAddItemForm auth={this.props.auth} navigation={this.props.navigation} update={this.update.bind(this)}/>
         </Content>
       </Container>

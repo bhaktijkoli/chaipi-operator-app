@@ -14,4 +14,14 @@ getActiveOrders = (component, callback) => {
   .catch(err => console.error(err));
 }
 
+getShopProducts = (component, shopid) => {
+  Request.get('/product/get?shop=' + shopid)
+  .then(res => {
+    component.props.dispatch({type: 'SHOP_SET_PRODUCTS', payload: res.data})
+  })
+  .catch(err => console.error(err));
+}
+
+
 module.exports.getActiveOrders = getActiveOrders;
+module.exports.getShopProducts = getShopProducts;

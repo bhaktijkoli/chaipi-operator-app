@@ -41,7 +41,6 @@ class Login extends Component {
             if(res.data.shop.verified == 0) {
               this.props.navigation.dispatch(NavigationActions.waitingAction);
             } else {
-              AuthActions.getShopProducts(this, res.data.shop.id);
               this.props.navigation.dispatch(NavigationActions.shopAction);
             }
           } else if(res.data.type == 2) {
@@ -52,6 +51,7 @@ class Login extends Component {
           }
         })
         .catch(err => {
+          console.log(err);
           NavigationActions.resetNavigation(this, 'ProfileSetup')
         })
       } else {

@@ -13,6 +13,7 @@ import ws from './../../utils/ws';
 class Shop extends Component {
   componentDidMount() {
     shopActions.getActiveOrders(this);
+    shopActions.getShopProducts(this, this.props.auth.shop.id);
     ws.init(this);
     ws.subscribeShop(this.props.auth.shop.id);
   }
