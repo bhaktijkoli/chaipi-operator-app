@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { createStackNavigator, createDrawerNavigator, createAppContainer } from "react-navigation";
 import { Provider } from "react-redux";
 import { Root, StyleProvider } from 'native-base';
-import firebase from 'react-native-firebase';
-import type { Notification, RemoteMessage } from 'react-native-firebase';
 import store from "./app/store";
 import getTheme from './native-base-theme/components';
 import commonColor from './native-base-theme/variables/commonColor';
@@ -25,39 +23,11 @@ import ShopAddItem from './app/screens/ShopAddItem/ShopAddItem';
 import DriverMain from './app/screens/DriverMain/DriverMain';
 import DriverTasks from './app/screens/DriverTasks/DriverTasks';
 
+import fcm from './app/utils/fcm'
+
 class App extends Component {
-  async componentDidMount() {
-    const fcmToken = await firebase.messaging().getToken();
-    if (fcmToken) {
-      console.log(fcmToken);
-      firebase.messaging().requestPermission()
-      .then(() => {
-        console.log("Authorized");
-        this.notificationDisplayedListener = firebase.notifications().onNotificationDisplayed((notification: Notification) => {
-          console.log("Notification displayed");
-          // Process your notification as required
-          // ANDROID: Remote notifications do not contain the channel ID. You will have to specify this manually if you'd like to re-display the notification.
-        });
-        this.notificationListener = firebase.notifications().onNotification((notification: Notification) => {
-          console.log("Notification recieved");
-          console.log(notification);
-          // Process your notification as required
-        });
-        this.messageListener = firebase.messaging().onMessage((message: RemoteMessage) => {
-          console.log("Remote message recieved");
-          console.log(message);
-        });
-      })
-      .catch(error => {
-        console.error(error);
-      });
-    } else {
-      // user doesn't have a device token yet
-    }
-  }
-  componentWillUnmount() {
-    this.notificationDisplayedListener();
-    this.notificationListener();
+  componentDidMount() {
+    fcm.init();
   }
   render() {
     return(

@@ -5,6 +5,7 @@ import { Col, Row, Grid } from 'react-native-easy-grid';
 import firebase from 'react-native-firebase';
 
 import Request from './../../utils/request';
+import Fcm from './../../utils/fcm';
 import AuthActions from './../../actions/authActions';
 import NavigationActions from './../../actions/navigationActions';
 import Style from './../../styles/style';
@@ -33,7 +34,8 @@ class Login extends Component {
         Request.get('/user/get/'+user._user.uid)
         .then(res => {
           AuthActions.setUser(this, res.data);
-          Request.setToken(user._user.uid)
+          Request.setToken(user._user.uid);
+          Fcm.syncToken();
           if(res.data.type == 1) {
             // Shop
             if(res.data.shop.verified == 0) {
