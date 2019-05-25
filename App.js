@@ -3,7 +3,7 @@ import { createStackNavigator, createDrawerNavigator, createAppContainer } from 
 import { Provider } from "react-redux";
 import { Root, StyleProvider } from 'native-base';
 import firebase from 'react-native-firebase';
-import type { Notification } from 'react-native-firebase';
+import type { Notification, RemoteMessage } from 'react-native-firebase';
 import store from "./app/store";
 import getTheme from './native-base-theme/components';
 import commonColor from './native-base-theme/variables/commonColor';
@@ -40,7 +40,12 @@ class App extends Component {
         });
         this.notificationListener = firebase.notifications().onNotification((notification: Notification) => {
           console.log("Notification recieved");
+          console.log(notification);
           // Process your notification as required
+        });
+        this.messageListener = firebase.messaging().onMessage((message: RemoteMessage) => {
+          console.log("Remote message recieved");
+          console.log(message);
         });
       })
       .catch(error => {
