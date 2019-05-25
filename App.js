@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { createStackNavigator, createDrawerNavigator, createAppContainer } from "react-navigation";
 import { Provider } from "react-redux";
 import { Root, StyleProvider } from 'native-base';
+import firebase from 'react-native-firebase';
+import type { Notification, NotificationOpen } from 'react-native-firebase';
 import store from "./app/store";
 import getTheme from './native-base-theme/components';
 import commonColor from './native-base-theme/variables/commonColor';
@@ -27,8 +29,18 @@ import DriverTasks from './app/screens/DriverTasks/DriverTasks';
 import fcm from './app/utils/fcm'
 
 class App extends Component {
-  componentDidMount() {
+  async componentDidMount() {
     fcm.init();
+    const notificationOpen: NotificationOpen = await firebase.notifications().getInitialNotification();
+    if (notificationOpen) {
+      console.log("App opended by notification");
+      // App was opened by a notification
+      // Get the action triggered by the notification being opened
+      const action = notificationOpen.action;
+      // Get information about the notification that was opened
+      const notification: Notification = notificationOpen.notification;
+      console.log(notification);
+    }
   }
   render() {
     return(
