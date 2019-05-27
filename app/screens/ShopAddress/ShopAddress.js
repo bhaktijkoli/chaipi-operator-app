@@ -44,7 +44,7 @@ class ShopAddress extends Component {
     return(
       <Container>
         <HeaderEx title="Address"/>
-        <Content contentContainerStyle={{flex: 1}}>
+        <ScrollView style={{flex: 1}}>
           <MapView
             ref="map"
             onRegionChange={this.onRegionChange.bind(this)}
@@ -84,7 +84,7 @@ class ShopAddress extends Component {
               <Text>Add</Text>
             </Button>
           </Form>
-        </Content>
+        </ScrollView>
       </Container>
     )
   }

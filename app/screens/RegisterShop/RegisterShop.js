@@ -13,7 +13,7 @@ class RegisterShop extends Component {
     return(
       <Container>
         <HeaderEx title="Register Your Shop"/>
-        <Content contentContainerStyle={{flex: 1}} style={Style.content}>
+        <Content contentContainerStyle={{flex: 1}}>
           <RegisterShopForm auth={this.props.auth} navigation={this.props.navigation}/>
         </Content>
       </Container>
