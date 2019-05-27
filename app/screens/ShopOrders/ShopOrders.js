@@ -20,8 +20,9 @@ class ShopOrders extends Component {
   state = {
     loading: false,
   }
-  componentDidMount() {
-    ws.init(this);
+  constructor(props) {
+    super(props)
+    shopActions.init(this);
   }
   render() {
     return(

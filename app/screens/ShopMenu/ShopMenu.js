@@ -13,6 +13,10 @@ import shopActions from './../../actions/shopActions';
 import MenuItem from './MenuItem';
 
 class ShopMenu extends Component {
+  constructor(props) {
+    super(props)
+    shopActions.init(this);
+  }
   render() {
     return(
       <Container>

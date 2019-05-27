@@ -8,14 +8,12 @@ import HeaderEx from './../../components/Header';
 import ShopFooter from './../../components/ShopFooter';
 
 import shopActions from './../../actions/shopActions';
-import ws from './../../utils/ws';
+import Fcm from './../../utils/fcm';
 
 class Shop extends Component {
-  componentDidMount() {
-    shopActions.getActiveOrders(this);
-    shopActions.getShopProducts(this, this.props.auth.shop.id);
-    ws.init(this);
-    ws.subscribeShop(this.props.auth.shop.id);
+  constructor(props) {
+    super(props)
+    shopActions.init(this);
   }
   render() {
     return(

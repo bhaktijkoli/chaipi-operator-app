@@ -19,7 +19,7 @@ module.exports.setToken = (token) => {
 }
 
 const route = (url) => {
-  return `https://chaipaan.tk/api/v1${url}`;
+  // return `https://chaipaan.tk/api/v1${url}`;
   return `http://${host}:${port}/api/v1${url}`;
 }
 

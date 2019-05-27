@@ -30,25 +30,15 @@ import DriverTasks from './app/screens/DriverTasks/DriverTasks';
 import fcm from './app/utils/fcm'
 
 class App extends Component {
-  async componentDidMount() {
-    fcm.init();
-    const notificationOpen: NotificationOpen = await firebase.notifications().getInitialNotification();
-    if (notificationOpen) {
-      console.log("App opended by notification");
-      // App was opened by a notification
-      // Get the action triggered by the notification being opened
-      const action = notificationOpen.action;
-      // Get information about the notification that was opened
-      const notification: Notification = notificationOpen.notification;
-      console.log(notification);
-    }
+  componentDidMount() {
+    fcm.init(this.refs.navigation._navigation);
   }
   render() {
     return(
       <Root>
         <StyleProvider style={getTheme(commonColor)}>
           <Provider store={store}>
-            <AppContainer />
+            <AppContainer ref="navigation"/>
           </Provider>
         </StyleProvider>
       </Root>

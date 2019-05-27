@@ -23,7 +23,7 @@ class Login extends Component {
       loading: true,
     }
   }
-  componentDidMount() {
+  async componentDidMount() {
     let user = null
     this.authChange = firebase.auth().onAuthStateChanged((u) => {
       if(user) return;
@@ -37,23 +37,9 @@ class Login extends Component {
           AuthActions.setUser(this, res.data);
           Request.setToken(user._user.uid);
           Fcm.syncToken();
-          if(res.data.type == 1) {
-            // Shop
-            if(res.data.shop.verified == 0) {
-              this.props.navigation.dispatch(NavigationActions.waitingAction);
-            } else {
-              this.props.navigation.dispatch(NavigationActions.shopAction);
-            }
-          } else if(res.data.type == 2) {
-            // Driver
-            if(res.data.driver.verified == 0) {
-              NavigationActions.resetNavigation(this, 'WaitingApproval');
-            } else {
-              NavigationActions.resetNavigation(this, 'DriverMain');
-            }
-          } else {
-            this.props.navigation.dispatch(NavigationActions.setupAction);
-          }
+          Fcm.checkNotification(() => {
+            this.checkValidationAndNavigate(res.data);
+          });
         })
         .catch(err => {
           console.log(err);
@@ -84,6 +70,25 @@ class Login extends Component {
         </Content>
       </Container>
     )
+  }
+  checkValidationAndNavigate(user) {
+    if(user.type == 1) {
+      // Shop
+      if(user.shop.verified == 0) {
+        this.props.navigation.dispatch(NavigationActions.waitingAction);
+      } else {
+        this.props.navigation.dispatch(NavigationActions.shopAction);
+      }
+    } else if(user.type == 2) {
+      // Driver
+      if(user.driver.verified == 0) {
+        NavigationActions.resetNavigation(this, 'WaitingApproval');
+      } else {
+        NavigationActions.resetNavigation(this, 'DriverMain');
+      }
+    } else {
+      this.props.navigation.dispatch(NavigationActions.setupAction);
+    }
   }
 }
 

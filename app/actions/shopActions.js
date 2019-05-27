@@ -25,3 +25,10 @@ getShopProducts = (component, shopid) => {
 
 module.exports.getActiveOrders = getActiveOrders;
 module.exports.getShopProducts = getShopProducts;
+
+module.exports.init = (component) => {
+  if(!component.props.shop.loaded) {
+    getShopProducts(component, component.props.auth.shop.id);
+    getActiveOrders(component);
+  }
+}
