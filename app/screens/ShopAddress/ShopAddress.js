@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
+import { ScrollView } from 'react-native';
 import { Container, Content } from 'native-base';
 import { Form, Item, Label, Text, Input, Textarea, Icon, Button, Toast } from 'native-base';
 import { PermissionsAndroid, Platform, StyleSheet } from 'react-native';

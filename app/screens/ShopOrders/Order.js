@@ -79,7 +79,7 @@ class Order extends Component {
                   <If condition={order.status == 1}>
                     <Row>
                       <Col>
-                        <Button dark transparent full><Text>MARK READY</Text></Button>
+                        <Button dark transparent full onPress={this.onReadyClick.bind(this)}><Text>MARK READY</Text></Button>
                       </Col>
                       <Col>
                         <Button dark transparent full onPress={e=>navigation.navigate("ShopOrderDetails", {order})}><Text>VIEW DETAILS</Text></Button>
@@ -120,7 +120,13 @@ class Order extends Component {
   onPrepareClick() {
     Request.post('/order/prepare', {order: this.props.order.id})
     .then(res => {
-      console.log(res.data);
+      this.props.update();
+    })
+  }
+  onReadyClick() {
+    Request.post('/order/ready', {order: this.props.order.id})
+    .then(res => {
+      this.props.update();
     })
   }
 }

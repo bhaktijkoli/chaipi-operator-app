@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { TouchableOpacity, Image, SrollView } from 'react-native';
+import { TouchableOpacity, Image, ScrollView } from 'react-native';
 import { View, Form, Item, Label, Text, Input, Textarea, Icon, Button, Toast } from 'native-base';
 import { If, Then, Else } from 'react-if';
 import ButtonEx from './../../components/Button';
 
 import Style from './../../styles/style';
 import Request from './../../utils/request';
+import NavigationActions from './../../actions/navigationActions';
 
 class RegisterShopForm extends Component {
   state = {

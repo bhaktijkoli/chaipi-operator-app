@@ -38,7 +38,7 @@ class ShopOrders extends Component {
                 <FlatList
                   data={this.props.shop.active_orders}
                   renderItem={({item, index}) => {
-                    return <Order order={item} navigation={this.props.navigation}/>
+                    return <Order order={item} navigation={this.props.navigation} update={this.update.bind(this)}/>
                   }}
                   keyExtractor={(item, index) => index.toString()}
                   ListHeaderComponent={this.renderActiveOrdersHeader.bind(this)}
@@ -69,6 +69,9 @@ class ShopOrders extends Component {
     shopActions.getShopOders(this, () => {
       this.setState({oading: false});
     });
+  }
+  update() {
+    shopActions.getActiveOrders(this)
   }
 }
 
