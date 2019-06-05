@@ -27,6 +27,7 @@ class Order extends Component {
   }
   render() {
     let order = this.props.order;
+    let products = JSON.parse(order.products);
     let navigation = this.props.navigation;
     let createdAt = moment(order.createdAt, 'YYYY-MM-DD HH:mm:ss');
     return(
@@ -61,7 +62,7 @@ class Order extends Component {
                   <Row>
                     <Col size={4}>
                       <Text note>Item</Text>
-                      {order.products.map((el, key) => {
+                      {products.map((el, key) => {
                         return(
                           <Text numberOfLines={1} key={key}>{el.name}</Text>
                         )
@@ -69,7 +70,7 @@ class Order extends Component {
                     </Col>
                     <Col>
                       <Text note>Qty</Text>
-                      {order.products.map((el, key) => {
+                      {products.map((el, key) => {
                         return(
                           <Text key={key}>{el.count}</Text>
                         )
@@ -106,7 +107,7 @@ class Order extends Component {
                   </Row>
                   <Row>
                     <Col>
-                      <Text>{order.products.map((el, key) => { return `${el.name}x${el.count}${key!=order.products.length-1?", ":""}`})}</Text>
+                      <Text>{products.map((el, key) => { return `${el.name}x${el.count}${key!=products.length-1?", ":""}`})}</Text>
                     </Col>
                   </Row>
                 </Grid>

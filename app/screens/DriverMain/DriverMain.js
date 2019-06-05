@@ -4,10 +4,14 @@ import { Container, Content, View, Title } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 
 import HeaderEx from './../../components/Header';
-
 import DriverFooter from './../../components/DriverFooter';
 
+import DriverActions from './../../actions/driverActions';
+
 class DriverMain extends Component {
+  componentDidMount() {
+    DriverActions.init(this);
+  }
   render() {
     return(
       <Container>

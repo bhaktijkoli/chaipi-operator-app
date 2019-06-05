@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { Container, Content, View, Text, Button } from 'native-base';
-import { Col, Row, Grid } from 'react-native-easy-grid';
 
 class WaitingApproval extends Component {
   render() {

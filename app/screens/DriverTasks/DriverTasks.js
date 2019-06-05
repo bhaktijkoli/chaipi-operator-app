@@ -10,31 +10,29 @@ import SpinnerBox from './../../components/SpinnerBox';
 import DriverFooter from './../../components/DriverFooter';
 
 import Request from './../../utils/request';
+import DriverActions from './../../actions/driverActions';
 
 import Task from './Task';
 
 class DriverTasks extends Component {
-  state = {
-    loading: false,
-    orders: [],
-  }
   componentDidMount() {
-    this.getAvailableTasks();
+    DriverActions.init(this);
   }
   render() {
+    let driver = this.props.driver;
     return(
       <Container>
         <HeaderEx title="Your Tasks"/>
         <Content contentContainerStyle={{flex: 1}}>
-          <If condition={this.state.loading}>
+          <If condition={driver.loading}>
             <Then>
               <SpinnerBox />
             </Then>
             <Else>
               <FlatList
-                data={this.state.orders}
+                data={driver.active_orders}
                 renderItem={({item, index}) => {
-                  return <Task task={item}/>
+                  return <Task order={item}/>
                 }}
                 keyExtractor={(item, index) => index.toString()}
                 ListEmptyComponent={this.renderEmptyComponent.bind(this)}
@@ -53,20 +51,12 @@ class DriverTasks extends Component {
       </View>
     )
   }
-  getAvailableTasks() {
-    this.setState({loading: true})
-    Request.get('/order/get')
-    .then(res => {
-      console.log(res.data);
-      this.setState({orders: res.data, loading: false})
-    })
-    .catch(err => console.error(err));
-  }
 }
 
 function mapStateToProps(state) {
   return {
     auth: state.auth,
+    driver: state.driver,
   };
 }
 
