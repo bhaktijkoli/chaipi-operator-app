@@ -60,7 +60,7 @@ class Task extends Component {
                 <Grid>
                   <Row>
                     <Col>
-                      <Button dark transparent full><Text>VIEW DETAILS</Text></Button>
+                      <Button dark transparent full onPress={this.onPressDetails.bind(this)}><Text>VIEW DETAILS</Text></Button>
                     </Col>
                   </Row>
                 </Grid>
@@ -70,6 +70,9 @@ class Task extends Component {
         </Card>
       </TouchableWithoutFeedback>
     )
+  }
+  onPressDetails() {
+    this.props.navigation.navigate('DriverTaskDetails', {order: this.props.order});
   }
 }
 

@@ -26,6 +26,7 @@ import ShopMenu from './app/screens/ShopMenu/ShopMenu';
 import ShopAddItem from './app/screens/ShopAddItem/ShopAddItem';
 import DriverMain from './app/screens/DriverMain/DriverMain';
 import DriverTasks from './app/screens/DriverTasks/DriverTasks';
+import DriverTaskDetails from './app/screens/DriverTaskDetails/DriverTaskDetails';
 
 import fcm from './app/utils/fcm'
 
@@ -66,6 +67,7 @@ const AppNavigator = createStackNavigator(
     ShopAddItem: { screen: ShopAddItem },
     DriverMain: { screen: DriverMain },
     DriverTasks: { screen: DriverTasks },
+    DriverTaskDetails: { screen: DriverTaskDetails },
   },
   {
     defaultNavigationOptions: {

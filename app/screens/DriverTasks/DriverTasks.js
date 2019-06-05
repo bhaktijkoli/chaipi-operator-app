@@ -20,6 +20,7 @@ class DriverTasks extends Component {
   }
   render() {
     let driver = this.props.driver;
+    let navigation = this.props.navigation;
     return(
       <Container>
         <HeaderEx title="Your Tasks"/>
@@ -32,7 +33,7 @@ class DriverTasks extends Component {
               <FlatList
                 data={driver.active_orders}
                 renderItem={({item, index}) => {
-                  return <Task order={item}/>
+                  return <Task order={item} navigation={navigation}/>
                 }}
                 keyExtractor={(item, index) => index.toString()}
                 ListEmptyComponent={this.renderEmptyComponent.bind(this)}
