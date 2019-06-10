@@ -71,7 +71,7 @@ class ShopOrders extends Component {
     });
   }
   update() {
-    shopActions.getActiveOrders(this)
+    shopActions.getActiveShopOrders(this)
   }
 }
 

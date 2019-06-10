@@ -1,6 +1,6 @@
 import Request from './../utils/request';
 
-getActiveOrders = (component, callback) => {
+getActiveShopOrders = (component, callback) => {
   Request.get('/order/get/shop/active')
   .then(res => {
     component.props.dispatch({type: 'SHOP_SET_ACTIVE_ORDERS', payload: res.data})
@@ -17,12 +17,12 @@ getShopProducts = (component, shopid) => {
 }
 
 
-module.exports.getActiveOrders = getActiveOrders;
+module.exports.getActiveShopOrders = getActiveShopOrders;
 module.exports.getShopProducts = getShopProducts;
 
 module.exports.init = (component) => {
   if(!component.props.shop.loaded) {
     getShopProducts(component, component.props.auth.shop.id);
-    getActiveOrders(component);
+    getActiveShopOrders(component);
   }
 }

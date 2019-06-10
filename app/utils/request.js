@@ -6,11 +6,12 @@ const host = '192.168.0.105';
 const port = 3000;
 
 module.exports.post = (url, data) => {
-  console.log(url);
+  console.log("POST:", route(url));
   return axios.post(route(url), data)
 }
 
 module.exports.get = (url) => {
+  console.log("GET:", route(url));
   return axios.get(route(url))
 }
 
