@@ -1,6 +1,9 @@
 import firebase from 'react-native-firebase';
 import type { Notification, RemoteMessage, NotificationOpen } from 'react-native-firebase';
 import Request from './request';
+import authActions from './../actions/authActions';
+import shopActions from './../actions/shopActions';
+import driverActions from './../actions/driverActions';
 
 let fcmToken = null;
 let navigation = null;
@@ -25,6 +28,7 @@ let startListining = () => {
   console.log("Started startListining");
   notificationDisplayedListener = firebase.notifications().onNotificationDisplayed((notification: Notification) => {
     console.log("Notification displayed");
+    console.log(notification);
   });
   notificationListener = firebase.notifications().onNotification((notification: Notification) => {
     console.log("Notification recieved");
@@ -39,6 +43,7 @@ let startListining = () => {
   messageListener = firebase.messaging().onMessage((message: RemoteMessage) => {
     console.log("Remote message recieved");
     console.log(message);
+    performMessageAction(message.data);
   });
 }
 
@@ -66,11 +71,24 @@ let checkNotification = async (callback) => {
 let performNotification = async (notification: Notification) => {
   let payload = JSON.parse(notification.data.payload);
   if(payload) {
-    console.log(payload.screen);
     navigation.navigate(payload.screen);
     return true;
   }
   return false;
+}
+
+let performMessageAction = async (data) => {
+  let payload = JSON.parse(data.payload);
+  switch (payload.action) {
+    case "DRIVER_TASK_REFRESH":
+    driverActions.getActiveOrders();
+    break;
+    case "SHOP_ORDER_REFRESH":
+    shopActions.getActiveShopOrders();
+    break;
+    default:
+    console.log("Invalid action");
+  }
 }
 
 module.exports.init = init;
@@ -78,3 +96,4 @@ module.exports.syncToken = syncToken;
 module.exports.startListining = startListining;
 module.exports.checkNotification = checkNotification;
 module.exports.performNotification = performNotification;
+module.exports.performMessageAction = performMessageAction;
