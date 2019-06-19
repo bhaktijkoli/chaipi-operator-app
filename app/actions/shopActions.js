@@ -1,17 +1,18 @@
 import Request from './../utils/request';
+import store from './../store';
 
-getActiveShopOrders = (component, callback) => {
+getActiveShopOrders = (callback) => {
   Request.get('/order/get/shop/active')
   .then(res => {
-    component.props.dispatch({type: 'SHOP_SET_ACTIVE_ORDERS', payload: res.data})
+    store.dispatch({type: 'SHOP_SET_ACTIVE_ORDERS', payload: res.data})
   })
   .catch(err => console.error(err));
 }
 
-getShopProducts = (component, shopid) => {
+getShopProducts = (shopid) => {
   Request.get('/product/get?shop=' + shopid)
   .then(res => {
-    component.props.dispatch({type: 'SHOP_SET_PRODUCTS', payload: res.data})
+    store.dispatch({type: 'SHOP_SET_PRODUCTS', payload: res.data})
   })
   .catch(err => console.error(err));
 }

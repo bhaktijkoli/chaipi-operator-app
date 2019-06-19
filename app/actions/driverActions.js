@@ -1,9 +1,10 @@
 import Request from './../utils/request';
+import store from './../store';
 
-getActiveOrders = (component, callback) => {
+getActiveOrders = (callback) => {
   Request.get('/order/get/driver/active')
   .then(res => {
-    component.props.dispatch({type: 'DRIVER_SET_ACTIVE_ORDERS', payload: res.data})
+    store.dispatch({type: 'DRIVER_SET_ACTIVE_ORDERS', payload: res.data})
   })
   .catch(err => console.error(err));
 };

@@ -1,12 +1,13 @@
 import Request from './../utils/request';
+import store from './../store';
 
-module.exports.setUser = (component, data) => {
-  component.props.dispatch({type: 'AUTH_SET_USER', payload: data})
+module.exports.setUser = (data) => {
+  store.dispatch({type: 'AUTH_SET_USER', payload: data})
   if(data.shop) {
-    component.props.dispatch({type: 'AUTH_SET_SHOP', payload: data})
+    store.dispatch({type: 'AUTH_SET_SHOP', payload: data})
   }
 }
 
-module.exports.setUserUID = (component, data) => {
-  component.props.dispatch({type: 'AUTH_SET_UID', payload: data})
+module.exports.setUserUID = (data) => {
+  store.dispatch({type: 'AUTH_SET_UID', payload: data})
 }

@@ -30,11 +30,11 @@ class Login extends Component {
       user = u;
       if(user) {
         let data = {uid: user._user.uid, phone: user._user.phoneNumber}
-        AuthActions.setUserUID(this, data);
+        AuthActions.setUserUID(data);
         Request.get('/user/get/'+user._user.uid)
         .then(res => {
           console.log(res.data);
-          AuthActions.setUser(this, res.data);
+          AuthActions.setUser(res.data);
           Request.setToken(user._user.uid);
           Fcm.syncToken();
           Fcm.checkNotification(() => {

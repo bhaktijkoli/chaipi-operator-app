@@ -66,12 +66,12 @@ class ShopOrders extends Component {
   }
   getShopOders() {
     this.setState({loading: true})
-    shopActions.getShopOders(this, () => {
+    shopActions.getShopOders(() => {
       this.setState({oading: false});
     });
   }
   update() {
-    shopActions.getActiveShopOrders(this)
+    shopActions.getActiveShopOrders()
   }
 }
 

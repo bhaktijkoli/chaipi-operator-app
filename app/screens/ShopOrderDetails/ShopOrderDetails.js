@@ -16,7 +16,6 @@ class ShopOrderDetails extends Component {
   }
   render() {
     let order = this.props.navigation.getParam('order');
-    console.log(order);
     return(
       <Container>
         <HeaderEx title={'#'+order.trackid}/>
