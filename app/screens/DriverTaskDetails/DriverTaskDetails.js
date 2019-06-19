@@ -9,16 +9,27 @@ import getDirections from 'react-native-google-maps-directions'
 
 import HeaderEx from './../../components/Header2';
 import SpinnerBox from './../../components/SpinnerBox';
+import SpinnerModel from './../../components/SpinnerModel';
 
 import Style from './../../styles/style';
 import Request from './../../utils/request';
 import DriverActions from './../../actions/driverActions';
 
 class DriverTaskDetails extends Component {
-  componentDidMount() {
+  state = {
+    process: false,
+    order: null,
+  }
+  constructor(props) {
+    super(props)
+    let order = props.navigation.getParam('order');
+    this.state = {
+      process: false,
+      order,
+    }
   }
   render() {
-    let order = this.props.navigation.getParam('order');
+    let order = this.state.order;
     let shop = order.shop;
     let products = JSON.parse(order.products);
     let shopCoordinates = {
@@ -28,6 +39,7 @@ class DriverTaskDetails extends Component {
     return(
       <Container>
         <HeaderEx title={"TASK #"+order.trackid}/>
+        <SpinnerModel visible={this.state.process}/>
         <ScrollView>
           <MapView
             style={{width:'100%', height: 260}}
@@ -71,20 +83,34 @@ class DriverTaskDetails extends Component {
                   {
                     products.map((p, key) => {
                       return(
-                        <Text>{p.name}</Text>
+                        <Text key={key}>{p.name}</Text>
                       )
                     })
                   }
                 </Col>
                 <Col size={1}>
                   <Text note>Qty</Text>
-                    {
-                      products.map((p, key) => {
-                        return(
-                          <Text>{p.count}</Text>
-                        )
-                      })
-                    }
+                  {
+                    products.map((p, key) => {
+                      return(
+                        <Text key={key}>{p.count}</Text>
+                      )
+                    })
+                  }
+                </Col>
+              </Row>
+              <Row style={Style.top}>
+                <Col>
+                  <If condition={order.status < 4}>
+                    <Button primary block onPress={this.onPressDeliver.bind(this)}>
+                      <If condition={order.status < 3}>
+                        <Text>I have pciked the order</Text>
+                      </If>
+                      <If condition={order.status == 3}>
+                        <Text>I have delivered the order</Text>
+                      </If>
+                    </Button>
+                  </If>
                 </Col>
               </Row>
             </Grid>
@@ -93,8 +119,26 @@ class DriverTaskDetails extends Component {
       </Container>
     )
   }
+  onPressDeliver() {
+    this.setState({process: true});
+    let order = this.state.order;
+    let url = "";
+    if(order.status < 3) {
+      url = "/order/recieved";
+      order.status = 3;
+    }
+    else if(order.status = 4) {
+      url = "/order/delivered";
+      order.status = 4;
+    }
+    Request.post(url, {order: order.id})
+    .then(res => {
+      this.setState({process: false, order});
+    })
+    .catch(err => console.error(err));
+  }
   onGetDirections() {
-    let order = this.props.navigation.getParam('order');
+    let order = this.state.order;
     let data = {
       destination: {
         latitude: order.shop.lat,
