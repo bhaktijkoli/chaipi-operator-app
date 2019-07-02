@@ -86,11 +86,11 @@ class RegisterShopForm extends Component {
     )
   }
   onClickAdd() {
-    this.setState({process: true});
+    // this.setState({process: true});
     let data = new FormData();
     data.append('name', this.state.name)
     data.append('description', this.state.description)
-    data.append('location', this.state.location.location)
+    data.append('address', this.state.location.address)
     data.append('house', this.state.location.house)
     data.append('landmark', this.state.location.landmark)
     data.append('lat', this.state.location.lat)
@@ -98,7 +98,6 @@ class RegisterShopForm extends Component {
     data.append('image', this.state.image)
     Request.post('/shop/add', data)
     .then(res => {
-      console.log(res.data);
       if(res.data.success) {
         NavigationActions.resetNavigation(this, 'Login');
       } else {
@@ -128,7 +127,7 @@ class RegisterShopForm extends Component {
     if(format.length > 0) format += ", "
     format += this.state.location.landmark;
     if(format.length > 0) format += ", "
-    format += this.state.location.location;
+    format += this.state.location.address;
     return format;
   }
   setLocation(location) {

@@ -15,7 +15,7 @@ import HeaderEx from './../../components/Header2'
 
 class ShopAddress extends Component {
   state = {
-    location: '',
+    address: '',
     house: '',
     landmark: '',
     house_error: '',
@@ -64,7 +64,7 @@ class ShopAddress extends Component {
                 caretHidden={true}
                 placeholder="Searching your location"
                 editable={false}
-                value={this.state.location} />
+                value={this.state.address} />
             </Item>
             <Text style={Style.error}></Text>
             <Label>House/Flat No</Label>
@@ -93,7 +93,7 @@ class ShopAddress extends Component {
     // setLocation
     let setLocation = this.props.navigation.getParam('setLocation');
     let data = {
-      location: this.state.location,
+      address: this.state.address,
       house: this.state.house,
       landmark: this.state.landmark,
       lat: this.state.lat,
@@ -103,7 +103,7 @@ class ShopAddress extends Component {
     this.props.navigation.goBack();
   }
   onRegionChange(region) {
-    this.setState({location: ""})
+    this.setState({address: ""})
     this.moveMarker(region.latitude, region.longitude);
   }
   onRegionChangeComplete(region) {
@@ -131,8 +131,8 @@ class ShopAddress extends Component {
     let url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lon}&key=AIzaSyB725g4AZKR2idp-yY5opgxFrV_wR2z2MU`;
     axios.get(url)
     .then(res => {
-      let location = res.data.results[1].formatted_address;
-      this.setState({location});
+      let address = res.data.results[1].formatted_address;
+      this.setState({address});
     })
   }
   async requestLocationPermission() {
