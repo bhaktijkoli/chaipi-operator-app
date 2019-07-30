@@ -86,7 +86,7 @@ class RegisterShopForm extends Component {
     )
   }
   onClickAdd() {
-    // this.setState({process: true});
+    this.setState({process: true});
     let data = new FormData();
     data.append('name', this.state.name)
     data.append('description', this.state.description)
