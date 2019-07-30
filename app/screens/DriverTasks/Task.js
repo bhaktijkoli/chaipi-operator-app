@@ -50,7 +50,7 @@ class Task extends Component {
             <Row>
               <Col>
                 <Text numberOfLines={1}>{shop.name}</Text>
-                <Text note numberOfLines={this.state.layoutOpen?0:1}>{shop.house}, {shop.landmark}, {shop.location}</Text>
+                <Text note numberOfLines={this.state.layoutOpen?0:1}>{shop.house}, {shop.landmark}, {shop.address}</Text>
               </Col>
             </Row>
           </CardItem>

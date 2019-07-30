@@ -63,13 +63,13 @@ class DriverTaskDetails extends Component {
               <Row style={Style.top}>
                 <Col><Icon type="Entypo" name="shop" style={this.getAddressStyle(order, 1)}/></Col>
                 <Col size={4} onPress={this.onGetDirections.bind(this)}>
-                  <Text style={this.getAddressStyle(order, 1)}>{shop.house}, {shop.landmark}, {shop.location}</Text>
+                  <Text style={this.getAddressStyle(order, 1)}>{shop.house}, {shop.landmark}, {shop.address}</Text>
                 </Col>
               </Row>
               <Row style={Style.top10}>
                 <Col><Icon type="FontAwesome" name="map-marker" style={this.getAddressStyle(order, 2)}/></Col>
                 <Col size={4} onPress={this.onGetDirections.bind(this)}>
-                  <Text style={this.getAddressStyle(order, 2)}>{shop.house}, {shop.landmark}, {shop.location}</Text>
+                  <Text style={this.getAddressStyle(order, 2)}>{shop.house}, {shop.landmark}, {shop.address}</Text>
                 </Col>
               </Row>
               <Row style={Style.top}>
