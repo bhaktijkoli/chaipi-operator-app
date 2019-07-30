@@ -11,6 +11,7 @@ import DriverActions from './../../actions/driverActions';
 class DriverMain extends Component {
   componentDidMount() {
     DriverActions.init(this);
+    DriverActions.updateLocation();
   }
   render() {
     return(

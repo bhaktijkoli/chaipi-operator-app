@@ -17,6 +17,7 @@ import Task from './Task';
 class DriverTasks extends Component {
   componentDidMount() {
     DriverActions.init(this);
+    DriverActions.updateLocation();
   }
   render() {
     let driver = this.props.driver;
