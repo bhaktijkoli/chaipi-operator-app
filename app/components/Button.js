@@ -10,8 +10,10 @@ class ButtonEx extends Component {
     } else {
       var content = <Text>{this.props.text}</Text>;
     }
+    var disabled = this.props.loading;
+    if(this.props.disabled) disabled = true;
     return(
-      <Button large block style={Style.button} onPress={this.OnPress.bind(this)} disabled={this.props.loading}>
+      <Button large block style={Style.button} onPress={this.OnPress.bind(this)} disabled={disabled}>
         {content}
       </Button>
     )
