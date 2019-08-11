@@ -28,7 +28,7 @@ class RegisterShopForm extends Component {
     address_error: '',
     image_error: '',
     location: {
-      location: "",
+      address: "",
       house: "",
       landmark: "",
       lat: 0,
