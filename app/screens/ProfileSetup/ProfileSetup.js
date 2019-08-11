@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Container, Content, View, Text} from 'native-base';
+import { Container, Content, View, Text, Button} from 'native-base';
 import { Form, Item, Input } from 'native-base';
 import { H1 } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 
-import Button from './../../components/Button';
+import ButtonEx from './../../components/Button';
 
 import Request from './../../utils/request';
 import Style from './../../styles/style';
@@ -20,10 +20,10 @@ class ProfileSetup extends Component {
     super(props)
     this.state = {
       fullname: '',
-      email: '',
       process: false,
     }
     this.onClickNext = this.onClickNext.bind(this)
+    this.onClickLogout = this.onClickLogout.bind(this)
   }
   componentDidMount() {
   }
@@ -42,14 +42,10 @@ class ProfileSetup extends Component {
                     onChangeText={val=>this.setState({fullname: val})}
                     placeholder='Enter fullname' />
                 </Item>
-                <Item style={Style.input}>
-                  <Input
-                    keyboardType='email-address'
-                    value={this.state.email}
-                    onChangeText={val=>this.setState({email: val})}
-                    placeholder='Enter email' />
-                </Item>
-                <Button onPress={this.onClickNext} loading={this.state.process} text="NEXT"/>
+                <ButtonEx onPress={this.onClickNext} loading={this.state.process} text="NEXT"/>
+                <Button transparent block onPress={this.onClickLogout}>
+                  <Text>Logout</Text>
+                </Button>
               </Form>
             </Col>
           </Grid>
@@ -62,16 +58,23 @@ class ProfileSetup extends Component {
     let data = {
       uid: this.props.auth.uid,
       fullname: this.state.fullname,
-      email: this.state.email
     };
     Request.post('/user/add', data)
     .then(res => {
-      NavigationActions.resetNavigation(this, 'Login');
+      Request.get('/user/get/'+this.props.auth.uid)
+      .then(res => {
+        AuthActions.setUser(res.data);
+        NavigationActions.resetNavigation(this, 'Login');
+      })
     })
     .catch(err => console.error(err))
     .finally(()=> this.setState({process: false}))
   }
+  onClickLogout() {
+    this.props.navigation.navigate("Logout");
+  }
 }
+
 
 function mapStateToProps(state) {
   return {
