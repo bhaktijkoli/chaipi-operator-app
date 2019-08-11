@@ -10,7 +10,6 @@ getActiveShopOrders = () => {
 }
 
 getShopProducts = (shopid) => {
-  console.log(shopid);
   Request.get('/product/get?shop=' + shopid)
   .then(res => {
     store.dispatch({type: 'SHOP_SET_PRODUCTS', payload: res.data})

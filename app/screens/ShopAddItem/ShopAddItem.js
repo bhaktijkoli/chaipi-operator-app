@@ -4,7 +4,7 @@ import { Container, Content } from 'native-base';
 
 import Style from './../../styles/style';
 
-import Auth from './../../actions/authActions';
+import Shop from './../../actions/shopActions';
 
 import HeaderEx from './../../components/Header2'
 
@@ -22,7 +22,7 @@ class ShopAddItem extends Component {
     )
   }
   update() {
-    Auth.getShopProducts(this, this.props.auth.shop.id)
+    Shop.getShopProducts(this.props.auth.shop.id)
   }
 }
 

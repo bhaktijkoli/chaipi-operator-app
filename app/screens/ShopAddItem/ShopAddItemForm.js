@@ -105,11 +105,10 @@ class ShopAddItemForm extends Component {
     data.append('image', this.state.image)
     Request.post('/product/add', data)
     .then(res => {
-      console.log(res.data);
       if(res.data.success) {
         Toast.show({text: `${this.state.name} has been listed.`, buttonText: 'Ok'});
         this.props.update();
-        this.props.navigation.navigate('ShopMain');
+        this.props.navigation.navigate('ShopMenu');
       } else {
         let messages = res.data.messages;
         Object.keys(messages).forEach(el => {
