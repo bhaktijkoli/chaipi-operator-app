@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import { Alert } from 'react-native';
 import { Container, Content, Title, View, Text } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import firebase from 'react-native-firebase';
+import SpinnerBox from './../../components/SpinnerBox';
 
 import OTPVerifyForm from './OTPVerifyForm'
 
@@ -15,7 +17,7 @@ class OTPVerify extends Component {
     super(props)
     this.state = {
       phone: '',
-      err: '',
+      err: null,
       confirmResult: null,
     }
   }
@@ -26,14 +28,22 @@ class OTPVerify extends Component {
     this.setState({phone});
     firebase.auth().signInWithPhoneNumber(phone)
     .then(confirmResult => {
-      console.log("confirmResult", confirmResult);
-      this.setState({confirmResult: confirmResult});
+      console.log('confirmResult', confirmResult);
+      this.setState({confirmResult});
     })
     .catch(err => {
-      console.error(err.message);
+      this.setState({err: err.message})
+      Alert.alert(
+        "Connecting Issue",
+        err.message,
+        [
+          {text: 'Try again', onPress: () => this.props.navigation.navigate('Login')},
+        ]
+      );
     })
   }
   render() {
+    if(!this.state.confirmResult) return <SpinnerBox />
     return(
       <Container>
         <Content contentContainerStyle={{flex: 1}}>
