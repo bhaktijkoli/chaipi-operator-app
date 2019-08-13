@@ -2,9 +2,17 @@ import Request from './../utils/request';
 import store from './../store';
 
 getActiveShopOrders = () => {
-  Request.get('/order/get/shop/active')
+  Request.get('/order/get/shop/?active=1')
   .then(res => {
     store.dispatch({type: 'SHOP_SET_ACTIVE_ORDERS', payload: res.data})
+  })
+  .catch(err => console.error(err));
+}
+
+getRecentShopOrders = () => {
+  Request.get('/order/get/shop/')
+  .then(res => {
+    store.dispatch({type: 'SHOP_SET_RECENT_ORDERS', payload: res.data})
   })
   .catch(err => console.error(err));
 }
@@ -25,5 +33,6 @@ module.exports.init = (component) => {
   if(!component.props.shop.loaded) {
     getShopProducts(component.props.auth.shop.id);
     getActiveShopOrders();
+    getRecentShopOrders();
   }
 }

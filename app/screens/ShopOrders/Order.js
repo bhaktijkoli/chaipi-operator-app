@@ -56,7 +56,7 @@ class Order extends Component {
                 <Grid>
                   <Row>
                     <Col style={CustomStyle.statusContainer}>
-                      <Text note>Preparing, {this.state.timeLeft} minutes remaining</Text>
+                      <Text note>{this.formatStatus()}</Text>
                     </Col>
                   </Row>
                   <Row>
@@ -77,6 +77,13 @@ class Order extends Component {
                       })}
                     </Col>
                   </Row>
+                  <If condition={order.status > 1}>
+                    <Row>
+                      <Col>
+                        <Button dark transparent full onPress={e=>navigation.navigate("ShopOrderDetails", {order})}><Text>VIEW DETAILS</Text></Button>
+                      </Col>
+                    </Row>
+                  </If>
                   <If condition={order.status == 1}>
                     <Row>
                       <Col>
@@ -102,7 +109,7 @@ class Order extends Component {
                 <Grid>
                   <Row>
                     <Col style={CustomStyle.statusContainer}>
-                      <Text note>Preparing, {this.state.timeLeft} minutes remaining</Text>
+                      <Text note>{this.formatStatus()}</Text>
                     </Col>
                   </Row>
                   <Row>
@@ -129,6 +136,24 @@ class Order extends Component {
     .then(res => {
       this.props.update();
     })
+  }
+  formatStatus = () => {
+    switch (this.props.order.status) {
+      case 1:
+      return `Preparing, ${this.state.timeLeft} mins remaining`;
+      break;
+      case 2:
+      return `Waiting for driver, ${this.state.timeLeft} mins remaining`;
+      break;
+      case 3:
+      return `Waiting for delivery, ${this.state.timeLeft} mins remaining`;
+      break;
+      case 4:
+      return `Completed`;
+      break;
+      default:
+      return 'Unknown';
+    }
   }
 }
 

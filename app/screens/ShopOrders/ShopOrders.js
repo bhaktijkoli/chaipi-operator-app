@@ -25,6 +25,17 @@ class ShopOrders extends Component {
     shopActions.init(this);
   }
   render() {
+    let ordersArray = [];
+    ordersArray.push({label: 'Active Orders'});
+    if(this.props.shop.active_orders.length > 0) {
+      ordersArray = ordersArray.concat(this.props.shop.active_orders);
+    } else {
+      ordersArray.push({empty:true, text: "You don't have any active orderrs"});
+    }
+    if(this.props.shop.recent_orders.length > 0) {
+      ordersArray.push({label: 'Recent Orders'});
+      ordersArray = ordersArray.concat(this.props.shop.recent_orders);
+    }
     return(
       <Container>
         <HeaderEx title="Your Orders"/>
@@ -36,13 +47,17 @@ class ShopOrders extends Component {
               </Then>
               <Else>
                 <FlatList
-                  data={this.props.shop.active_orders}
+                  data={ordersArray}
                   renderItem={({item, index}) => {
-                    return <Order order={item} navigation={this.props.navigation} update={this.update.bind(this)}/>
+                    if(item.label) {
+                      return this.renderListTitle(item.label)
+                    } else if(item.empty) {
+                      return this.renderListEmptyText(item.text)
+                    } else {
+                      return <Order order={item} navigation={this.props.navigation} update={this.update.bind(this)}/>
+                    }
                   }}
                   keyExtractor={(item, index) => index.toString()}
-                  ListHeaderComponent={this.renderActiveOrdersHeader.bind(this)}
-                  ListEmptyComponent={this.renderEmptyComponent.bind(this)}
                   />
               </Else>
             </If>
@@ -52,15 +67,15 @@ class ShopOrders extends Component {
       </Container>
     )
   }
-  renderActiveOrdersHeader() {
+  renderListTitle = (title) => {
     return(
-      <Text style={[Style.heading]}>Active Orders</Text>
+      <Text style={[Style.heading]}>{title}</Text>
     )
   }
-  renderEmptyComponent() {
+  renderListEmptyText = (text) => {
     return(
-      <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-        <Text>No orders available</Text>
+      <View style={{flex: 1, alignItems: 'center', justifyContent: 'center', paddingTop: 30, paddingBottom: 30}}>
+        <Text>{text}</Text>
       </View>
     )
   }

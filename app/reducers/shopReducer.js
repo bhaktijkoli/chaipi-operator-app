@@ -1,6 +1,7 @@
 var initialState = {
   loaded: false,
   active_orders: [],
+  recent_orders: [],
   products: [],
 };
 
@@ -12,6 +13,9 @@ export default function reducer(state=initialState, action) {
     }
     case "SHOP_SET_ACTIVE_ORDERS": {
       return {...state, active_orders: action.payload, loaded: true}
+    }
+    case "SHOP_SET_RECENT_ORDERS": {
+      return {...state, recent_orders: action.payload, loaded: true}
     }
   }
 
