@@ -149,7 +149,7 @@ class Order extends Component {
       return `Waiting for delivery, ${this.state.timeLeft} mins remaining`;
       break;
       case 4:
-      return `Completed`;
+      return `Delivered`;
       break;
       default:
       return 'Unknown';

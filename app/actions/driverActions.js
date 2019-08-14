@@ -4,9 +4,17 @@ import Request from './../utils/request';
 import store from './../store';
 
 getActiveOrders = (callback) => {
-  Request.get('/order/get/driver/active')
+  Request.get('/order/get/driver?active=1')
   .then(res => {
     store.dispatch({type: 'DRIVER_SET_ACTIVE_ORDERS', payload: res.data})
+  })
+  .catch(err => console.error(err));
+};
+
+getRecentOrders = (callback) => {
+  Request.get('/order/get/driver')
+  .then(res => {
+    store.dispatch({type: 'DRIVER_SET_RECENT_ORDERS', payload: res.data})
   })
   .catch(err => console.error(err));
 };
@@ -55,10 +63,12 @@ requestLocationPermission = async () => {
 }
 
 module.exports.getActiveOrders = getActiveOrders;
+module.exports.getRecentOrders = getRecentOrders;
 module.exports.updateLocation = updateLocation;
 
 module.exports.init = (component) => {
   if(!component.props.auth.loaded) {
-    getActiveOrders(component);
+    getActiveOrders();
+    getRecentOrders();
   }
 }

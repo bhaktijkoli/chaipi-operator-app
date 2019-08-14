@@ -41,8 +41,7 @@ class Task extends Component {
             </Col>
             <Col size={2}>
               <View style={CustomStyle.headerTime}>
-                <Icon type="Entypo" name="clock" style={CustomStyle.timeIcon}/>
-                <Text note>{this.state.timeLeft} Mins Remaining</Text>
+                <Text note>{this.formatStatus()}</Text>
               </View>
             </Col>
           </CardItem>
@@ -73,6 +72,24 @@ class Task extends Component {
   }
   onPressDetails() {
     this.props.navigation.navigate('DriverTaskDetails', {order: this.props.order});
+  }
+  formatStatus = () => {
+    switch (this.props.order.status) {
+      case 1:
+      return `Preparing, ${this.state.timeLeft} mins remaining`;
+      break;
+      case 2:
+      return `Waiting for driver, ${this.state.timeLeft} mins remaining`;
+      break;
+      case 3:
+      return `Waiting for delivery, ${this.state.timeLeft} mins remaining`;
+      break;
+      case 4:
+      return `Delivered`;
+      break;
+      default:
+      return 'Unknown';
+    }
   }
 }
 
