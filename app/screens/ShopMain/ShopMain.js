@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Container, Content, View, Title } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 
-import HeaderEx from './../../components/Header';
+import Header3 from './../../components/Header3';
 
 import ShopFooter from './../../components/ShopFooter';
 
@@ -18,9 +18,8 @@ class Shop extends Component {
   render() {
     return(
       <Container>
-        <HeaderEx title="Home"/>
-        <Content contentContainerStyle={{flex: 1}}>
-
+        <Header3/>
+        <Content>
         </Content>
         <ShopFooter tab='home' navigation={this.props.navigation}/>
       </Container>

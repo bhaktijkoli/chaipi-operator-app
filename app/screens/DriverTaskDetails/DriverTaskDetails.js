@@ -104,7 +104,7 @@ class DriverTaskDetails extends Component {
                   <If condition={order.status < 4}>
                     <Button primary block onPress={this.onPressDeliver.bind(this)}>
                       <If condition={order.status < 3}>
-                        <Text>I have pciked the order</Text>
+                        <Text>I have picked the order</Text>
                       </If>
                       <If condition={order.status == 3}>
                         <Text>I have delivered the order</Text>

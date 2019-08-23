@@ -27,6 +27,9 @@ import ShopAddItem from './app/screens/ShopAddItem/ShopAddItem';
 import DriverMain from './app/screens/DriverMain/DriverMain';
 import DriverTasks from './app/screens/DriverTasks/DriverTasks';
 import DriverTaskDetails from './app/screens/DriverTaskDetails/DriverTaskDetails';
+import About from './app/screens/About/About';
+import Help from './app/screens/Help/Help';
+import Sidebar from './app/screens/Sidebar/Sidebar';
 
 import fcm from './app/utils/fcm'
 
@@ -47,6 +50,15 @@ class App extends Component {
   }
 }
 
+const MyDrawerNavigator  = createDrawerNavigator(
+  {
+    ShopMain: { screen: ShopMain },
+  },
+  {
+    contentComponent: Sidebar
+  }  
+);
+
 const AppNavigator = createStackNavigator(
   {
     Login: { screen: Login },
@@ -60,7 +72,7 @@ const AppNavigator = createStackNavigator(
     ShopAddress: { screen: ShopAddress },
     Home: { screen: Home },
     Account: { screen: Account },
-    ShopMain: { screen: ShopMain },
+    ShopMain: { screen: MyDrawerNavigator },
     ShopOrders: { screen: ShopOrders },
     ShopOrderDetails: { screen: ShopOrderDetails },
     ShopMenu: { screen: ShopMenu },
@@ -68,6 +80,8 @@ const AppNavigator = createStackNavigator(
     DriverMain: { screen: DriverMain },
     DriverTasks: { screen: DriverTasks },
     DriverTaskDetails: { screen: DriverTaskDetails },
+    About: { screen: About },
+    Help: { screen: Help }, 
   },
   {
     defaultNavigationOptions: {

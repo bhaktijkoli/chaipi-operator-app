@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { Container, Content, View, Title } from 'native-base';
+import { Container, Content, View, Title, Text } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 
 class Home extends Component {

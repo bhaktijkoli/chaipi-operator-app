@@ -9,8 +9,10 @@ import ShopFooter from './../../components/ShopFooter'
 import DriverFooter from './../../components/DriverFooter'
 
 import Style from './../../styles/style';
+import { SafeAreaView } from 'react-navigation';
+import { ScrollView } from 'react-native-gesture-handler';
 
-class Account extends Component {
+class Sidebar extends Component {
   componentDidMount() {
   }
   render() {
@@ -20,6 +22,11 @@ class Account extends Component {
     return(
       <Container>
         <Content>
+            <ScrollView>
+            <SafeAreaView>
+                    <View style = {{height: 150, backgroundColor: 'gainsboro', alignItems: 'center', justifyContent: 'center'}}>
+                    </View>
+                </SafeAreaView>
           <Header transparent noLeft>
             <Body>
               <Text style={{marginLeft:15,color:'#000'}}>{user.fullname.toUpperCase()}</Text>
@@ -42,13 +49,8 @@ class Account extends Component {
             </ListItem>
             {this.renderSettingItems(helpItems)}
           </List>
+          </ScrollView>
         </Content>
-        <If condition={user.type == 1}>
-          <ShopFooter tab='account' navigation={this.props.navigation}/>
-        </If>
-        <If condition={user.type == 2}>
-          <DriverFooter tab='account' navigation={this.props.navigation}/>
-        </If>
       </Container>
     )
   }
@@ -99,4 +101,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(Account);
+export default connect(mapStateToProps)(Sidebar);
