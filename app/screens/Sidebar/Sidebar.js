@@ -4,6 +4,7 @@ import { Container, Content, View, Title, Text} from 'native-base';
 import { Header, Left, Body, Right, Icon } from 'native-base';
 import { List, ListItem } from 'native-base';
 import { If, Else, Then } from 'react-if'
+import { Image } from 'react-native';
 
 import ShopFooter from './../../components/ShopFooter'
 import DriverFooter from './../../components/DriverFooter'
@@ -23,16 +24,11 @@ class Sidebar extends Component {
       <Container>
         <Content>
             <ScrollView>
-            <SafeAreaView>
-                    <View style = {{height: 150, backgroundColor: 'gainsboro', alignItems: 'center', justifyContent: 'center'}}>
+                    <View style = {{ height: 250,  marginTop: -25 }}>
+                    <Image source = {require('./../../assets/empty_cart.png')} style={{width:215, height:200}}/>
+                    <Text style={{marginLeft:15,color:'#000'}}>{user.fullname.toUpperCase()}</Text>
+                    <Text style={{marginLeft:15,color:'#000'}}>{phone}</Text>
                     </View>
-                </SafeAreaView>
-          <Header transparent noLeft>
-            <Body>
-              <Text style={{marginLeft:15,color:'#000'}}>{user.fullname.toUpperCase()}</Text>
-              <Text style={{marginLeft:15,color:'#000'}}>{phone}</Text>
-            </Body>
-          </Header>
           <List>
             <ListItem itemDivider>
               <Text>My Account</Text>
