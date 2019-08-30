@@ -1,16 +1,28 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Container, Content, View, Text, Button} from 'native-base';
-import { Form, Item, Input } from 'native-base';
+import { Form, Item, Input, Label, Icon } from 'native-base';
 import { H1 } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
+import { TouchableOpacity, Image, ScrollView } from 'react-native';
 
 import ButtonEx from './../../components/Button';
+
+const ImagePicker = require('react-native-image-picker');
 
 import Request from './../../utils/request';
 import Style from './../../styles/style';
 import AuthActions from './../../actions/authActions';
 import NavigationActions from './../../actions/navigationActions';
+import { If, Then, Else } from 'react-if';
+
+const profileImageOptions = {
+  title: 'Select Profile Photo',
+  storageOptions: {
+    skipBackup: true,
+    path: 'images',
+  },
+};
 
 class ProfileSetup extends Component {
   static navigationOptions = {
@@ -20,6 +32,10 @@ class ProfileSetup extends Component {
     super(props)
     this.state = {
       fullname: '',
+      email: '',
+      image: null,
+      fullname_error: '',
+      email_error: '',
       process: false,
     }
     this.onClickNext = this.onClickNext.bind(this)
@@ -42,6 +58,31 @@ class ProfileSetup extends Component {
                     onChangeText={val=>this.setState({fullname: val})}
                     placeholder='Enter fullname' />
                 </Item>
+                <If condition={this.state.fullname_error.length>0}>
+                  <Text style={Style.error}>{this.state.fullname_error}</Text>
+                </If>
+                <Item style = {Style.input}>
+                  <Input
+                    value={this.state.email}
+                    onChangeText={val=>this.setState({email: val})}
+                    placeholder='Enter email address' />
+                </Item>
+                <If condition={this.state.email_error.length>0}>
+                  <Text style={Style.error}>{this.state.email_error}</Text>
+                </If>
+                <Label style = {Style.top}>Profle Picture</Label>
+                <If condition={this.state.image==null}>
+                  <Then>
+                    <Button style = {Style.input} bordered onPress={this.changeImage.bind(this)}>
+                      <Icon name="pluscircleo" type="AntDesign"/>
+                    </Button>
+                  </Then>
+                  <Else>
+                    <TouchableOpacity activeOpacity = { .5 } onPress={this.changeImage.bind(this)}>
+                      <Image source={this.state.image} style={{width:152, height:152, marginTop:10, marginBottom: 20}} onPress={this.changeImage.bind(this)}/>
+                    </TouchableOpacity>
+                  </Else>
+                </If>
                 <ButtonEx onPress={this.onClickNext} loading={this.state.process} text="NEXT"/>
                 <Button transparent block onPress={this.onClickLogout}>
                   <Text>Logout</Text>
@@ -58,6 +99,8 @@ class ProfileSetup extends Component {
     let data = {
       uid: this.props.auth.uid,
       fullname: this.state.fullname,
+      email: this.state.email,
+      image: this.state.image,
     };
     Request.post('/user/add', data)
     .then(res => {
@@ -72,6 +115,18 @@ class ProfileSetup extends Component {
   }
   onClickLogout() {
     this.props.navigation.navigate("Logout");
+  }
+  changeImage(){
+    ImagePicker.showImagePicker(profileImageOptions, (response) => {
+      if (response.didCancel) {
+      } else if (response.error) {
+      } else {
+        const source = { uri: response.uri };
+        this.setState({
+          image: { uri: response.uri, name: response.fileName, type: response.type },
+        });
+      }
+    });
   }
 }
 
