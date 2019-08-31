@@ -30,6 +30,7 @@ import DriverTaskDetails from './app/screens/DriverTaskDetails/DriverTaskDetails
 import About from './app/screens/About/About';
 import Help from './app/screens/Help/Help';
 import Sidebar from './app/screens/Sidebar/Sidebar';
+import Profile from './app/screens/Account/Profile/Profile';
 
 import fcm from './app/utils/fcm'
 
@@ -82,6 +83,7 @@ const AppNavigator = createStackNavigator(
     DriverTaskDetails: { screen: DriverTaskDetails },
     About: { screen: About },
     Help: { screen: Help }, 
+    Profile: { screen: Profile },
   },
   {
     defaultNavigationOptions: {
