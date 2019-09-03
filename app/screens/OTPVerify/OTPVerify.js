@@ -26,21 +26,9 @@ class OTPVerify extends Component {
     let country = this.props.navigation.getParam('country');
     phone = country+phone;
     this.setState({phone});
-    firebase.auth().signInWithPhoneNumber(phone)
-    .then(confirmResult => {
-      console.log('confirmResult', confirmResult);
-      this.setState({confirmResult});
-    })
-    .catch(err => {
-      this.setState({err: err.message})
-      Alert.alert(
-        "Connecting Issue",
-        err.message,
-        [
-          {text: 'Try again', onPress: () => this.props.navigation.navigate('Login')},
-        ]
-      );
-    })
+    this.setState({phone}, () => {
+      this.sendOtp();
+    });
   }
   render() {
     if(!this.state.confirmResult) return <SpinnerBox />
@@ -56,6 +44,27 @@ class OTPVerify extends Component {
         </Content>
       </Container>
     )
+  }
+
+  sendOtp = () => {
+    this.setState({confirmResult: null});
+    let phone = this.state.phone;
+    firebase.auth().signInWithPhoneNumber(phone)
+    .then(confirmResult => {
+      console.log('confirmResult', confirmResult);
+      this.setState({confirmResult});
+    })
+    .catch(err => {
+      this.setState({err: err.message})
+      Alert.alert(
+        "Connecting Issue",
+        err.message,
+        [
+          {text: 'Try again', onPress: () => this.props.navigation.navigate('Login')},
+        ],
+        {cancelable: false},
+      );
+    })
   }
 }
 

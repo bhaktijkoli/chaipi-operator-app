@@ -23,7 +23,7 @@ class Login extends Component {
       loading: true,
     }
   }
-  async componentDidMount() {
+   componentDidMount() {
     let user = null
     this.authChange = firebase.auth().onAuthStateChanged((u) => {
       if(user) return;
@@ -33,7 +33,6 @@ class Login extends Component {
         AuthActions.setUserUID(data);
         Request.get('/user/get/'+user._user.uid)
         .then(res => {
-          console.log(res.data);
           AuthActions.setUser(res.data);
           Request.setToken(user._user.uid);
           Fcm.syncToken();

@@ -19,9 +19,20 @@ module.exports.setToken = (token) => {
   axios.defaults.headers.common['Authorization'] = "Bearer " + token;
 }
 
-const route = (url) => {
+/*const route = (url) => {
    return `https://chaipaan.tk/api/v1${url}`;
  // return `http://${host}:${port}/api/v1${url}`;
+}*/
+
+const url = (req) => {
+  return `https://chaipaan.tk${req}`;
+//return `http://${host}:${port}${req}`;
 }
 
+const route = (req) => {
+return url('/api/v1'+req);
+}
+
+
+module.exports.url = url;
 module.exports.route = route;

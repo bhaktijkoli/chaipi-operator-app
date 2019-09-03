@@ -17,6 +17,7 @@ export default StyleSheet.create({
     margin: 10,
   },
   content: {
+    flex: 1,
     padding: 15,
   },
   heading: {
@@ -74,4 +75,26 @@ export default StyleSheet.create({
     borderTopWidth: 0.5,
     borderTopColor: '#575757',
   },
+  avatarContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row'
+  },
+  avatar: {
+    width: 128,
+    height: 128,
+    borderRadius: 128,
+  },
+  avatarBig: {
+    width:256,
+    height:256,
+    marginTop:10,
+    marginBottom: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row',
+    borderColor: '#f39c12',
+    borderRadius: 256,
+  }
 });

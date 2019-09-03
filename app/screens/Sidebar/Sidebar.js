@@ -10,6 +10,7 @@ import ShopFooter from './../../components/ShopFooter'
 import DriverFooter from './../../components/DriverFooter'
 
 import Style from './../../styles/style';
+import Request from './../../utils/request';
 import { SafeAreaView } from 'react-navigation';
 import { ScrollView } from 'react-native-gesture-handler';
 
@@ -20,12 +21,15 @@ class Sidebar extends Component {
     let user = this.props.auth.user;
     let phone = this.props.auth.phone;
     let shop = this.props.auth.shop;
+    let image = this.props.auth.user.image;
     return(
       <Container>
         <Content>
             <ScrollView>
-                    <View style = {{ height: 250,  marginTop: -25 }}>
-                    <Image source = {require('./../../assets/empty_cart.png')} style={{width:215, height:200}}/>
+              <View style={{marginTop:50, marginBottom: 10}}>
+            <View style={{alignItems: 'center', justifyContent: 'center', flexDirection: 'row', marginBottom: 20}}>
+                <Image source={{uri: Request.url(image)}} style={Style.avatar}/>
+              </View>
                     <Text style={{marginLeft:15,color:'#000'}}>{user.fullname.toUpperCase()}</Text>
                     <Text style={{marginLeft:15,color:'#000'}}>{phone}</Text>
                     </View>
@@ -75,7 +79,7 @@ class Sidebar extends Component {
 }
 
 const accountItems = [
-  {name: 'Profile', icon: 'user', route: 'Home', type: 'AntDesign'},
+  {name: 'Profile', icon: 'user', route: 'Profile', type: 'AntDesign'},
   {name: 'Payment', icon: 'creditcard', route: 'Home', type: 'AntDesign'},
   {name: 'App Settings', icon: 'setting', route: 'Home', type: 'AntDesign'},
   {name: 'Logout', icon: 'logout', route: 'Logout', type: 'AntDesign'},

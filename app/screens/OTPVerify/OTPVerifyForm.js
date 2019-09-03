@@ -14,6 +14,7 @@ class OTPVerify extends Component {
     this.state = {
       code: '',
       process: false,
+      time: 25,
     }
   }
   render() {
@@ -34,6 +35,11 @@ class OTPVerify extends Component {
             />
         </Item>
         <ButtonEx onPress={this.OnClickVerify} loading={this.state.process} text="VERIFY" disabled={this.state.code.length != 6}/>
+        <View style={{justifyContent:'center', flexDirection: 'row'}}>
+            <Button transparent onPress={this.onResend} disabled={this.state.time!=0}>
+              <Text>{this.state.time==0?"RESEND":this.state.time}</Text>
+            </Button>
+          </View>
       </Form>
     )
   }
@@ -51,6 +57,17 @@ class OTPVerify extends Component {
     .finally(() => {
       this.setState({process:false})
     })
+  }
+  onResend = () => {
+    this.props.onResend();
+  }
+  updateTime = () => {
+    setTimeout(function () {
+      if(this.state.time >= 1) {
+        this.setState({time: this.state.time -1});
+        this.updateTime();
+      }
+    }.bind(this), 1000);
   }
 }
 

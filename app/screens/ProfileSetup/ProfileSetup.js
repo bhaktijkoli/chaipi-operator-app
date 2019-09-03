@@ -37,6 +37,7 @@ class ProfileSetup extends Component {
       fullname_error: '',
       email_error: '',
       process: false,
+      imageLoading: false,
     }
     this.onClickNext = this.onClickNext.bind(this)
     this.onClickLogout = this.onClickLogout.bind(this)
@@ -47,54 +48,58 @@ class ProfileSetup extends Component {
     return(
       <Container>
         <Content contentContainerStyle={{flex: 1}}>
-          <Grid style={{alignItems: 'flex-end'}}>
-            <Col style={Style.content}>
-              <Form style={Style.bottom}>
-                <H1 style={Style.heading}>Welcome</H1>
-                <Text style={Style.label}>Setup your profile</Text>
-                <Item style={Style.input}>
-                  <Input
-                    value={this.state.fullname}
-                    onChangeText={val=>this.setState({fullname: val})}
-                    placeholder='Enter fullname' />
-                </Item>
-                <If condition={this.state.fullname_error.length>0}>
-                  <Text style={Style.error}>{this.state.fullname_error}</Text>
-                </If>
-                <Item style = {Style.input}>
-                  <Input
-                    value={this.state.email}
-                    onChangeText={val=>this.setState({email: val})}
-                    placeholder='Enter email address' />
-                </Item>
-                <If condition={this.state.email_error.length>0}>
-                  <Text style={Style.error}>{this.state.email_error}</Text>
-                </If>
-                <Label style = {Style.top}>Profle Picture</Label>
-                <If condition={this.state.image==null}>
-                  <Then>
-                    <Button style = {Style.input} bordered onPress={this.changeImage.bind(this)}>
-                      <Icon name="pluscircleo" type="AntDesign"/>
-                    </Button>
-                  </Then>
-                  <Else>
-                    <TouchableOpacity activeOpacity = { .5 } onPress={this.changeImage.bind(this)}>
-                      <Image source={this.state.image} style={{width:152, height:152, marginTop:10, marginBottom: 20}} onPress={this.changeImage.bind(this)}/>
-                    </TouchableOpacity>
-                  </Else>
-                </If>
-                <ButtonEx onPress={this.onClickNext} loading={this.state.process} text="NEXT"/>
-                <Button transparent block onPress={this.onClickLogout}>
-                  <Text>Logout</Text>
-                </Button>
-              </Form>
-            </Col>
-          </Grid>
+          <ScrollView>
+            <Grid style={{alignItems: 'flex-end'}}>
+              <Col style={Style.content}>
+                <Form style={Style.bottom}>
+                  <H1 style={Style.heading}>Welcome</H1>
+                  <Text style={Style.label}>Setup your profile</Text>
+                  <View style={[Style.avatarContainer, {marginTop: 20}]}>
+                    <If condition={this.state.image==null}>
+                      <Then>
+                        <Button style={[Style.avatarBig]} bordered onPress={this.changeImage.bind(this)}>
+                          <Icon name="pluscircleo" type="AntDesign" style={{fontSize:64}}/>
+                        </Button>
+                      </Then>
+                      <Else>
+                        <TouchableOpacity activeOpacity = { .5 } onPress={this.changeImage.bind(this)}>
+                          <Image source={this.state.image} style={Style.avatarBig} onPress={this.changeImage.bind(this)}/>
+                        </TouchableOpacity>
+                      </Else>
+                    </If>
+                  </View>
+                  <Item style={Style.input}>
+                    <Input
+                      value={this.state.fullname}
+                      onChangeText={val=>this.setState({fullname: val})}
+                      placeholder='Enter fullname' />
+                  </Item>
+                  <If condition={this.state.fullname_error.length > 0}>
+                    <Text style={Style.error}>{this.state.fullname_error}</Text>
+                  </If>
+                  <Item style = {Style.input}>
+                    <Input
+                      value ={this.state.email}
+                      onChangeText={val=>this.setState({email: val})}
+                      placeholder='Enter email address'
+                      />
+                  </Item>
+                  <If condition={this.state.email_error.length > 0}>
+                    <Text style={Style.error}>{this.state.email_error}</Text>
+                  </If>
+                  <ButtonEx onPress={this.onClickNext} loading={this.state.process} text="NEXT"/>
+                  <Button transparent block onPress={this.onClickLogout}>
+                    <Text>Logout</Text>
+                  </Button>
+                </Form>
+              </Col>
+            </Grid>
+          </ScrollView>
         </Content>
       </Container>
     )
   }
-  onClickNext() {
+  /*onClickNext() {
     this.setState({process: true});
     let data = {
       uid: this.props.auth.uid,
@@ -112,6 +117,32 @@ class ProfileSetup extends Component {
     })
     .catch(err => console.error(err))
     .finally(()=> this.setState({process: false}))
+  }*/
+  onClickNext() {
+    this.setState({process: true});
+    let data = new FormData();
+    data.append('uid', this.props.auth.uid)
+    data.append('fullname', this.state.fullname)
+    data.append('email', this.state.email)
+    data.append('image', this.state.image)
+    Request.post('/user/add', data)
+    .then(res => {
+      if(res.data.success) {
+        Request.get('/user/get/'+this.props.auth.uid)
+        .then(res => {
+          AuthActions.setUser(res.data);
+          NavigationActions.resetNavigation(this, 'Login');
+        })
+      } else {
+        let messages = res.data.messages;
+        Object.keys(messages).forEach(el => {
+          var key = el+'_error';
+          this.setState({[key]: messages[el]})
+        });
+        this.setState({process: false});
+      }
+    })
+    .catch(err => console.error(err))
   }
   onClickLogout() {
     this.props.navigation.navigate("Logout");

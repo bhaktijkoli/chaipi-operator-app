@@ -10,7 +10,7 @@ class LoginForm extends Component {
     super(props)
     this.onClickLogin = this.onClickLogin.bind(this);
     this.state = {
-      phone: '7710848662',
+      phone: '',
       country: '+91',
       countries: require('./../../data/countries.json'),
     }
@@ -19,8 +19,8 @@ class LoginForm extends Component {
     return(
       <Form style={Style.bottom}>
         <Label style={Style.label}>Enter your phone number</Label>
-        <View style={{flexDirection:'row'}}>
-          <Item picker style={[Style.input, {flex: 1}]}>
+        <View>
+          <Item picker style={[Style.input]}>
             <Picker
               mode="dropdown"
               selectedValue={this.state.country}
@@ -31,12 +31,12 @@ class LoginForm extends Component {
               >
               {
                 this.state.countries.map((country, key) => {
-                  return <Picker.Item key={key} label={"+"+country.dialCode} value={"+"+country.dialCode} />
+                  return <Picker.Item key={key} label={`+${country.dialCode} ${country.name}`} value={"+"+country.dialCode} />
                 })
               }
             </Picker>
           </Item>
-          <Item style={[Style.input, {flex: 3}]}>
+          <Item style={Style.input}>
             <Input
               keyboardType="phone-pad"
               textContentType="telephoneNumber"
