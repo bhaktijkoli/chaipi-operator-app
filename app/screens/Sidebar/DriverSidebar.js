@@ -14,7 +14,7 @@ import Request from './../../utils/request';
 import { SafeAreaView } from 'react-navigation';
 import { ScrollView } from 'react-native-gesture-handler';
 
-class Sidebar extends Component {
+class DriverSidebar extends Component {
   componentDidMount() {
   }
   render() {
@@ -38,12 +38,6 @@ class Sidebar extends Component {
               <Text>My Account</Text>
             </ListItem>
             {this.renderSettingItems(accountItems)}
-            <If condition={shop!=null}>
-              <ListItem itemDivider>
-                <Text>My Shop</Text>
-              </ListItem>
-            </If>
-            {this.renderSettingItems(shopManagementItems, shop!=null)}
             <ListItem itemDivider>
               <Text>Help</Text>
             </ListItem>
@@ -81,19 +75,19 @@ class Sidebar extends Component {
 const accountItems = [
   {name: 'Profile', icon: 'user', route: 'Profile', type: 'AntDesign'},
   {name: 'Payment', icon: 'creditcard', route: 'Home', type: 'AntDesign'},
+  {name: 'Update Profile', icon: '', route: 'UpdateDriver', type: 'AntDesign'},
   {name: 'App Settings', icon: 'setting', route: 'Home', type: 'AntDesign'},
   {name: 'Logout', icon: 'logout', route: 'Logout', type: 'AntDesign'},
 ];
 
-const shopManagementItems = [
+/*const shopManagementItems = [
   {name: 'Shop', icon: 'shop', route: 'Home', type: 'Entypo'},
-  {name: 'Update Shop', icon: '', route: 'UpdateShop', type: 'AntDesign'},
   {name: 'Products', icon: 'profile', route: 'Home', type: 'AntDesign'},
-];
+];*/
 
 const helpItems = [
   {name: 'About', icon: 'infocirlceo', route: 'About', type: 'AntDesign'},
-  {name: 'Help', icon: 'questioncircleo', route: 'Help', type: 'AntDesign'},
+  //{name: 'Help', icon: 'questioncircleo', route: 'Help', type: 'AntDesign'},
 ]
 
 function mapStateToProps(state) {
@@ -102,4 +96,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(Sidebar);
+export default connect(mapStateToProps)(DriverSidebar);

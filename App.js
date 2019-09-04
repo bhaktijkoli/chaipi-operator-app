@@ -30,7 +30,10 @@ import DriverTaskDetails from './app/screens/DriverTaskDetails/DriverTaskDetails
 import About from './app/screens/About/About';
 import Help from './app/screens/Help/Help';
 import Sidebar from './app/screens/Sidebar/Sidebar';
+import DriverSidebar from './app/screens/Sidebar/DriverSidebar';
 import Profile from './app/screens/Account/Profile/Profile';
+import UpdateDriver from './app/screens/Account/UpdateDriver/UpdateDriver';
+import UpdateShop from './app/screens/Account/UpdateShop/UpdateShop';
 
 import fcm from './app/utils/fcm'
 
@@ -57,7 +60,17 @@ const MyDrawerNavigator  = createDrawerNavigator(
   },
   {
     contentComponent: Sidebar
+
   }  
+);
+
+const DrawerNavigator = createDrawerNavigator(
+  {
+    DriverMain: { screen: DriverMain },
+  },
+  {
+    contentComponent: DriverSidebar
+  }
 );
 
 const AppNavigator = createStackNavigator(
@@ -78,12 +91,14 @@ const AppNavigator = createStackNavigator(
     ShopOrderDetails: { screen: ShopOrderDetails },
     ShopMenu: { screen: ShopMenu },
     ShopAddItem: { screen: ShopAddItem },
-    DriverMain: { screen: DriverMain },
+    DriverMain: { screen: DrawerNavigator },
     DriverTasks: { screen: DriverTasks },
     DriverTaskDetails: { screen: DriverTaskDetails },
     About: { screen: About },
     Help: { screen: Help }, 
     Profile: { screen: Profile },
+    UpdateDriver: { screen: UpdateDriver },
+    UpdateShop: { screen: UpdateShop },
   },
   {
     defaultNavigationOptions: {
