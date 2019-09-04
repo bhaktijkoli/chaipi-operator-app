@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Alert } from 'react-native';
 import { Text, View } from 'native-base';
-import { Form, Item, Label, Input } from 'native-base';
+import { Form, Item, Label, Input, Button } from 'native-base';
 import firebase from 'react-native-firebase';
 
 import ButtonEx from './../../components/Button';
@@ -16,6 +16,9 @@ class OTPVerify extends Component {
       process: false,
       time: 25,
     }
+  }
+  componentDidMount() {
+    this.updateTime();
   }
   render() {
     return(

@@ -25,7 +25,6 @@ class OTPVerify extends Component {
     let phone = this.props.navigation.getParam('phone');
     let country = this.props.navigation.getParam('country');
     phone = country+phone;
-    this.setState({phone});
     this.setState({phone}, () => {
       this.sendOtp();
     });
@@ -38,7 +37,7 @@ class OTPVerify extends Component {
           <Text>{this.state.err}</Text>
           <Grid style={{alignItems: 'center'}}>
             <Col style={Style.content}>
-              <OTPVerifyForm phone={this.state.phone} confirmResult={this.state.confirmResult} />
+            <OTPVerifyForm phone={this.state.phone} confirmResult={this.state.confirmResult} onResend={this.sendOtp}/>
             </Col>
           </Grid>
         </Content>
