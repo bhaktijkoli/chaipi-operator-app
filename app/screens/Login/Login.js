@@ -22,6 +22,10 @@ class Login extends Component {
       user: null,
       loading: true,
     }
+    if(!AuthActions.hasAskedForPermissions()) {
+      NavigationActions.resetNavigation(this, "Permissions");
+      return;
+    }
   }
    componentDidMount() {
     let user = null

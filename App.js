@@ -34,6 +34,12 @@ import DriverSidebar from './app/screens/Sidebar/DriverSidebar';
 import Profile from './app/screens/Account/Profile/Profile';
 import UpdateDriver from './app/screens/Account/UpdateDriver/UpdateDriver';
 import UpdateShop from './app/screens/Account/UpdateShop/UpdateShop';
+import Permissions from './app/screens/Permissions/Permissions';
+import Legal from './app/screens/Legal/Legal';
+import Copyright from './app/screens/Copyright/Copyright';
+import TermsConditions from './app/screens/TermsConditions/TermsConditions';
+import PrivacyPolicy from './app/screens/PrivacyPolicy/PrivacyPolicy';
+import SoftwareLicenses from './app/screens/SoftwareLicenses/SoftwareLicenses';
 
 import fcm from './app/utils/fcm'
 
@@ -57,6 +63,9 @@ class App extends Component {
 const MyDrawerNavigator  = createDrawerNavigator(
   {
     ShopMain: { screen: ShopMain },
+    ShopOrders: { screen: ShopOrders },
+    ShopMenu: { screen: ShopMenu },
+    Account: { screen: Account },
   },
   {
     contentComponent: Sidebar
@@ -85,11 +94,11 @@ const AppNavigator = createStackNavigator(
     RegisterDriver: { screen: RegisterDriver },
     ShopAddress: { screen: ShopAddress },
     Home: { screen: Home },
-    Account: { screen: Account },
+    Account: { screen: MyDrawerNavigator },
     ShopMain: { screen: MyDrawerNavigator },
-    ShopOrders: { screen: ShopOrders },
+    ShopOrders: { screen: MyDrawerNavigator },
     ShopOrderDetails: { screen: ShopOrderDetails },
-    ShopMenu: { screen: ShopMenu },
+    ShopMenu: { screen: MyDrawerNavigator },
     ShopAddItem: { screen: ShopAddItem },
     DriverMain: { screen: DrawerNavigator },
     DriverTasks: { screen: DriverTasks },
@@ -99,6 +108,12 @@ const AppNavigator = createStackNavigator(
     Profile: { screen: Profile },
     UpdateDriver: { screen: UpdateDriver },
     UpdateShop: { screen: UpdateShop },
+    Permissions: { screen: Permissions },
+    Legal: {screen: Legal },
+    Copyright: { screen: Copyright },
+    TermsConditions: { screen: TermsConditions },
+    PrivacyPolicy: { screen: PrivacyPolicy },
+    SoftwareLicenses: { screen: SoftwareLicenses },
   },
   {
     defaultNavigationOptions: {
