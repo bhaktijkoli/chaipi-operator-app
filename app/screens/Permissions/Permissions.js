@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View } from 'react-native'
+import { View, AsyncStorage } from 'react-native'
 
 import authActions from './../../actions/authActions';
 import navigationActions from './../../actions/navigationActions';
@@ -17,7 +17,7 @@ class Permissions extends Component {
   nextStep = () => {
     const { step } = this.state;
     if(step == 2) {
-      authActions.setAskForPermissions();
+      AsyncStorage.setItem('ASKED_FOR_PERMISSIONS', 'yes');
       navigationActions.resetNavigation(this, 'Login');
       return;
     }

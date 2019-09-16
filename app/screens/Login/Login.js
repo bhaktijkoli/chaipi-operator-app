@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
+import { AsyncStorage } from "react-native";
 import { Container, Content, View, Title} from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import firebase from 'react-native-firebase';
@@ -22,12 +23,13 @@ class Login extends Component {
       user: null,
       loading: true,
     }
-    if(!AuthActions.hasAskedForPermissions()) {
+  }
+  async componentDidMount() {
+    const setAskForPermissions = await AsyncStorage.getItem('ASKED_FOR_PERMISSIONS');
+    if(!setAskForPermissions) {
       NavigationActions.resetNavigation(this, "Permissions");
       return;
     }
-  }
-   componentDidMount() {
     let user = null
     this.authChange = firebase.auth().onAuthStateChanged((u) => {
       if(user) return;

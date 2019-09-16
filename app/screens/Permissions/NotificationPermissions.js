@@ -13,9 +13,6 @@ import Style from './../../styles/style';
 
 
 class NotificationPermissions extends Component {
-  static navigationOptions = {
-    header: null,
-  }
   render() {
     return(
       <Container>
@@ -36,9 +33,10 @@ class NotificationPermissions extends Component {
       </Container>
     )
   }
-  onClickEnable() {
+  onClickEnable = () => {
     this.props.nextStep();
   }
 }
+
 
 export default NotificationPermissions;
