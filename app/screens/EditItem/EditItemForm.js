@@ -33,15 +33,15 @@ class ShopAddItemItemForm extends Component {
   async componentDidMount() {
     let product = this.props.navigation.getParam('product');
     this.setState({
-      name_id: product.id,
+      product_id: product.id,
       name: product.name,
       price: product.price,
       time: product.time,
-      image: product.image,
-      description: product.description, 
+      description: product.description,
     });
   }
   render() {
+    let product = this.props.navigation.getParam('product');
     return(
       <ScrollView style={Style.content}>
         <Form style={Style.bottom}>
@@ -78,9 +78,9 @@ class ShopAddItemItemForm extends Component {
             </TouchableOpacity>
           </If>
           <If condition={this.state.image==null}>
-            <Button style={Style.input} bordered onPress={this.changeImage.bind(this)}>
-              <Icon name="pluscircleo" type="AntDesign"/>
-            </Button>
+            <TouchableOpacity activeOpacity = { .5 } onPress={this.changeImage.bind(this)}>
+              <Image source={{uri: Request.url(product.image)}} style={{width:152, height:152, marginTop:10, marginBottom: 20}} onPress={this.changeImage.bind(this)}/>
+            </TouchableOpacity>
           </If>
           <Label>Description</Label>
           <Textarea
@@ -109,16 +109,16 @@ class ShopAddItemItemForm extends Component {
   onClickAdd() {
     this.setState({process: true, name_error: '', price_error: '', time_error: ''});
     let data = new FormData();
+    data.append('product', this.state.product_id)
     data.append('name', this.state.name)
-    data.append('type', 'product')
     data.append('price', this.state.price)
     data.append('time', this.state.time)
     data.append('description', this.state.description)
     data.append('image', this.state.image)
-    Request.post('/product/add', data)
+    Request.post('/product/edit', data)
     .then(res => {
       if(res.data.success) {
-        Toast.show({text: `${this.state.name} has been listed.`, buttonText: 'Ok'});
+        Toast.show({text: `${this.state.name} has been updated.`, buttonText: 'Ok'});
         this.props.update();
         this.props.navigation.navigate('ShopMenu');
       } else {
