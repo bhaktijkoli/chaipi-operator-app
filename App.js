@@ -40,6 +40,7 @@ import Copyright from './app/screens/Copyright/Copyright';
 import TermsConditions from './app/screens/TermsConditions/TermsConditions';
 import PrivacyPolicy from './app/screens/PrivacyPolicy/PrivacyPolicy';
 import SoftwareLicenses from './app/screens/SoftwareLicenses/SoftwareLicenses';
+import EditItem from './app/screens/EditItem/EditItem';
 
 import fcm from './app/utils/fcm'
 
@@ -106,6 +107,7 @@ const AppNavigator = createStackNavigator(
     About: { screen: About },
     Help: { screen: Help }, 
     Profile: { screen: Profile },
+    EditItem: { screen: EditItem },
     UpdateDriver: { screen: UpdateDriver },
     UpdateShop: { screen: UpdateShop },
     Permissions: { screen: Permissions },

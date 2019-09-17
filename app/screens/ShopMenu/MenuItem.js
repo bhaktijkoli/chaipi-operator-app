@@ -5,14 +5,37 @@ import { Col, Row, Grid } from 'react-native-easy-grid';
 import Shimmer from 'react-native-shimmer-placeholder';
 import {If, Then, Else} from 'react-if';
 
+import shopActions from './../../actions/shopActions';
 import Request from './../../utils/request';
 
 class MenuItem extends Component {
   state = {
     loaded: false,
+    //name: '',
+    //product_id: null,
+    //price: '0',
+    //time: '0',
+    //image: null,
+    //description: '',
+    //name_error: '',
+    //price_error: '',
+    //time_error: '',
+    //process: false,
   }
+  /*async componentDidMount() {
+    let product = this.props.navigation.getParam('product');
+    this.setState({
+      name_id: product.id,
+      name: product.name,
+      price: product.price,
+      time: product.time,
+      image: product.image,
+      description: product.description, 
+    });
+  }*/
   render() {
-    let { item } = this.props
+    let { item } = this.props 
+    //let product = this.props.navigation.getParam('product');
     return(
       <View style={{flexDirection: 'row'}}>
         <Shimmer autoRun={true} visible={this.state.loaded} style={CustomStyle.image}>
@@ -34,7 +57,7 @@ class MenuItem extends Component {
             </Button>
           </Else>
           </If>
-            <Button info transparent small style={CustomStyle.button}>
+            <Button info transparent small style={CustomStyle.button} onPress={this.onEditClick.bind(this)}>
               <Icon name="edit" type="AntDesign"/>
             </Button>
           </View>
@@ -51,6 +74,12 @@ class MenuItem extends Component {
     .then(res => {
       this.props.update();
     }).catch(err => console.error(err))
+  }
+  onEditClick(){
+    let product = this.props.navigation.getParam('product');
+    //this.setState({process: true, name_error: '', price_error: '', time_error: ''})
+    //console.log(this.state);
+    this.props.navigation.navigate('EdtiItem', product);
   }
 }
 
