@@ -59,7 +59,8 @@ class OTPVerify extends Component {
         "Connecting Issue",
         err.message,
         [
-          {text: 'Try again', onPress: () => this.props.navigation.navigate('Login')},
+          //{text: 'Try again', onPress: () => this.props.navigation.navigate('Login')},
+          {text: 'Try again'},
         ],
         {cancelable: false},
       );
