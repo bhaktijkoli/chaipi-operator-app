@@ -4,6 +4,7 @@ import { FlatList, StyleSheet, Image, Modal, TouchableOpacity } from 'react-nati
 import { Container, Content, View, Title, Card, CardItem, Text, Icon } from 'native-base';
 
 import Header3 from './../../components/Header3';
+import Chart from './../../components/Chart';
 
 import ShopFooter from './../../components/ShopFooter';
 
@@ -21,15 +22,20 @@ class Shop extends Component {
   render() {
     return(
       <Container>
-        <Header3/>
+         <Header3/>
         <Content>
-          <Card>
-            <Title style= {[{alignSelf: 'center'}]}>Active</Title>
-            <Text style = {[{alignSelf: 'center'}]}>6</Text>
-            <Title style= {[{alignSelf: 'center'}]}>Inactive</Title>
-            <Text style = {[{alignSelf: 'center'}]}>6</Text>
+        <View>
+          <Card style = {CustomStyle.cardstyle}>
+            <CardItem>
+            <Title style= {{alignSelf: 'center'}}>Active</Title>
+            <Text style = {{alignSelf: 'center'}}>6</Text>
+            <Row style = {{borderTopWidth:1,borderTopColor: 'gainsboro',}}/>
+            <Title style= {{alignSelf: 'center'}}>Inactive</Title>
+            <Text style = {{alignSelf: 'center'}}>6</Text>
+            </CardItem>
           </Card>
-          <Card>
+          <Card style = {CustomStyle.cardstyle}>
+            <TouchableOpacity onPress={() => <Chart/>}>
             <CardItem>  
               <View style = {{flexDirection: 'row'}}>
                 <Icon name = "suitcase" type = "FontAwesome"/>
@@ -41,6 +47,11 @@ class Shop extends Component {
                   <Icon name = "right" type = "AntDesign"/>
               </View>
             </CardItem>
+            <Row style = {{borderTopWidth:1,borderTopColor: 'gainsboro',}}/>
+          <CardItem>
+            <Chart/>
+          </CardItem>
+            </TouchableOpacity>
             <Row style = {{borderTopWidth:1,borderTopColor: 'gainsboro',}}/>
             <CardItem>
               <View style = {{flexDirection: 'row'}}>
@@ -54,7 +65,7 @@ class Shop extends Component {
               </View>
             </CardItem>
           </Card>
-          <Card>
+          <Card style = {CustomStyle.cardstyle}>
             <CardItem>
               <View style = {{flexDirection: 'row'}}>
               <Grid>
@@ -126,7 +137,9 @@ class Shop extends Component {
             </Grid>
           </CardItem>
           </Card>
+          </View>
         </Content>
+        <ShopFooter tab='home' navigation={this.props.navigation}/>
       </Container>
     )
   }
@@ -152,29 +165,11 @@ const CustomStyle = StyleSheet.create({
     fontWeight: '500',
     alignSelf: 'flex-end',
   },
-  checkoutContainer: {
-    borderTopWidth: 0.2,
-    padding: 15,
-    borderColor: '#000'
-  },
-  addressModalContainer: {
-    width: '100%',
-    height: '100%',
-    backgroundColor: '#0000000d'
-  },
-  addressModal: {
-    marginTop: 200,
-    backgroundColor: 'white',
-    height: '100%',
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
+  cardstyle: {
+    marginLeft:5,
+    marginRight:5,
     elevation: 5,
-    padding: 10,
+    marginBottom:2,
   }
 })
 

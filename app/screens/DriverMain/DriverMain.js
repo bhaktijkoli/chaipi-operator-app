@@ -4,7 +4,6 @@ import { Col, Row, Grid } from 'react-native-easy-grid';
 import { FlatList, StyleSheet, Image, Modal, TouchableOpacity } from 'react-native';
 import { Container, Content, View, Title, Card, CardItem, Text, Icon } from 'native-base';
 
-
 import Header3 from './../../components/Header3';
 import DriverFooter from './../../components/DriverFooter';
 
@@ -20,13 +19,14 @@ class DriverMain extends Component {
       <Container>
         <Header3/>
         <Content>
-          <Card>
+        <View>
+          <Card style = {CustomStyle.cardstyle}>
             <Title style= {[{alignSelf: 'center'}]}>Active</Title>
             <Text style = {[{alignSelf: 'center'}]}>6</Text>
             <Title style= {[{alignSelf: 'center'}]}>Inactive</Title>
             <Text style = {[{alignSelf: 'center'}]}>6</Text>
           </Card>
-          <Card>
+          <Card style = {CustomStyle.cardstyle}>
             <CardItem>  
               <View style = {{flexDirection: 'row'}}>
                 <Icon name = "suitcase" type = "FontAwesome"/>
@@ -51,7 +51,7 @@ class DriverMain extends Component {
               </View>
             </CardItem>
           </Card>
-          <Card>
+          <Card style = {CustomStyle.cardstyle}>
             <CardItem>
               <View style = {{flexDirection: 'row'}}>
               <Grid>
@@ -123,7 +123,9 @@ class DriverMain extends Component {
             </Grid>
           </CardItem>
           </Card>
+          </View>
         </Content>
+        <DriverFooter tab='home' navigation={this.props.navigation}/>
       </Container>
     )
   }
@@ -149,30 +151,11 @@ const CustomStyle = StyleSheet.create({
     fontWeight: '500',
     alignSelf: 'flex-end',
   },
-  checkoutContainer: {
-    borderTopWidth: 0.2,
-    padding: 15,
-    borderColor: '#000'
-  },
-  addressModalContainer: {
-    width: '100%',
-    height: '100%',
-    backgroundColor: '#0000000d'
-  },
-  addressModal: {
-    marginTop: 200,
-    backgroundColor: 'white',
-    height: '100%',
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
+  cardstyle: {
+    marginLeft:5,
+    marginRight:5,
     elevation: 5,
-    padding: 10,
-  }
+  },
 })
 
 function mapStateToProps(state) {
