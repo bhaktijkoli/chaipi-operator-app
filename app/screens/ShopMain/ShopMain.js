@@ -36,7 +36,7 @@ class Shop extends Component {
           </Card>
           <Card style = {CustomStyle.cardstyle}>
             <TouchableOpacity onPress={() => <Chart/>}>
-            <CardItem>  
+            <CardItem>
               <View style = {{flexDirection: 'row'}}>
                 <Icon name = "suitcase" type = "FontAwesome"/>
                 <Grid>
@@ -57,7 +57,7 @@ class Shop extends Component {
               <View style = {{flexDirection: 'row'}}>
               <Icon name = "wallet" type = "AntDesign"/>
                 <Grid>
-                  <Row> 
+                  <Row>
                   <Text style={{marginLeft: 40,alignItems: 'center'}}>View Current Balance</Text>
                   </Row>
                 </Grid>
@@ -159,7 +159,7 @@ const CustomStyle = StyleSheet.create({
   header:{
     fontSize: 18,
     fontWeight: "500",
-    marginBottom: 10,  
+    marginBottom: 10,
   },
   billCost: {
     fontWeight: '500',

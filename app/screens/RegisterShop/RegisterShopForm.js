@@ -98,6 +98,7 @@ class RegisterShopForm extends Component {
     data.append('image', this.state.image)
     Request.post('/shop/add', data)
     .then(res => {
+      console.log("Shop Add", res.data);
       if(res.data.success) {
         NavigationActions.resetNavigation(this, 'Login');
       } else {

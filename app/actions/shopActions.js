@@ -25,14 +25,24 @@ getShopProducts = (shopid) => {
   .catch(err => console.error(err));
 }
 
+setShopActive = () => {
+  setInterval(() => {
+    Request.post('/shop/set/active')
+    .then(res=>{
+      console.log("Shop Set Active");
+    });
+  }, 60*1000);
+}
 
 module.exports.getActiveShopOrders = getActiveShopOrders;
 module.exports.getShopProducts = getShopProducts;
+module.exports.setShopActive = setShopActive;
 
 module.exports.init = (component) => {
   if(!component.props.shop.loaded) {
     getShopProducts(component.props.auth.shop.id);
     getActiveShopOrders();
     getRecentShopOrders();
+    setShopActive();
   }
 }
