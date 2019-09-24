@@ -25,12 +25,12 @@ getShopProducts = (shopid) => {
   .catch(err => console.error(err));
 }
 
+
+
 setShopActive = () => {
+  Request.post('/shop/set/active');
   setInterval(() => {
-    Request.post('/shop/set/active')
-    .then(res=>{
-      console.log("Shop Set Active");
-    });
+    Request.post('/shop/set/active');
   }, 60*1000);
 }
 
