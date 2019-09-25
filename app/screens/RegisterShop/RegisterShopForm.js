@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { TouchableOpacity, Image, ScrollView } from 'react-native';
-import { View, Form, Item, Label, Text, Input, Textarea, Icon, Button, Toast } from 'native-base';
+import { View, Form, Item, Label, Text, Input, Textarea, Picker, Icon, Button, Toast } from 'native-base';
 import { If, Then, Else } from 'react-if';
 const ImagePicker = require('react-native-image-picker');
 import ButtonEx from './../../components/Button';
@@ -23,6 +23,7 @@ class RegisterShopForm extends Component {
     name: '',
     description: '',
     image: null,
+    type: 'Tea/Cofee Shop',
     name_error: '',
     description_error: '',
     address_error: '',
@@ -47,6 +48,24 @@ class RegisterShopForm extends Component {
               onChangeText={val=>this.setState({name: val})} />
           </Item>
           <Text style={Style.error}>{this.state.name_error}</Text>
+          <Label>Shop Type</Label>
+          <Item picker style={Style.inputRegularError}>
+            <Picker
+               mode="dropdown"
+               style={{ width: undefined }}
+               placeholder="Select your shop type"
+               selectedValue={this.state.type}
+               onValueChange={type => this.setState({type})}
+             >
+               <Picker.Item label="Tea/Cofee Shop" value="Tea/Cofee Shop" />
+               <Picker.Item label="Snacks Shop" value="Snacks Shop" />
+               <Picker.Item label="Dairy Shop" value="Dairy Shop" />
+               <Picker.Item label="Grocery Shop" value="Grocery Shop" />
+               <Picker.Item label="Vegetable Shop" value="Vegetable Shop" />
+               <Picker.Item label="Other Shop" value="Other Shop" />
+             </Picker>
+          </Item>
+          <Text style={Style.error}></Text>
           <Label>Address:</Label>
           <Textarea
             rowSpan={5}
@@ -91,6 +110,7 @@ class RegisterShopForm extends Component {
     data.append('name', this.state.name)
     data.append('description', this.state.description)
     data.append('address', this.state.location.address)
+    data.append('type', this.state.type)
     data.append('house', this.state.location.house)
     data.append('landmark', this.state.location.landmark)
     data.append('lat', this.state.location.lat)
