@@ -9,6 +9,8 @@ import DriverFooter from './../../components/DriverFooter';
 
 import DriverActions from './../../actions/driverActions';
 
+import Style from './../../styles/style';
+
 class DriverMain extends Component {
   componentDidMount() {
     DriverActions.init(this);

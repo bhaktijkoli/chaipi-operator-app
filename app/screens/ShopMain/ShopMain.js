@@ -5,6 +5,7 @@ import { Container, Content, View, Title, Card, CardItem, Text, Icon } from 'nat
 
 import Header3 from './../../components/Header3';
 import Chart from './../../components/Chart';
+import Auth from './../../actions/authActions';
 
 import ShopFooter from './../../components/ShopFooter';
 
@@ -15,6 +16,9 @@ import { Col, Row, Grid } from "react-native-easy-grid";
 import Style from './../../styles/style';
 
 class Shop extends Component {
+  /*componentDidMount() {
+    Auth.getDriver();
+  }*/
   constructor(props) {
     super(props)
     shopActions.init(this);
@@ -29,13 +33,12 @@ class Shop extends Component {
             <CardItem>
             <Title style= {{alignSelf: 'center'}}>Active</Title>
             <Text style = {{alignSelf: 'center'}}>6</Text>
-            <Row style = {{borderTopWidth:1,borderTopColor: 'gainsboro',}}/>
+            {/*<Row style = {{borderTopWidth:1,borderTopColor: 'gainsboro',}}/>*/}
             <Title style= {{alignSelf: 'center'}}>Inactive</Title>
             <Text style = {{alignSelf: 'center'}}>6</Text>
             </CardItem>
           </Card>
           <Card style = {CustomStyle.cardstyle}>
-            <TouchableOpacity onPress={() => <Chart/>}>
             <CardItem>
               <View style = {{flexDirection: 'row'}}>
                 <Icon name = "suitcase" type = "FontAwesome"/>
@@ -47,11 +50,6 @@ class Shop extends Component {
                   <Icon name = "right" type = "AntDesign"/>
               </View>
             </CardItem>
-            <Row style = {{borderTopWidth:1,borderTopColor: 'gainsboro',}}/>
-          <CardItem>
-            <Chart/>
-          </CardItem>
-            </TouchableOpacity>
             <Row style = {{borderTopWidth:1,borderTopColor: 'gainsboro',}}/>
             <CardItem>
               <View style = {{flexDirection: 'row'}}>
@@ -66,6 +64,7 @@ class Shop extends Component {
             </CardItem>
           </Card>
           <Card style = {CustomStyle.cardstyle}>
+          <TouchableOpacity onPress={() => <Chart/>}>
             <CardItem>
               <View style = {{flexDirection: 'row'}}>
               <Grid>
@@ -78,6 +77,11 @@ class Shop extends Component {
               <Icon name= "caret-down" type= "FontAwesome" color='#ffa500'/>
               </View>
             </CardItem>
+            </TouchableOpacity>
+            {/*<Row style = {{borderTopWidth:1,borderTopColor: 'gainsboro',}}/>
+            <CardItem>
+              <Chart/>
+    </CardItem>*/}
             <Row style = {{borderTopWidth:1,borderTopColor: 'gainsboro',}}/>
             <CardItem>
           <Grid style={CustomStyle.billContainer}>

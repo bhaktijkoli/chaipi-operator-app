@@ -23,3 +23,10 @@ module.exports.setAskForPermissions = async () => {
   await AsyncStorage.setItem('ASKED_FOR_PERMISSIONS', 'yes');
   return true;
 }
+
+/*module.exports.getDriver = () => {
+  Request.get('/driver/info')
+  .then(res => {
+    store.dispatch({type: 'AUTH_SET_DRIVER', payload: res.data});
+  })
+}*/
