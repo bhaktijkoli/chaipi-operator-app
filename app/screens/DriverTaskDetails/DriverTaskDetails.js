@@ -69,7 +69,7 @@ class DriverTaskDetails extends Component {
               <Row style={Style.top10}>
                 <Col><Icon type="FontAwesome" name="map-marker" style={this.getAddressStyle(order, 2)}/></Col>
                 <Col size={4} onPress={this.onGetDirections.bind(this)}>
-                  <Text style={this.getAddressStyle(order, 2)}>{shop.house}, {shop.landmark}, {shop.address}</Text>
+                  <Text style={this.getAddressStyle(order, 2)}>{order.house}, {order.landmark}, {order.address}</Text>
                 </Col>
               </Row>
               <Row style={Style.top}>
