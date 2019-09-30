@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { FlatList, StyleSheet, Image, Modal, TouchableOpacity } from 'react-native';
+import { FlatList, StyleSheet, Image, Modal, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
 import { Container, Content, View, Title, Card, CardItem, Text, Icon } from 'native-base';
 
 import Header3 from './../../components/Header3';
@@ -12,12 +12,14 @@ import ShopFooter from './../../components/ShopFooter';
 import shopActions from './../../actions/shopActions';
 import Request from './../../utils/request';
 import { Col, Row, Grid } from "react-native-easy-grid";
+import { If, Then, Else } from 'react-if';
 
 import Style from './../../styles/style';
 
 class Shop extends Component {
   state = {
     data: null,
+    layoutOpen: false,
   }
   constructor(props) {
     super(props)
@@ -45,12 +47,10 @@ class Shop extends Component {
         <Content>
           <View>
             <Card style = {CustomStyle.cardstyle}>
-              <CardItem>
                 <Title style= {{alignSelf: 'center'}}>Active</Title>
                 <Text style = {{alignSelf: 'center'}}>6</Text>
                 <Title style= {{alignSelf: 'center'}}>Inactive</Title>
                 <Text style = {{alignSelf: 'center'}}>6</Text>
-              </CardItem>
             </Card>
             <Card style = {CustomStyle.cardstyle}>
               <CardItem>
@@ -78,7 +78,7 @@ class Shop extends Component {
               </CardItem>
             </Card>
             <Card style = {CustomStyle.cardstyle}>
-              <TouchableOpacity onPress={() => <Chart/>}>
+            <TouchableWithoutFeedback onPress={e=>this.setState({layoutOpen: !this.state.layoutOpen})}>
                 <CardItem>
                   <View style = {{flexDirection: 'row'}}>
                     <Grid>
@@ -91,7 +91,13 @@ class Shop extends Component {
                     <Icon name= "caret-down" type= "FontAwesome" color='#ffa500'/>
                   </View>
                 </CardItem>
-              </TouchableOpacity>
+            </TouchableWithoutFeedback>
+              <Row style = {{borderTopWidth:1,borderTopColor: 'gainsboro',}}/>
+                <If condition={this.state.layoutOpen}>
+                  <CardItem>
+                    <Chart/>
+                  </CardItem>
+                </If>
               <Row style = {{borderTopWidth:1,borderTopColor: 'gainsboro',}}/>
               <CardItem>
                 <Grid style={CustomStyle.billContainer}>
@@ -132,7 +138,7 @@ class Shop extends Component {
                       <Text style={CustomStyle.billItem}>CASH EARNINGS</Text>
                     </Col>
                     <Col>
-                      <Text style={CustomStyle.billCost}>{total_earnings}&#8377;</Text>
+                      <Text style={CustomStyle.billCost}>&#8377;{total_earnings}</Text>
                     </Col>
                   </Row>
                 </Grid>

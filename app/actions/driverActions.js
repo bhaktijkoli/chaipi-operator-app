@@ -70,5 +70,6 @@ module.exports.init = (component) => {
   if(!component.props.auth.loaded) {
     getActiveOrders();
     getRecentOrders();
+    updateLocation();
   }
 }
