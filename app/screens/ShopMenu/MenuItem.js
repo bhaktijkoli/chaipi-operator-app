@@ -57,9 +57,9 @@ class MenuItem extends Component {
             </Button>
           </Else>
           </If>
-            <Button info transparent small style={CustomStyle.button} onPress={this.onEditClick.bind(this)}>
+            {/*<Button info transparent small style={CustomStyle.button} onPress={this.onEditClick.bind(this)}>
               <Icon name="edit" type="AntDesign"/>
-            </Button>
+    </Button>*/}
           </View>
         </View>
       </View>

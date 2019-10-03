@@ -5,19 +5,40 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Attach to packager",
+            "cwd": "${workspaceFolder}",
+            "type": "reactnative",
+            "request": "attach"
+        },
+        
+        {
+            "name": "Debug Android",
+            "cwd": "${workspaceFolder}",
+            "type": "reactnative",
+            "request": "launch",
+            "platform": "android"
+        }
+        
+        /*{
+            "type": "reactnative",
+            "request": "launch",
+            "name": "Debug Android",
+            "cwd": "${workspaceRoot}/.vscode/launcherReactNative.js",
+            "platform": "android",
+            "sourceMaps": true,
+            "outFiles": "${workspaceRoot}/.vscode/.react",
+        },
+        {
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
             "program": "${workspaceFolder}/app.js"
         },
-
-
         {
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
             "program": "${workspaceFolder}\\start"
-            //"program": "${workspaceFolder}/app.js"
-        }
+        }*/
     ]
 }

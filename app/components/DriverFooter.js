@@ -14,9 +14,9 @@ class DriverFooter extends Component {
           <Button vertical active={tab=='tasks'} onPress={e=>this.onClick('DriverTasks')}>
             <Icon name="profile" type="AntDesign" />
           </Button>
-          <Button vertical active={tab=='account'} onPress={e=>this.onClick('Account')}>
+          {/*<Button vertical active={tab=='account'} onPress={e=>this.onClick('Account')}>
             <Icon name="user" type="AntDesign" />
-          </Button>
+    </Button>*/}
         </FooterTab>
       </Footer>
     )

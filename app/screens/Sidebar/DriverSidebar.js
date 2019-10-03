@@ -38,10 +38,10 @@ class DriverSidebar extends Component {
               <Text>My Account</Text>
             </ListItem>
             {this.renderSettingItems(accountItems)}
-            <ListItem itemDivider>
+            {/*<ListItem itemDivider>
               <Text>Help</Text>
             </ListItem>
-            {this.renderSettingItems(helpItems)}
+            {this.renderSettingItems(helpItems)}*/}
           </List>
           </ScrollView>
         </Content>
@@ -74,9 +74,9 @@ class DriverSidebar extends Component {
 
 const accountItems = [
   {name: 'Profile', icon: 'user', route: 'Profile', type: 'AntDesign'},
-  {name: 'Payment', icon: 'creditcard', route: 'Home', type: 'AntDesign'},
-  {name: 'Update Profile', icon: '', route: 'UpdateDriver', type: 'AntDesign'},
-  {name: 'App Settings', icon: 'setting', route: 'Home', type: 'AntDesign'},
+  //{name: 'Payment', icon: 'creditcard', route: 'Home', type: 'AntDesign'},
+  //{name: 'Update Profile', icon: '', route: 'UpdateDriver', type: 'AntDesign'},
+  //{name: 'App Settings', icon: 'setting', route: 'Home', type: 'AntDesign'},
   {name: 'Logout', icon: 'logout', route: 'Logout', type: 'AntDesign'},
 ];
 
@@ -86,7 +86,7 @@ const accountItems = [
 ];*/
 
 const helpItems = [
-  {name: 'About', icon: 'infocirlceo', route: 'About', type: 'AntDesign'},
+  //{name: 'About', icon: 'infocirlceo', route: 'About', type: 'AntDesign'},
   //{name: 'Help', icon: 'questioncircleo', route: 'Help', type: 'AntDesign'},
 ]
 

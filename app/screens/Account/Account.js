@@ -31,16 +31,16 @@ class Account extends Component {
               <Text>My Account</Text>
             </ListItem>
             {this.renderSettingItems(accountItems)}
-            <If condition={shop!=null}>
+            {/*<If condition={shop!=null}>
               <ListItem itemDivider>
                 <Text>My Shop</Text>
               </ListItem>
-            </If>
-            {this.renderSettingItems(shopManagementItems, shop!=null)}
-            <ListItem itemDivider>
+    </If>*
+    {this.renderSettingItems(shopManagementItems, shop!=null)}*/}
+            {/*<ListItem itemDivider>
               <Text>Help</Text>
             </ListItem>
-            {this.renderSettingItems(helpItems)}
+            {this.renderSettingItems(helpItems)}*/}
           </List>
         </Content>
         <If condition={user.type == 1}>
@@ -78,8 +78,8 @@ class Account extends Component {
 
 const accountItems = [
   {name: 'Profile', icon: 'user', route: 'Profile', type: 'AntDesign'},
-  {name: 'Payment', icon: 'creditcard', route: 'Home', type: 'AntDesign'},
-  {name: 'App Settings', icon: 'setting', route: 'Home', type: 'AntDesign'},
+  //{name: 'Payment', icon: 'creditcard', route: 'Home', type: 'AntDesign'},
+  //{name: 'App Settings', icon: 'setting', route: 'Home', type: 'AntDesign'},
   {name: 'Logout', icon: 'logout', route: 'Logout', type: 'AntDesign'},
 ];
 

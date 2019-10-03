@@ -78,20 +78,20 @@ class Order extends Component {
                     </Col>
                   </Row>
                   <If condition={order.status > 1}>
-                    <Row>
+                    {/*<Row>
                       <Col>
                         <Button dark transparent full onPress={e=>navigation.navigate("ShopOrderDetails", {order})}><Text>VIEW DETAILS</Text></Button>
                       </Col>
-                    </Row>
+                    </Row>*/}
                   </If>
                   <If condition={order.status == 1}>
                     <Row>
                       <Col>
                         <Button dark transparent full onPress={this.onReadyClick.bind(this)}><Text>MARK READY</Text></Button>
                       </Col>
-                      <Col>
+                      {/*<Col>
                         <Button dark transparent full onPress={e=>navigation.navigate("ShopOrderDetails", {order})}><Text>VIEW DETAILS</Text></Button>
-                      </Col>
+                      </Col>*/}
                     </Row>
                   </If>
                   <If condition={order.status == 0}>

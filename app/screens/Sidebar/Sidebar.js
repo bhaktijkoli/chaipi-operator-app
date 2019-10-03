@@ -44,10 +44,10 @@ class Sidebar extends Component {
               </ListItem>
             </If>
             {this.renderSettingItems(shopManagementItems, shop!=null)}
-            <ListItem itemDivider>
+            {/*<ListItem itemDivider>
               <Text>Help</Text>
             </ListItem>
-            {this.renderSettingItems(helpItems)}
+            {this.renderSettingItems(helpItems)}*/}
           </List>
           </ScrollView>
         </Content>
@@ -80,19 +80,19 @@ class Sidebar extends Component {
 
 const accountItems = [
   {name: 'Profile', icon: 'user', route: 'Profile', type: 'AntDesign'},
-  {name: 'Payment', icon: 'creditcard', route: 'Home', type: 'AntDesign'},
-  {name: 'App Settings', icon: 'setting', route: 'Home', type: 'AntDesign'},
+  //{name: 'Payment', icon: 'creditcard', route: 'Home', type: 'AntDesign'},
+  //{name: 'App Settings', icon: 'setting', route: 'Home', type: 'AntDesign'},
   {name: 'Logout', icon: 'logout', route: 'Logout', type: 'AntDesign'},
 ];
 
 const shopManagementItems = [
   {name: 'Shop', icon: 'shop', route: 'Home', type: 'Entypo'},
-  {name: 'Update Shop', icon: '', route: 'UpdateShop', type: 'AntDesign'},
+  //{name: 'Update Shop', icon: '', route: 'UpdateShop', type: 'AntDesign'},
   {name: 'Products', icon: 'profile', route: 'Home', type: 'AntDesign'},
 ];
 
 const helpItems = [
-  {name: 'About', icon: 'infocirlceo', route: 'About', type: 'AntDesign'},
+  //{name: 'About', icon: 'infocirlceo', route: 'About', type: 'AntDesign'},
   //{name: 'Help', icon: 'questioncircleo', route: 'Help', type: 'AntDesign'},
 ]
 

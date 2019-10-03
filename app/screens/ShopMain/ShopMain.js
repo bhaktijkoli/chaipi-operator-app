@@ -46,12 +46,12 @@ class Shop extends Component {
         <Header3/>
         <Content>
           <View>
-            <Card style = {CustomStyle.cardstyle}>
+            {/*<Card style = {CustomStyle.cardstyle}>
                 <Title style= {{alignSelf: 'center'}}>Active</Title>
                 <Text style = {{alignSelf: 'center'}}>6</Text>
                 <Title style= {{alignSelf: 'center'}}>Inactive</Title>
                 <Text style = {{alignSelf: 'center'}}>6</Text>
-            </Card>
+    </Card>*/}
             <Card style = {CustomStyle.cardstyle}>
               <CardItem>
                 <View style = {{flexDirection: 'row'}}>
