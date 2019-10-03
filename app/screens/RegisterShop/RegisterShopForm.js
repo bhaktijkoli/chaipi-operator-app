@@ -35,7 +35,16 @@ class RegisterShopForm extends Component {
       lat: 0,
       lon: 0,
     },
+    types: [],
     process: false,
+  }
+  componentDidMount() {
+    Request.get('/shoptype/get')
+    .then(res => {
+      let type = "";
+      if(res.data.length > 0) type = res.data[0];
+      this.setState({types: res.data, type});
+    })
   }
   render() {
     return(
@@ -51,19 +60,18 @@ class RegisterShopForm extends Component {
           <Label>Shop Type</Label>
           <Item picker style={Style.inputRegularError}>
             <Picker
-               mode="dropdown"
-               style={{ width: undefined }}
-               placeholder="Select your shop type"
-               selectedValue={this.state.type}
-               onValueChange={type => this.setState({type})}
-             >
-               <Picker.Item label="Tea/Cofee Shop" value="Tea/Cofee Shop" />
-               <Picker.Item label="Snacks Shop" value="Snacks Shop" />
-               <Picker.Item label="Dairy Shop" value="Dairy Shop" />
-               <Picker.Item label="Grocery Shop" value="Grocery Shop" />
-               <Picker.Item label="Vegetable Shop" value="Vegetable Shop" />
-               <Picker.Item label="Other Shop" value="Other Shop" />
-             </Picker>
+              mode="dropdown"
+              style={{ width: undefined }}
+              placeholder="Select your shop type"
+              selectedValue={this.state.type}
+              onValueChange={type => this.setState({type})}
+              >
+              {
+                this.state.types.map((st, key) => {
+                  return <Picker.Item label={st.name} value={st.name} key={key} />
+                })
+              }
+            </Picker>
           </Item>
           <Text style={Style.error}></Text>
           <Label>Address:</Label>
