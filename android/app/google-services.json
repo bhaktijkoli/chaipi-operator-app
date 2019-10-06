@@ -75,6 +75,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "778753524039-7col5j0ir3luo61v7i29sh4569j2pqnv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.chaipioperator",
+            "certificate_hash": "bf2e0495a463065bd3d93029d94c649ba66d0e27"
+          }
+        },
+        {
           "client_id": "778753524039-bj7rqg5rfb12g7iikctain1uth4aa27t.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
