@@ -1,3 +1,4 @@
+import BackgroundTimer from 'react-native-background-timer';
 import Request from './../utils/request';
 import store from './../store';
 
@@ -28,10 +29,10 @@ getShopProducts = (shopid) => {
 
 
 setShopActive = () => {
-  Request.post('/shop/set/active');
-  setInterval(() => {
+  BackgroundTimer.runBackgroundTimer(() => {
     Request.post('/shop/set/active');
-  }, 60*1000);
+  },
+  1*60000);
 }
 
 module.exports.getActiveShopOrders = getActiveShopOrders;

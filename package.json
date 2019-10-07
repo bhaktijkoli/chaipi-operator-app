@@ -17,6 +17,7 @@
     "react-chartjs-2": "^2.8.0",
     "react-if": "^3.4.0",
     "react-native": "0.59.5",
+    "react-native-background-timer": "^2.1.1",
     "react-native-cardview": "^2.0.3",
     "react-native-charts": "^3.0.0",
     "react-native-firebase": "^5.3.1",

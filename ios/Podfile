@@ -9,4 +9,6 @@ target 'chaipioperator' do
   pod 'Firebase/Core', '~> 5.15.0'
   pod 'Firebase/Auth', '~> 5.15.0'
   pod 'Firebase/Messaging', '~> 5.15.0'
+  pod 'react-native-background-timer', :path => '../node_modules/react-native-background-timer'
+
 end
