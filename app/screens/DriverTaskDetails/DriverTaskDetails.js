@@ -62,13 +62,13 @@ class DriverTaskDetails extends Component {
               </Row>
               <Row style={Style.top}>
                 <Col><Icon type="Entypo" name="shop" style={this.getAddressStyle(order, 1)}/></Col>
-                <Col size={4} onPress={this.onGetDirections.bind(this)}>
+                <Col size={4} onPress={e=>this.onGetDirections(1)}>
                   <Text style={this.getAddressStyle(order, 1)}>{shop.house}, {shop.landmark}, {shop.address}</Text>
                 </Col>
               </Row>
               <Row style={Style.top10}>
                 <Col><Icon type="FontAwesome" name="map-marker" style={this.getAddressStyle(order, 2)}/></Col>
-                <Col size={4} onPress={this.onGetDirections.bind(this)}>
+                <Col size={4} onPress={e => this.onGetDirections(2)}>
                   <Text style={this.getAddressStyle(order, 2)}>{order.house}, {order.landmark}, {order.address}</Text>
                 </Col>
               </Row>
@@ -137,8 +137,14 @@ class DriverTaskDetails extends Component {
     })
     .catch(err => console.error(err));
   }
-  onGetDirections() {
+  onGetDirections(stage) {
     let order = this.state.order;
+    let lat = order.shop.lat;
+    let lon = order.shop.lon;
+    if(stage == 2) {
+      lat = order.lat;
+      lon = order.lon;
+    }
     let data = {
       destination: {
         latitude: order.shop.lat,
