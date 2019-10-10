@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { FlatList, StyleSheet, Image, Modal, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
-import { Container, Content, View, Title, Card, CardItem, Text, Icon } from 'native-base';
+import { Container, Content, View, Title, Card, CardItem, Text, Icon, Button } from 'native-base';
 
 import Header3 from './../../components/Header3';
 import Chart from './../../components/Chart';
@@ -9,6 +9,7 @@ import Auth from './../../actions/authActions';
 
 import ShopFooter from './../../components/ShopFooter';
 
+import AuthActions from './../../actions/authActions';
 import shopActions from './../../actions/shopActions';
 import Request from './../../utils/request';
 import { Col, Row, Grid } from "react-native-easy-grid";
@@ -46,12 +47,22 @@ class Shop extends Component {
         <Header3/>
         <Content>
           <View>
-            {/*<Card style = {CustomStyle.cardstyle}>
-                <Title style= {{alignSelf: 'center'}}>Active</Title>
-                <Text style = {{alignSelf: 'center'}}>6</Text>
-                <Title style= {{alignSelf: 'center'}}>Inactive</Title>
-                <Text style = {{alignSelf: 'center'}}>6</Text>
-    </Card>*/}
+            <Card style={CustomStyle.cardstyle}>
+              <CardItem>
+                <View style={{flexDirection: 'column'}}>
+                  <If condition={this.props.auth.user.shop.active}>
+                    <Then>
+                      <Text>You are accepting new orders</Text>
+                      <Button transparent block onPress={e => this.updateActive(0)}><Text>STOP ACCEPTING ORDERS</Text></Button>
+                    </Then>
+                    <Else>
+                      <Text>You are not accepting new orders</Text>
+                      <Button transparent block onPress={e => this.updateActive(1)}><Text>START ACCEPTING ORDERS</Text></Button>
+                    </Else>
+                  </If>
+                </View>
+              </CardItem>
+            </Card>
             <Card style = {CustomStyle.cardstyle}>
               <CardItem>
                 <View style = {{flexDirection: 'row'}}>
@@ -78,7 +89,7 @@ class Shop extends Component {
               </CardItem>
             </Card>
             <Card style = {CustomStyle.cardstyle}>
-            <TouchableWithoutFeedback onPress={e=>this.setState({layoutOpen: !this.state.layoutOpen})}>
+              <TouchableWithoutFeedback onPress={e=>this.setState({layoutOpen: !this.state.layoutOpen})}>
                 <CardItem>
                   <View style = {{flexDirection: 'row'}}>
                     <Grid>
@@ -91,13 +102,13 @@ class Shop extends Component {
                     <Icon name= "caret-down" type= "FontAwesome" color='#ffa500'/>
                   </View>
                 </CardItem>
-            </TouchableWithoutFeedback>
+              </TouchableWithoutFeedback>
               <Row style = {{borderTopWidth:1,borderTopColor: 'gainsboro',}}/>
-                <If condition={this.state.layoutOpen}>
-                  <CardItem>
-                    <Chart/>
-                  </CardItem>
-                </If>
+              <If condition={this.state.layoutOpen}>
+                <CardItem>
+                  <Chart/>
+                </CardItem>
+              </If>
               <Row style = {{borderTopWidth:1,borderTopColor: 'gainsboro',}}/>
               <CardItem>
                 <Grid style={CustomStyle.billContainer}>
@@ -162,6 +173,14 @@ class Shop extends Component {
         <ShopFooter tab='home' navigation={this.props.navigation}/>
       </Container>
     )
+  }
+  updateActive = (active) => {
+    Request.post('/shop/set/active', {active})
+    .then(res => {
+      let user = this.props.auth.user;
+      user.shop.active = active;
+      AuthActions.setUser(user)
+    })
   }
 }
 
