@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import { FlatList, StyleSheet, Image, Modal, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
-import { Container, Content, View, Title, Card, CardItem, Text, Icon } from 'native-base';
+import { Container, Content, View, Title, Card, CardItem, Text, Icon, Button } from 'native-base';
 
 import Chart from './../../components/Chart';
 import Header3 from './../../components/Header3';
 import DriverFooter from './../../components/DriverFooter';
 
+import AuthActions from './../../actions/authActions';
 import DriverActions from './../../actions/driverActions';
 import Request from './../../utils/request';
 
@@ -31,6 +32,7 @@ class DriverMain extends Component {
       console.log("Driver Info", res.data);
       this.setState({data:res.data});
     });
+    console.log("Driver Details", this.props.auth.user);
   }
   render() {
     let total_orders = 0;
@@ -46,12 +48,22 @@ class DriverMain extends Component {
         <Header3/>
         <Content>
           <View>
-            {/*<Card style = {CustomStyle.cardstyle}>
-                <Title style= {{alignSelf: 'center'}}>Active</Title>
-                <Text style = {{alignSelf: 'center'}}>6</Text>
-                <Title style= {{alignSelf: 'center'}}>Inactive</Title>
-                <Text style = {{alignSelf: 'center'}}>6</Text>
-    </Card>*/}
+            <Card style={CustomStyle.cardstyle}>
+              <CardItem>
+                <View style={{flexDirection: 'column'}}>
+                  <If condition={this.props.auth.user.driver.active}>
+                    <Then>
+                      <Text>You are accepting new tasks</Text>
+                      <Button transparent block onPress={e => this.updateActive(0)}><Text>STOP ACCEPTING TASKS</Text></Button>
+                    </Then>
+                    <Else>
+                      <Text>You are not accepting new tasks</Text>
+                      <Button transparent block onPress={e => this.updateActive(1)}><Text>START ACCEPTING TASKS</Text></Button>
+                    </Else>
+                  </If>
+                </View>
+              </CardItem>
+            </Card>
             <Card style = {CustomStyle.cardstyle}>
               <CardItem>
                 <View style = {{flexDirection: 'row'}}>
@@ -78,7 +90,7 @@ class DriverMain extends Component {
               </CardItem>
             </Card>
             <Card style = {CustomStyle.cardstyle}>
-            <TouchableWithoutFeedback onPress={e=>this.setState({layoutOpen: !this.state.layoutOpen})}>
+              <TouchableWithoutFeedback onPress={e=>this.setState({layoutOpen: !this.state.layoutOpen})}>
                 <CardItem>
                   <View style = {{flexDirection: 'row'}}>
                     <Grid>
@@ -91,13 +103,13 @@ class DriverMain extends Component {
                     <Icon name= "caret-down" type= "FontAwesome" color='#ffa500'/>
                   </View>
                 </CardItem>
-            </TouchableWithoutFeedback>
+              </TouchableWithoutFeedback>
               <Row style = {{borderTopWidth:1,borderTopColor: 'gainsboro',}}/>
-                <If condition={this.state.layoutOpen}>
-                  <CardItem>
-                    <Chart/>
-                  </CardItem>
-                </If>
+              <If condition={this.state.layoutOpen}>
+                <CardItem>
+                  <Chart/>
+                </CardItem>
+              </If>
               <Row style = {{borderTopWidth:1,borderTopColor: 'gainsboro',}}/>
               <CardItem>
                 <Grid style={CustomStyle.billContainer}>
@@ -163,6 +175,14 @@ class DriverMain extends Component {
       </Container>
     )
   }
+  updateActive = (active) => {
+    Request.post('/driver/set/active', {active})
+    .then(res => {
+      let user = this.props.auth.user;
+      user.driver.active = active;
+      AuthActions.setUser(user)
+    })
+  }
 }
 
 const CustomStyle = StyleSheet.create({
@@ -179,7 +199,7 @@ const CustomStyle = StyleSheet.create({
   header:{
     fontSize: 18,
     fontWeight: "500",
-    marginBottom: 10,  
+    marginBottom: 10,
   },
   billCost: {
     fontWeight: '500',
