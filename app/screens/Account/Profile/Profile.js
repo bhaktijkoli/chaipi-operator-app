@@ -21,10 +21,11 @@ class Profile extends Component {
       this.state = {
         fullname: this.props.auth.user.fullname,
         email: this.props.auth.user.email,
-        phone: this.props.auth.user.phone,
+        phone: this.props.auth.phone,
         process: false,
         fullname_error: '',
         email_error: '',
+        phone_error: '',
         image: null,
       }
     }
@@ -71,6 +72,16 @@ class Profile extends Component {
                 </Item>
                 {/*<If condition={this.state.email_error.length > 0}>
                   <Text style={Style.error}>{this.state.email_error}</Text>
+                </If>*/}
+                <Item style = {Style.input}>
+                  <Input
+                    value ={this.state.phone}
+                    onChangeText={val=>this.setState({phone: val})}
+                    placeholder='Enter phone number'
+                    />
+              </Item>
+                {/*<If condition={this.state. phone_error.length > 0}>
+                  <Text style={Style.error}>{this.state. phone_error}</Text>
                 </If>*/}
                 {/*<ButtonEx onPress={this.onClickNext} loading={this.state.process} text="SAVE"/>*/}
               </Form>

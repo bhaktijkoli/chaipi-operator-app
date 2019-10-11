@@ -34,7 +34,7 @@ class Sidebar extends Component {
                     <Text style={{marginLeft:15,color:'#000'}}>{phone}</Text>
                     </View>
           <List>
-            <ListItem itemDivider>
+            {/*<ListItem itemDivider>
               <Text>My Account</Text>
             </ListItem>
             {this.renderSettingItems(accountItems)}
@@ -43,11 +43,11 @@ class Sidebar extends Component {
                 <Text>My Shop</Text>
               </ListItem>
             </If>
-            {this.renderSettingItems(shopManagementItems, shop!=null)}
-            {/*<ListItem itemDivider>
+            {this.renderSettingItems(shopManagementItems, shop!=null)}*/}
+            <ListItem itemDivider>
               <Text>Help</Text>
             </ListItem>
-            {this.renderSettingItems(helpItems)}*/}
+            {this.renderSettingItems(helpItems)}
           </List>
           </ScrollView>
         </Content>
@@ -92,7 +92,8 @@ const shopManagementItems = [
 ];
 
 const helpItems = [
-  //{name: 'About', icon: 'infocirlceo', route: 'About', type: 'AntDesign'},
+  {name: 'About', icon: 'infocirlceo', route: 'About', type: 'AntDesign'},
+  {name: 'ContactUs', icon: 'contacts', route: 'Contactus', type: 'AntDesign'},
   //{name: 'Help', icon: 'questioncircleo', route: 'Help', type: 'AntDesign'},
 ]
 

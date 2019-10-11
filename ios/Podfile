@@ -11,4 +11,6 @@ target 'chaipioperator' do
   pod 'Firebase/Messaging', '~> 5.15.0'
   pod 'react-native-background-timer', :path => '../node_modules/react-native-background-timer'
 
+  pod 'react-native-image-resizer', :path => '../node_modules/react-native-image-resizer'
+
 end

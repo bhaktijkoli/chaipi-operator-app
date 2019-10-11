@@ -5,6 +5,7 @@ import { Form, Item, Input, Label, Icon } from 'native-base';
 import { H1 } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import { TouchableOpacity, Image, ScrollView } from 'react-native';
+import ImageResizer from 'react-native-image-resizer';
 
 import ButtonEx from './../../components/Button';
 
@@ -64,6 +65,7 @@ class ProfileSetup extends Component {
                       <Else>
                         <TouchableOpacity activeOpacity = { .5 } onPress={this.changeImage.bind(this)}>
                           <Image source={this.state.image} style={Style.avatarBig} onPress={this.changeImage.bind(this)}/>
+                          {/*<Image source={this.state.image} style={{ flex: 1,width: 50,height: 50,resizeMode: 'contain' }} onPress={this.changeImage.bind(this)}/>*/}
                         </TouchableOpacity>
                       </Else>
                     </If>
@@ -77,7 +79,7 @@ class ProfileSetup extends Component {
                   <If condition={this.state.fullname_error.length > 0}>
                     <Text style={Style.error}>{this.state.fullname_error}</Text>
                   </If>
-                  <Item style = {Style.input}>
+                  {/*<Item style = {Style.input}>
                     <Input
                       value ={this.state.email}
                       onChangeText={val=>this.setState({email: val})}
@@ -86,7 +88,7 @@ class ProfileSetup extends Component {
                   </Item>
                   <If condition={this.state.email_error.length > 0}>
                     <Text style={Style.error}>{this.state.email_error}</Text>
-                  </If>
+    </If>*/}
                   <ButtonEx onPress={this.onClickNext} loading={this.state.process} text="NEXT"/>
                   <Button transparent block onPress={this.onClickLogout}>
                     <Text>Logout</Text>
@@ -123,7 +125,7 @@ class ProfileSetup extends Component {
     let data = new FormData();
     data.append('uid', this.props.auth.uid)
     data.append('fullname', this.state.fullname)
-    data.append('email', this.state.email)
+    //data.append('email', this.state.email)
     data.append('image', this.state.image)
     Request.post('/user/add', data)
     .then(res => {
@@ -158,7 +160,22 @@ class ProfileSetup extends Component {
         });
       }
     });
+
   }
+
+  resize() {
+    ImageResizer.createResizedImage(this.state.image.uri, 800, 600, 'JPEG', 80)
+    .then((resizedImageUri) => {
+     then(({uri}) => {
+      this.setState({
+        resizedImageUri,
+        resizedImageUri: uri,
+      });
+    }).catch((err) => {
+      console.log(err);
+    });
+  });
+}
 }
 
 

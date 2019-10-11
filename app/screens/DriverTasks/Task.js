@@ -30,6 +30,8 @@ class Task extends Component {
     let shop = order.shop;
     let navigation = this.props.navigation;
     let createdAt = moment(order.createdAt, 'YYYY-MM-DD HH:mm:ss');
+    console.log('Order', order);
+    console.log('Shop', shop);
     return(
       <TouchableWithoutFeedback onPress={e=>this.setState({layoutOpen: !this.state.layoutOpen})}>
         <Card style={CustomStyle.container}>

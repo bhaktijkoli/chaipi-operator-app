@@ -28,6 +28,7 @@ import DriverMain from './app/screens/DriverMain/DriverMain';
 import DriverTasks from './app/screens/DriverTasks/DriverTasks';
 import DriverTaskDetails from './app/screens/DriverTaskDetails/DriverTaskDetails';
 import About from './app/screens/About/About';
+import Contactus from './app/screens/Contactus/Contactus';
 import Help from './app/screens/Help/Help';
 import Sidebar from './app/screens/Sidebar/Sidebar';
 import DriverSidebar from './app/screens/Sidebar/DriverSidebar';
@@ -106,6 +107,7 @@ const AppNavigator = createStackNavigator(
     DriverTasks: { screen: DriverTasks },
     DriverTaskDetails: { screen: DrawerNavigator },
     About: { screen: About },
+    Contactus: { screen: Contactus },
     Help: { screen: Help }, 
     Profile: { screen: Profile },
     EditItem: { screen: EditItem },

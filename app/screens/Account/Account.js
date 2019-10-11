@@ -35,12 +35,12 @@ class Account extends Component {
               <ListItem itemDivider>
                 <Text>My Shop</Text>
               </ListItem>
-    </If>*
+    </If>
     {this.renderSettingItems(shopManagementItems, shop!=null)}*/}
-            {/*<ListItem itemDivider>
+            <ListItem itemDivider>
               <Text>Help</Text>
             </ListItem>
-            {this.renderSettingItems(helpItems)}*/}
+            {this.renderSettingItems(helpItems)}
           </List>
         </Content>
         <If condition={user.type == 1}>
@@ -89,7 +89,8 @@ const shopManagementItems = [
 ];
 
 const helpItems = [
-  {name: 'About', icon: 'infocirlceo', route: 'About', type: 'AntDesign'},
+  {name: 'AboutUs', icon: 'infocirlceo', route: 'About', type: 'AntDesign'},
+  {name: 'ContactUs', icon: 'contact', route: 'Contactus', type: 'AntDesign'},
   //{name: 'Help', icon: 'questioncircleo', route: 'Help', type: 'AntDesign'},
 ]
 

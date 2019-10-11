@@ -29,6 +29,7 @@ class DriverTaskDetails extends Component {
     }
   }
   render() {
+    let user = this.props.auth.user;
     let order = this.state.order;
     let shop = order.shop;
     let products = JSON.parse(order.products);
@@ -64,6 +65,9 @@ class DriverTaskDetails extends Component {
                 <Col><Icon type="Entypo" name="shop" style={this.getAddressStyle(order, 1)}/></Col>
                 <Col size={4} onPress={e=>this.onGetDirections(1)}>
                   <Text style={this.getAddressStyle(order, 1)}>{shop.house}, {shop.landmark}, {shop.address}</Text>
+                  <Col>
+                  <Text>{user.name}</Text>
+                  </Col>
                 </Col>
               </Row>
               <Row style={Style.top10}>

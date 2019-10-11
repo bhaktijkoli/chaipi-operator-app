@@ -4,15 +4,18 @@ import { Container, Content, View, Title, Text} from 'native-base';
 import { Header, Left, Body, Right, Icon } from 'native-base';
 import { List, ListItem } from 'native-base';
 import { If, Else, Then } from 'react-if'
-import { Image } from 'react-native';
+import { Image, StyleSheet } from 'react-native';
 
 import ShopFooter from './../../components/ShopFooter'
 import DriverFooter from './../../components/DriverFooter'
 
 import Style from './../../styles/style';
 import Request from './../../utils/request';
+import ImageResizing from '../../utils/ImageResizing/ImageResizer';
 import { SafeAreaView } from 'react-navigation';
 import { ScrollView } from 'react-native-gesture-handler';
+
+let imageResizerObj = new ImageResizing();
 
 class DriverSidebar extends Component {
   componentDidMount() {
@@ -29,19 +32,23 @@ class DriverSidebar extends Component {
               <View style={{marginTop:50, marginBottom: 10}}>
             <View style={{alignItems: 'center', justifyContent: 'center', flexDirection: 'row', marginBottom: 20}}>
                 <Image source={{uri: Request.url(image)}} style={Style.avatar}/>
+                {/*<Image source={{uri: Request.url(image)}} style={{ flex: 1,width: 200,height: 200, resizeMode: 'contain'}}/>*/}
+            </View>
+              {/*<View style={CustomStyle.mainContainer}>
+                <Image resizeMode={'contain'} style={CustomStyle.img} source={{uri: Request.url(image)}}></Image>
+  </View>*/}
+                <Text style={{marginLeft:15,color:'#000'}}>{user.fullname.toUpperCase()}</Text>
+                <Text style={{marginLeft:15,color:'#000'}}>{phone}</Text>
               </View>
-                    <Text style={{marginLeft:15,color:'#000'}}>{user.fullname.toUpperCase()}</Text>
-                    <Text style={{marginLeft:15,color:'#000'}}>{phone}</Text>
-                    </View>
           <List>
             <ListItem itemDivider>
               <Text>My Account</Text>
             </ListItem>
             {this.renderSettingItems(accountItems)}
-            {/*<ListItem itemDivider>
+            <ListItem itemDivider>
               <Text>Help</Text>
             </ListItem>
-            {this.renderSettingItems(helpItems)}*/}
+            {this.renderSettingItems(helpItems)}
           </List>
           </ScrollView>
         </Content>
@@ -72,6 +79,23 @@ class DriverSidebar extends Component {
   }
 }
 
+const CustomStyle = StyleSheet.create({
+  mainContainer: {
+    flex: 1,
+    backgroundColor: 'white',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 20,
+},
+img:{
+  height:imageResizerObj.getHeight(800),
+  width:imageResizerObj.getWidth(3000),
+  marginLeft:imageResizerObj.getWidth(5),
+  marginRight:imageResizerObj.getWidth(5),
+  borderRadius: 500,
+}
+})
+
 const accountItems = [
   {name: 'Profile', icon: 'user', route: 'Profile', type: 'AntDesign'},
   //{name: 'Payment', icon: 'creditcard', route: 'Home', type: 'AntDesign'},
@@ -86,7 +110,8 @@ const accountItems = [
 ];*/
 
 const helpItems = [
-  //{name: 'About', icon: 'infocirlceo', route: 'About', type: 'AntDesign'},
+  {name: 'AboutUs', icon: 'infocirlceo', route: 'About', type: 'AntDesign'},
+  {name: 'ContactUs', icon: 'contacts', route: 'Contactus', type: 'AntDesign'},
   //{name: 'Help', icon: 'questioncircleo', route: 'Help', type: 'AntDesign'},
 ]
 
