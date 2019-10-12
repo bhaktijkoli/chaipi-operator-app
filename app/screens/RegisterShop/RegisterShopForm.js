@@ -12,6 +12,8 @@ import NavigationActions from './../../actions/navigationActions';
 
 const imagePickerOptions = {
   title: 'Select Shop Photo',
+  maxWidth: 300,
+  maxHeight: 200,
   storageOptions: {
     skipBackup: true,
     path: 'images',

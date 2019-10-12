@@ -13,6 +13,8 @@ import NavigationActions from './../../actions/navigationActions';
 
 const options = {
   title: 'Select Image',
+  maxWidth: 300,
+  maxHeight: 200,
   storageOptions: {
     skipBackup: true,
     path: 'images',

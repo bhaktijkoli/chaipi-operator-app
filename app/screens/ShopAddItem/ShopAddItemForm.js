@@ -11,6 +11,8 @@ const ImagePicker = require('react-native-image-picker');
 
 const options = {
   title: 'Select Image',
+  maxWidth: 300,
+  maxHeight: 200,
   storageOptions: {
     skipBackup: true,
     path: 'images',
