@@ -79,6 +79,7 @@ const DrawerNavigator = createDrawerNavigator(
   {
     DriverMain: { screen: DriverMain },
     DriverTaskDetails: { screen: DriverTaskDetails },
+    DriverTasks: { screen: DriverTasks },
   },
   {
     contentComponent: DriverSidebar
@@ -104,7 +105,7 @@ const AppNavigator = createStackNavigator(
     ShopMenu: { screen: MyDrawerNavigator },
     ShopAddItem: { screen: ShopAddItem },
     DriverMain: { screen: DrawerNavigator },
-    DriverTasks: { screen: DriverTasks },
+    DriverTasks: { screen: DrawerNavigator },
     DriverTaskDetails: { screen: DrawerNavigator },
     About: { screen: About },
     Contactus: { screen: Contactus },

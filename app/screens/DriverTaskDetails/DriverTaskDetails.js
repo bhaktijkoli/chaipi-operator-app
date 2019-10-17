@@ -61,13 +61,15 @@ class DriverTaskDetails extends Component {
                   <Text>ORDER #{order.trackid}</Text>
                 </Col>
               </Row>
+              <Row>
+                <Col>
+                  <Text></Text>
+                </Col>
+              </Row>
               <Row style={Style.top}>
                 <Col><Icon type="Entypo" name="shop" style={this.getAddressStyle(order, 1)}/></Col>
                 <Col size={4} onPress={e=>this.onGetDirections(1)}>
                   <Text style={this.getAddressStyle(order, 1)}>{shop.house}, {shop.landmark}, {shop.address}</Text>
-                  <Col>
-                  <Text>{user.name}</Text>
-                  </Col>
                 </Col>
               </Row>
               <Row style={Style.top10}>
@@ -106,7 +108,7 @@ class DriverTaskDetails extends Component {
               <Row style={Style.top}>
                 <Col>
                   <If condition={order.status < 4}>
-                    <Button primary block onPress={this.onPressDeliver.bind(this)}>
+                    <Button primary block onPress={this.onPressDeliver.bind(this)}> 
                       <If condition={order.status < 3}>
                         <Text>I have picked the order</Text>
                       </If>

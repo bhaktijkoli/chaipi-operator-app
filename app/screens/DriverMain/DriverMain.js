@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { Col, Row, Grid } from 'react-native-easy-grid';
-import { FlatList, StyleSheet, Image, Modal, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
+import { FlatList, StyleSheet, Image, Modal, TouchableOpacity, TouchableWithoutFeedback, ScrollView } from 'react-native';
 import { Container, Content, View, Title, Card, CardItem, Text, Icon, Button } from 'native-base';
 
+import ToggleSwitch from 'toggle-switch-react-native'
 import Chart from './../../components/Chart';
 import Header3 from './../../components/Header3';
 import DriverFooter from './../../components/DriverFooter';
@@ -51,18 +52,100 @@ class DriverMain extends Component {
             <Card style={CustomStyle.cardstyle}>
               <CardItem>
                 <View style={{flexDirection: 'column'}}>
-                  <If condition={this.props.auth.user.driver.active}>
-                    <Then>
-                      <Text>You are accepting new tasks</Text>
-                      <Button transparent block onPress={e => this.updateActive(0)}><Text>STOP ACCEPTING TASKS</Text></Button>
-                    </Then>
-                    <Else>
-                      <Text>You are not accepting new tasks</Text>
-                      <Button transparent block onPress={e => this.updateActive(1)}><Text>START ACCEPTING TASKS</Text></Button>
-                    </Else>
-                  </If>
-                </View>
+                {/*<ToggleSwitch
+                onColor="green"
+                  offColor="red"
+                  label="Example label"
+                  labelStyle={{ color: "black", fontWeight: "900" }}
+                  size="large"
+                  onToggle={
+                  }
+                ></ToggleSwitch>*/}
+                <If condition={this.props.auth.user.driver.active}>
+                <Then>
+                  <Text>You are accepting new tasks</Text>
+                  <Button block success large style={{alignItems: 'center', marginTop: 10}} onPress={e => this.updateActive(0)}><Text>INACTIVE</Text></Button>
+                </Then>
+                <Else>
+                  <Text>You are not accepting new tasks</Text>
+                  <Button block danger large style = {{alignItems:'center', marginTop: 10}} onPress={e => this.updateActive(1)}><Text>ACTIVE</Text></Button>
+                </Else>
+              </If>
+                  </View>
               </CardItem>
+            </Card>
+            {/*<Card style={CustomStyle.cardstyle}>
+              <CardItem>
+              <Grid>
+              <Row>
+              <Col>
+              <Button block small style = {{color: '#008000', alignSelf: 'flex-start'}} onPress={e => this.updateActive()}><Text>OPEN</Text></Button>
+              </Col>
+              <Col>
+              <Button block small style = {{color: '#ff0000', alignSelf: 'flex-end'}} onPress={e => this.updateActive()}><Text>CLOSE</Text></Button>
+              </Col>
+              </Row>
+              </Grid>
+              </CardItem>
+    </Card>*/}
+            <Card style = {CustomStyle.cardstyle}>
+            <CardItem>
+                <Grid style={CustomStyle.billContainer}>
+                  <Row>
+                    <Col>
+                      <Text style={{marginBottom: 15}}>TOTAL SUMMARY</Text>
+                    </Col>
+                    <Col>
+                      <Text style={CustomStyle.billCost}>&#8377;</Text>
+                    </Col>
+                  </Row>
+                  <Row style={{paddingTop:5,paddingBottom:5}}>
+                    <Col>
+                      <Text style={CustomStyle.billItem}>BOOKINGS</Text>
+                    </Col>
+                    <Col>
+                      <Text style={CustomStyle.billCost}></Text>
+                    </Col>
+                  </Row>
+                  <Row style={[Style.upperBorder, {paddingTop:5,paddingBottom:5}]}>
+                    <Col>
+                      <Text style={CustomStyle.billItem}>TOTAL ORDERS</Text>
+                    </Col>
+                    <Col>
+                      <Text style={CustomStyle.billCost}>{total_orders}</Text>
+                    </Col>
+                  </Row>
+                  <Row style={[Style.upperBorder, {paddingTop:5,paddingBottom:5}]}>
+                    <Col>
+                      <Text style={CustomStyle.billItem}>SUCESSFULL ORDERS</Text>
+                    </Col>
+                    <Col>
+                      <Text style={CustomStyle.billCost}>{total_successfull_orders}</Text>
+                    </Col>
+                  </Row>
+                  <Row style={[Style.upperBorder, {paddingTop:5,paddingBottom:5}]}>
+                    <Col>
+                      <Text style={CustomStyle.billItem}>CASH EARNINGS</Text>
+                    </Col>
+                    <Col>
+                      <Text style={CustomStyle.billCost}>&#8377;{total_earnings}</Text>
+                    </Col>
+                  </Row>
+                </Grid>
+              </CardItem>
+              <Row style = {{borderTopWidth:1,borderTopColor: 'gainsboro',}}/>
+              {/*<CardItem>
+                <Grid style={CustomStyle.billContainer}>
+                  <Row>
+                    <Col>
+                      <Text style={{marginBottom: 15}}>PAYMENTS MADE</Text>
+                    </Col>
+                    <Col>
+                      <Text style={CustomStyle.billCost}>&#8377;</Text>
+                    </Col>
+                  </Row>
+                </Grid>
+              </CardItem>*/}
             </Card>
             <Card style = {CustomStyle.cardstyle}>
               <CardItem>
@@ -111,6 +194,7 @@ class DriverMain extends Component {
                 </CardItem>
               </If>
               <Row style = {{borderTopWidth:1,borderTopColor: 'gainsboro',}}/>
+              <If condition={this.state.layoutOpen}>
               <CardItem>
                 <Grid style={CustomStyle.billContainer}>
                   <Row>
@@ -156,7 +240,7 @@ class DriverMain extends Component {
                 </Grid>
               </CardItem>
               <Row style = {{borderTopWidth:1,borderTopColor: 'gainsboro',}}/>
-              <CardItem>
+              {/*<CardItem>
                 <Grid style={CustomStyle.billContainer}>
                   <Row>
                     <Col>
@@ -167,14 +251,15 @@ class DriverMain extends Component {
                     </Col>
                   </Row>
                 </Grid>
-              </CardItem>
+              </CardItem>*/}
+              </If>
             </Card>
           </View>
         </Content>
         <DriverFooter tab='home' navigation={this.props.navigation}/>
       </Container>
     )
-  }
+  } 
   updateActive = (active) => {
     Request.post('/driver/set/active', {active})
     .then(res => {

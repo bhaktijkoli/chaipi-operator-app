@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, TouchableWithoutFeedback } from 'react-native';
-import { View, Text, Card, CardItem, Body, Button, Icon} from 'native-base';
+import { View, Text, Card, CardItem, Body, Button, Icon, Switch} from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import { If, Then, Else } from 'react-if';
 
@@ -28,10 +28,14 @@ class Task extends Component {
   render() {
     let order = this.props.order;
     let shop = order.shop;
+    //let user = shop.user;
+    //let phone = shop.phone;
     let navigation = this.props.navigation;
     let createdAt = moment(order.createdAt, 'YYYY-MM-DD HH:mm:ss');
     console.log('Order', order);
     console.log('Shop', shop);
+    console.log('User', user);
+    //console.log('Phone', phone);
     return(
       <TouchableWithoutFeedback onPress={e=>this.setState({layoutOpen: !this.state.layoutOpen})}>
         <Card style={CustomStyle.container}>

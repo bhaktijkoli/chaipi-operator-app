@@ -9,7 +9,7 @@ import Style from './../styles/style';
 class Header3 extends Component {
   render() {
     return(
-        <Header transparent>
+        <Header transparent style = {{backgroundColor:  '#ffa500'}}>
           <Left>
               <Icon name='menu' onPress={() => this.props.navigation.openDrawer()} />
           </Left>

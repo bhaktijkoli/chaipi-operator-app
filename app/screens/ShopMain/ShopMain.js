@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { FlatList, StyleSheet, Image, Modal, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
 import { Container, Content, View, Title, Card, CardItem, Text, Icon, Button } from 'native-base';
+import ToggleSwitch from 'toggle-switch-react-native'
 
 import Header3 from './../../components/Header3';
 import Chart from './../../components/Chart';
@@ -49,19 +50,86 @@ class Shop extends Component {
           <View>
             <Card style={CustomStyle.cardstyle}>
               <CardItem>
-                <View style={{flexDirection: 'column'}}>
+                <View style={{flexDirection: 'row'}}>
                   <If condition={this.props.auth.user.shop.active}>
                     <Then>
-                      <Text>You are accepting new orders</Text>
-                      <Button transparent block onPress={e => this.updateActive(0)}><Text>STOP ACCEPTING ORDERS</Text></Button>
+                      {/*<Text>You are accepting new orders</Text>*/}
+                      <Button block danger large style = {{marginTop: 10}} onPress={e => this.updateActive(0)}><Text>CLOSE SHOP</Text></Button>
                     </Then>
                     <Else>
-                      <Text>You are not accepting new orders</Text>
-                      <Button transparent block onPress={e => this.updateActive(1)}><Text>START ACCEPTING ORDERS</Text></Button>
+                      {/*<Text>You are not accepting new orders</Text>*/}
+                      <Button block success large style = {{marginTop: 10}} onPress={e => this.updateActive(1)}><Text>OPEN SHOP</Text></Button>
                     </Else>
                   </If>
+                  {/*<ToggleSwitch
+                    isOn={false}
+                    onColor="green"
+                    offColor="red"
+                    labelStyle={{ color: "black", fontWeight: "900" }}
+                    size="large"
+                    onToggle={isOn => console.log("changed to : ", isOn)}
+                  />*/}
                 </View>
               </CardItem>
+            </Card>
+            <Card style = {CustomStyle.cardstyle}>
+            <CardItem>
+                <Grid style={CustomStyle.billContainer}>
+                  <Row>
+                    <Col>
+                      <Text style={{marginBottom: 15}}>TOTAL SUMMARY</Text>
+                    </Col>
+                    <Col>
+                      <Text style={CustomStyle.billCost}>&#8377;</Text>
+                    </Col>
+                  </Row>
+                  <Row style={{paddingTop:5,paddingBottom:5}}>
+                    <Col>
+                      <Text style={CustomStyle.billItem}>BOOKINGS</Text>
+                    </Col>
+                    <Col>
+                      <Text style={CustomStyle.billCost}></Text>
+                    </Col>
+                  </Row>
+                  <Row style={[Style.upperBorder, {paddingTop:5,paddingBottom:5}]}>
+                    <Col>
+                      <Text style={CustomStyle.billItem}>TOTAL ORDERS</Text>
+                    </Col>
+                    <Col>
+                      <Text style={CustomStyle.billCost}>{total_orders}</Text>
+                    </Col>
+                  </Row>
+                  <Row style={[Style.upperBorder, {paddingTop:5,paddingBottom:5}]}>
+                    <Col>
+                      <Text style={CustomStyle.billItem}>SUCESSFULL ORDERS</Text>
+                    </Col>
+                    <Col>
+                      <Text style={CustomStyle.billCost}>{total_successfull_orders}</Text>
+                    </Col>
+                  </Row>
+                  <Row style={[Style.upperBorder, {paddingTop:5,paddingBottom:5}]}>
+                    <Col>
+                      <Text style={CustomStyle.billItem}>CASH EARNINGS</Text>
+                    </Col>
+                    <Col>
+                      <Text style={CustomStyle.billCost}>&#8377;{total_earnings}</Text>
+                    </Col>
+                  </Row>
+                </Grid>
+              </CardItem>
+              <Row style = {{borderTopWidth:1,borderTopColor: 'gainsboro',}}/>
+              {/*<CardItem>
+                <Grid style={CustomStyle.billContainer}>
+                  <Row>
+                    <Col>
+                      <Text style={{marginBottom: 15}}>PAYMENTS MADE</Text>
+                    </Col>
+                    <Col>
+                      <Text style={CustomStyle.billCost}>&#8377;</Text>
+                    </Col>
+                  </Row>
+                </Grid>
+              </CardItem>*/}
             </Card>
             <Card style = {CustomStyle.cardstyle}>
               <CardItem>
@@ -110,6 +178,7 @@ class Shop extends Component {
                 </CardItem>
               </If>
               <Row style = {{borderTopWidth:1,borderTopColor: 'gainsboro',}}/>
+              <If condition={this.state.layoutOpen}>
               <CardItem>
                 <Grid style={CustomStyle.billContainer}>
                   <Row>
@@ -155,7 +224,7 @@ class Shop extends Component {
                 </Grid>
               </CardItem>
               <Row style = {{borderTopWidth:1,borderTopColor: 'gainsboro',}}/>
-              <CardItem>
+              {/*<CardItem>
                 <Grid style={CustomStyle.billContainer}>
                   <Row>
                     <Col>
@@ -166,7 +235,8 @@ class Shop extends Component {
                     </Col>
                   </Row>
                 </Grid>
-              </CardItem>
+              </CardItem>*/}
+              </If>
             </Card>
           </View>
         </Content>

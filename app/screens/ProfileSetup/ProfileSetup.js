@@ -64,8 +64,8 @@ class ProfileSetup extends Component {
                       </Then>
                       <Else>
                         <TouchableOpacity activeOpacity = { .5 } onPress={this.changeImage.bind(this)}>
+                          {/*<Image source={this.state.image} style={Style.avatarBig} onPress={this.changeImage.bind(this)}/>*/}
                           <Image source={this.state.image} style={Style.avatarBig} onPress={this.changeImage.bind(this)}/>
-                          {/*<Image source={this.state.image} style={{ flex: 1,width: 50,height: 50,resizeMode: 'contain' }} onPress={this.changeImage.bind(this)}/>*/}
                         </TouchableOpacity>
                       </Else>
                     </If>
@@ -163,7 +163,7 @@ class ProfileSetup extends Component {
 
   }
 
-  resize() {
+  /*resize() {
     ImageResizer.createResizedImage(this.state.image.uri, 800, 600, 'JPEG', 80)
     .then((resizedImageUri) => {
      then(({uri}) => {
@@ -175,7 +175,14 @@ class ProfileSetup extends Component {
       console.log(err);
     });
   });
-}
+}*/
+
+/*Image.getSize(url, (width, height) => {
+  console.log(`The image dimensions are ${width}x${height}`);
+}, (error) => {
+  console.error(`Couldn't get the image size: ${error.message}`);
+});*/
+
 }
 
 

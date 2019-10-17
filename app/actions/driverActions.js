@@ -66,6 +66,15 @@ requestLocationPermission = async () => {
   }
 }
 
+setDriverActive = () => {
+  BackgroundTimer.runBackgroundTimer(() => {
+    Request.post('/driver/set/active');
+    //getActiveOrders();
+  },
+  1*60000);
+}
+//1*60000
+
 module.exports.getActiveOrders = getActiveOrders;
 module.exports.getRecentOrders = getRecentOrders;
 module.exports.updateLocation = updateLocation;
@@ -75,5 +84,6 @@ module.exports.init = (component) => {
     getActiveOrders();
     getRecentOrders();
     updateLocation();
+    setDriverActive(); 
   }
 }

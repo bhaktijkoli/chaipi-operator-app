@@ -63,21 +63,21 @@ class Profile extends Component {
                 {/*<If condition={this.state.fullname_error.length > 0}>
                   <Text style={Style.error}>{this.state.fullname_error}</Text>
                 </If>*/}
-                <Item style = {Style.input}>
+                {/*<Item style = {Style.input}>
                   <Input
                     value ={this.state.email}
-                    //onChangeText={val=>this.setState({email: val})}
-                    //placeholder='Enter email address'
+                    onChangeText={val=>this.setState({email: val})}
+                    placeholder='Enter email address'
                     />
-                </Item>
+              </Item>*/}
                 {/*<If condition={this.state.email_error.length > 0}>
                   <Text style={Style.error}>{this.state.email_error}</Text>
                 </If>*/}
                 <Item style = {Style.input}>
                   <Input
                     value ={this.state.phone}
-                    onChangeText={val=>this.setState({phone: val})}
-                    placeholder='Enter phone number'
+                    //onChangeText={val=>this.setState({phone: val})}
+                    //placeholder='Enter phone number'
                     />
               </Item>
                 {/*<If condition={this.state. phone_error.length > 0}>
