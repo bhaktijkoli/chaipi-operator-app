@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { FlatList, StyleSheet, Image, Modal, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
 import { Container, Content, View, Title, Card, CardItem, Text, Icon, Button } from 'native-base';
 import ToggleSwitch from 'toggle-switch-react-native'
+import {AsyncStorage} from 'react-native';
 
 import Header3 from './../../components/Header3';
 import Chart from './../../components/Chart';
@@ -18,6 +19,8 @@ import { If, Then, Else } from 'react-if';
 
 import Style from './../../styles/style';
 
+
+
 class Shop extends Component {
   state = {
     data: null,
@@ -25,7 +28,7 @@ class Shop extends Component {
   }
   constructor(props) {
     super(props)
-    shopActions.init(this);
+    shopActions.init(this); 
   }
   componentDidMount() {
     Request.get('/shop/info')
@@ -33,7 +36,23 @@ class Shop extends Component {
       console.log("Shop Info", res.data);
       this.setState({data:res.data});
     });
+
+    //const key = 'active';
+    //et value = this.props.auth.user.shop.active;
+    //AsyncStorage.setItem(key,value);
   }
+
+  /*toggle = () => {
+   <If condition= {AsyncStorage.getItem('active')}>
+   <Then>
+   {this.updateActive(0)}
+   </Then>
+   <Else>
+   {this.updateActive(1)}
+   </Else>
+   </If>
+  }*/
+
   render() {
     let total_orders = 0;
     let total_successfull_orders = 0;
@@ -51,24 +70,32 @@ class Shop extends Component {
             <Card style={CustomStyle.cardstyle}>
               <CardItem>
                 <View style={{flexDirection: 'row'}}>
+                <ToggleSwitch
+                    isOn={false}
+                    labelStyle={{ color: "black", fontWeight: "900" }}
+                    size="small"
+                    onColor="green"
+                    offColor="red"
+                    onPress={<If condition={this.props.auth.user.shop.active}>
+                    <Then>
+                    {e => this.updateActive(0)}
+                    </Then>
+                    <Else>
+                    {e => this.updateActive(1)}
+                    </Else>
+                    </If>}
+                    
+                  />
                   <If condition={this.props.auth.user.shop.active}>
                     <Then>
                       {/*<Text>You are accepting new orders</Text>*/}
-                      <Button block danger large style = {{marginTop: 10}} onPress={e => this.updateActive(0)}><Text>CLOSE SHOP</Text></Button>
+                      <Button block danger style = {{marginLeft: 150}} onPress={e => this.updateActive(0)}><Text>CLOSE SHOP</Text></Button>
                     </Then>
                     <Else>
                       {/*<Text>You are not accepting new orders</Text>*/}
-                      <Button block success large style = {{marginTop: 10}} onPress={e => this.updateActive(1)}><Text>OPEN SHOP</Text></Button>
+                      <Button block success  style = {{marginLeft: 150}} onPress={e => this.updateActive(1)}><Text>OPEN SHOP</Text></Button>
                     </Else>
                   </If>
-                  {/*<ToggleSwitch
-                    isOn={false}
-                    onColor="green"
-                    offColor="red"
-                    labelStyle={{ color: "black", fontWeight: "900" }}
-                    size="large"
-                    onToggle={isOn => console.log("changed to : ", isOn)}
-                  />*/}
                 </View>
               </CardItem>
             </Card>

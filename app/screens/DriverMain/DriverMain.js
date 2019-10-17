@@ -51,24 +51,25 @@ class DriverMain extends Component {
           <View>
             <Card style={CustomStyle.cardstyle}>
               <CardItem>
-                <View style={{flexDirection: 'column'}}>
-                {/*<ToggleSwitch
-                onColor="green"
+                <View style={{flexDirection: 'row'}}>
+                <ToggleSwitch
+                  isOn={true}
+                  onColor="green"
                   offColor="red"
                   label="Example label"
                   labelStyle={{ color: "black", fontWeight: "900" }}
-                  size="large"
-                  onToggle={
-                  }
-                ></ToggleSwitch>*/}
+                  size="small"
+                  onToggle={isOn => console.log("changed to : ", isOn)}
+                ></ToggleSwitch>
+                
                 <If condition={this.props.auth.user.driver.active}>
                 <Then>
-                  <Text>You are accepting new tasks</Text>
-                  <Button block success large style={{alignItems: 'center', marginTop: 10}} onPress={e => this.updateActive(0)}><Text>INACTIVE</Text></Button>
+                  {/*<Text>You are accepting new tasks</Text>*/}
+                  <Button block success  style={{alignItems: 'center', marginTop: 10}} onPress={e => this.updateActive(0)}><Text>INACTIVE</Text></Button>
                 </Then>
                 <Else>
-                  <Text>You are not accepting new tasks</Text>
-                  <Button block danger large style = {{alignItems:'center', marginTop: 10}} onPress={e => this.updateActive(1)}><Text>ACTIVE</Text></Button>
+                  {/*<Text>You are not accepting new tasks</Text>*/}
+                  <Button block danger  style = {{alignItems:'center', marginTop: 10}} onPress={e => this.updateActive(1)}><Text>ACTIVE</Text></Button>
                 </Else>
               </If>
                   </View>
