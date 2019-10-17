@@ -30,6 +30,7 @@
     "react-native-pure-chart": "0.0.24",
     "react-native-shimmer-placeholder": "^1.0.34",
     "react-native-step-indicator": "0.0.11",
+    "react-native-switch-toggle": "^1.1.2",
     "react-navigation": "^3.9.1",
     "react-redux": "^7.0.3",
     "redux": "^4.0.1",

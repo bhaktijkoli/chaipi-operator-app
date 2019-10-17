@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { FlatList, StyleSheet, Image, Modal, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
 import { Container, Content, View, Title, Card, CardItem, Text, Icon, Button } from 'native-base';
-import ToggleSwitch from 'toggle-switch-react-native'
+//import ToggleSwitch from 'toggle-switch-react-native'
+import SwitchToggle from 'react-native-switch-toggle';
 import {AsyncStorage} from 'react-native';
 
 import Header3 from './../../components/Header3';
@@ -18,7 +19,6 @@ import { Col, Row, Grid } from "react-native-easy-grid";
 import { If, Then, Else } from 'react-if';
 
 import Style from './../../styles/style';
-
 
 
 class Shop extends Component {
@@ -38,7 +38,7 @@ class Shop extends Component {
     });
 
     //const key = 'active';
-    //et value = this.props.auth.user.shop.active;
+    
     //AsyncStorage.setItem(key,value);
   }
 
@@ -53,6 +53,16 @@ class Shop extends Component {
    </If>
   }*/
 
+  openClose = () => {
+    <If condition={this.props.auth.user.shop.active}>
+                    <Then>
+                      {this.updateActive(0)}
+                    </Then>
+                    <Else>
+                     {this.updateActive(1)}
+                    </Else>
+                  </If>
+                }
   render() {
     let total_orders = 0;
     let total_successfull_orders = 0;
@@ -61,6 +71,7 @@ class Shop extends Component {
       total_orders = this.state.data.total_orders;
       total_successfull_orders = this.state.data.total_successfull_orders;
       total_earnings = this.state.data.total_earnings;
+      //this.openClose = this.openClose.bind(this);
     }
     return(
       <Container>
@@ -70,30 +81,46 @@ class Shop extends Component {
             <Card style={CustomStyle.cardstyle}>
               <CardItem>
                 <View style={{flexDirection: 'row'}}>
-                <ToggleSwitch
+                {/*<ToggleSwitch
                     isOn={false}
                     labelStyle={{ color: "black", fontWeight: "900" }}
                     size="small"
                     onColor="green"
                     offColor="red"
-                    onPress={<If condition={this.props.auth.user.shop.active}>
+                    onToggle={isOn => <If condition={this.props.auth.user.shop.active}>
                     <Then>
                     {e => this.updateActive(0)}
                     </Then>
                     <Else>
-                    {e => this.updateActive(1)}
+                    {e => this.updateActive(0)}
                     </Else>
                     </If>}
-                    
-                  />
+    />*/}
+                  <SwitchToggle
+                  containerStyle={{
+                    width: 90,
+                    height: 40,
+                    borderRadius: 25,
+                    backgroundColor: '#ccc',
+                    padding: 5,
+                  }}
+                  circleStyle={{
+                    width: 15,
+                    height: 15,
+                    borderRadius: 15,
+                    backgroundColor: 'white',
+                  }}
+                    switchOn={false}
+                    onPress={this.openClose}
+                  /> 
                   <If condition={this.props.auth.user.shop.active}>
                     <Then>
                       {/*<Text>You are accepting new orders</Text>*/}
-                      <Button block danger style = {{marginLeft: 150}} onPress={e => this.updateActive(0)}><Text>CLOSE SHOP</Text></Button>
+                      <Button block danger style = {{marginLeft: 120}} ><Text>CLOSE SHOP</Text></Button>
                     </Then>
                     <Else>
                       {/*<Text>You are not accepting new orders</Text>*/}
-                      <Button block success  style = {{marginLeft: 150}} onPress={e => this.updateActive(1)}><Text>OPEN SHOP</Text></Button>
+                      <Button block success  style = {{marginLeft: 120}} ><Text>OPEN SHOP</Text></Button>
                     </Else>
                   </If>
                 </View>
