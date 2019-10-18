@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { FlatList, StyleSheet, Image, Modal, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
 import { Container, Content, View, Title, Card, CardItem, Text, Icon, Button } from 'native-base';
-//import ToggleSwitch from 'toggle-switch-react-native'
 import SwitchToggle from 'react-native-switch-toggle';
-import {AsyncStorage} from 'react-native';
 
 import Header3 from './../../components/Header3';
 import Chart from './../../components/Chart';
@@ -29,6 +27,10 @@ class Shop extends Component {
   constructor(props) {
     super(props)
     shopActions.init(this); 
+
+    this.state = {
+      switchOn1: false,
+    }
   }
   componentDidMount() {
     Request.get('/shop/info')
@@ -36,32 +38,18 @@ class Shop extends Component {
       console.log("Shop Info", res.data);
       this.setState({data:res.data});
     });
-
-    //const key = 'active';
-    
-    //AsyncStorage.setItem(key,value);
   }
 
-  /*toggle = () => {
-   <If condition= {AsyncStorage.getItem('active')}>
-   <Then>
-   {this.updateActive(0)}
-   </Then>
-   <Else>
-   {this.updateActive(1)}
-   </Else>
-   </If>
-  }*/
-
   openClose = () => {
-    <If condition={this.props.auth.user.shop.active}>
-                    <Then>
-                      {this.updateActive(0)}
-                    </Then>
-                    <Else>
-                     {this.updateActive(1)}
-                    </Else>
-                  </If>
+      this.setState({ switchOn1: !this.state.switchOn1 });
+        <If condition={this.props.auth.user.shop.active}>
+              <Then>
+                  {this.updateActive(0)}
+              </Then>
+              <Else>
+                  {this.updateActive(1)}
+              </Else>
+        </If>
                 }
   render() {
     let total_orders = 0;
@@ -81,26 +69,12 @@ class Shop extends Component {
             <Card style={CustomStyle.cardstyle}>
               <CardItem>
                 <View style={{flexDirection: 'row'}}>
-                {/*<ToggleSwitch
-                    isOn={false}
-                    labelStyle={{ color: "black", fontWeight: "900" }}
-                    size="small"
-                    onColor="green"
-                    offColor="red"
-                    onToggle={isOn => <If condition={this.props.auth.user.shop.active}>
-                    <Then>
-                    {e => this.updateActive(0)}
-                    </Then>
-                    <Else>
-                    {e => this.updateActive(0)}
-                    </Else>
-                    </If>}
-    />*/}
                   <SwitchToggle
                   containerStyle={{
-                    width: 90,
-                    height: 40,
-                    borderRadius: 25,
+                    marginTop: 10,
+                    width: 50,
+                    height: 25,
+                    borderRadius: 15,
                     backgroundColor: '#ccc',
                     padding: 5,
                   }}
@@ -110,19 +84,21 @@ class Shop extends Component {
                     borderRadius: 15,
                     backgroundColor: 'white',
                   }}
-                    switchOn={false}
+                    circleColorOff='green'
+                    circleColorOn='red'
+                    switchOn={this.state.switchOn1}
                     onPress={this.openClose}
-                  /> 
+                  />
                   <If condition={this.props.auth.user.shop.active}>
-                    <Then>
-                      {/*<Text>You are accepting new orders</Text>*/}
-                      <Button block danger style = {{marginLeft: 120}} ><Text>CLOSE SHOP</Text></Button>
+                   <Then>
+                      <Button block danger style = {{marginLeft: 140}}><Text>CLOSE SHOP</Text></Button>
                     </Then>
                     <Else>
-                      {/*<Text>You are not accepting new orders</Text>*/}
-                      <Button block success  style = {{marginLeft: 120}} ><Text>OPEN SHOP</Text></Button>
+                      <Button block success  style = {{marginLeft: 140}}><Text>OPEN SHOP</Text></Button>
                     </Else>
-                  </If>
+                </If>
+                {/*<Button block danger style = {{marginLeft: 140}} onPress = {this.openClose} ><Text>CLOSE SHOP</Text></Button>
+                <Button block success  style = {{marginLeft: 140}} onPress = {this.openClose}><Text>OPEN SHOP</Text></Button>*/}
                 </View>
               </CardItem>
             </Card>

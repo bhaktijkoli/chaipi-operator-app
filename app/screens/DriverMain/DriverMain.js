@@ -56,7 +56,6 @@ class DriverMain extends Component {
                   isOn={true}
                   onColor="green"
                   offColor="red"
-                  label="Example label"
                   labelStyle={{ color: "black", fontWeight: "900" }}
                   size="small"
                   onToggle={isOn => console.log("changed to : ", isOn)}
@@ -65,11 +64,11 @@ class DriverMain extends Component {
                 <If condition={this.props.auth.user.driver.active}>
                 <Then>
                   {/*<Text>You are accepting new tasks</Text>*/}
-                  <Button block success  style={{alignItems: 'center', marginTop: 10}} onPress={e => this.updateActive(0)}><Text>INACTIVE</Text></Button>
+                  <Button block danger style={{alignItems: 'center', marginTop: 10}} onPress={e => this.updateActive(0)}><Text>INACTIVE</Text></Button>
                 </Then>
                 <Else>
                   {/*<Text>You are not accepting new tasks</Text>*/}
-                  <Button block danger  style = {{alignItems:'center', marginTop: 10}} onPress={e => this.updateActive(1)}><Text>ACTIVE</Text></Button>
+                  <Button block success style = {{alignItems:'center', marginTop: 10}} onPress={e => this.updateActive(1)}><Text>ACTIVE</Text></Button>
                 </Else>
               </If>
                   </View>
