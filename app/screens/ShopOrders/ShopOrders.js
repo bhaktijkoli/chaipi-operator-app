@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { FlatList } from "react-native";
 import { Container, Content, View, Text, Title } from 'native-base';
 import { If, Else, Then } from 'react-if';
+import { RefreshControl} from 'react-native'
 
 import HeaderEx from './../../components/Header';
 import ShopFooter from './../../components/ShopFooter';
@@ -23,6 +24,16 @@ class ShopOrders extends Component {
   constructor(props) {
     super(props)
     shopActions.init(this);
+
+    this.state = {
+      refreshing: false,
+    }
+  }
+   handleRefresh = () => {
+    this.setState({
+      refreshing: true,
+    }),
+    this.update();
   }
   render() {
     let ordersArray = [];
@@ -58,6 +69,9 @@ class ShopOrders extends Component {
                     }
                   }}
                   keyExtractor={(item, index) => index.toString()}
+
+                  refreshing = {this.state.refreshing}
+                  onRefresh = {this.handleRefresh}
                   />
               </Else>
             </If>
@@ -82,7 +96,7 @@ class ShopOrders extends Component {
   getShopOders() {
     this.setState({loading: true})
     shopActions.getShopOders(() => {
-      this.setState({oading: false});
+      this.setState({loading: false});
     });
   }
   update() {

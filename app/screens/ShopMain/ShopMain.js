@@ -28,10 +28,13 @@ class Shop extends Component {
     super(props)
     shopActions.init(this); 
 
-    this.state = {
+   /* this.state = {
       switchOn1: false,
-    }
+      //buttonText: false,
+      //buttonColor: "green"
+    }*/
   }
+
   componentDidMount() {
     Request.get('/shop/info')
     .then(res => {
@@ -40,17 +43,19 @@ class Shop extends Component {
     });
   }
 
-  openClose = () => {
+  /*openClose = () => {
       this.setState({ switchOn1: !this.state.switchOn1 });
+      //this.setState({ buttonText: true});
+      //this.setState({ buttonColor: "red" });
         <If condition={this.props.auth.user.shop.active}>
-              <Then>
-                  {this.updateActive(0)}
-              </Then>
+            <Then>
+                {this.updateActive(0)}
+            </Then>
               <Else>
-                  {this.updateActive(1)}
+                {this.updateActive(1)}
               </Else>
         </If>
-                }
+  }*/
   render() {
     let total_orders = 0;
     let total_successfull_orders = 0;
@@ -69,7 +74,7 @@ class Shop extends Component {
             <Card style={CustomStyle.cardstyle}>
               <CardItem>
                 <View style={{flexDirection: 'row'}}>
-                  <SwitchToggle
+                  {/*<SwitchToggle
                   containerStyle={{
                     marginTop: 10,
                     width: 50,
@@ -79,26 +84,27 @@ class Shop extends Component {
                     padding: 5,
                   }}
                   circleStyle={{
-                    width: 15,
-                    height: 15,
-                    borderRadius: 15,
+                    width: 20,
+                    height: 20,
+                    borderRadius: 20,
                     backgroundColor: 'white',
                   }}
                     circleColorOff='green'
                     circleColorOn='red'
                     switchOn={this.state.switchOn1}
                     onPress={this.openClose}
-                  />
+                />*/}
                   <If condition={this.props.auth.user.shop.active}>
-                   <Then>
-                      <Button block danger style = {{marginLeft: 140}}><Text>CLOSE SHOP</Text></Button>
+                    <Then>
+                      <Button block danger style = {{ marginLeft: 50, marginRight: 50, borderRadius: 20, width: 200}} onPress= {e => this.updateActive(0)}><Text>CLOSE SHOP</Text></Button>
                     </Then>
                     <Else>
-                      <Button block success  style = {{marginLeft: 140}}><Text>OPEN SHOP</Text></Button>
+                      <Button block success  style = {{marginLeft: 50, marginRight: 50, borderRadius:20, width: 200}} onPress = {e => this.updateActive(1)}><Text>OPEN SHOP</Text></Button>
                     </Else>
                 </If>
-                {/*<Button block danger style = {{marginLeft: 140}} onPress = {this.openClose} ><Text>CLOSE SHOP</Text></Button>
-                <Button block success  style = {{marginLeft: 140}} onPress = {this.openClose}><Text>OPEN SHOP</Text></Button>*/}
+                {/*<Button block success  style = {{marginLeft: 140}} onPress = {this.openClose}><Text>CLOSE SHOP</Text></Button>*/}
+                {/*<Button block success  style = {{marginLeft: 140}} onPress = {this.openClose}><Text>OPEN SHOP</Text></Button>*/}
+                {/*<Button block  style = {{marginLeft: 140,}} color={this.state.buttonColor} onPress = {this.openClose}><Text>{this.state.buttonText ? "CLOSE SHOP " : "OPEN SHOP"}</Text></Button>*/}
                 </View>
               </CardItem>
             </Card>
@@ -146,7 +152,7 @@ class Shop extends Component {
                     </Col>
                   </Row>
                 </Grid>
-              </CardItem>
+            </CardItem>
               <Row style = {{borderTopWidth:1,borderTopColor: 'gainsboro',}}/>
               {/*<CardItem>
                 <Grid style={CustomStyle.billContainer}>

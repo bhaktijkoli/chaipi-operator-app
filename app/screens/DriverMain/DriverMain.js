@@ -52,42 +52,27 @@ class DriverMain extends Component {
             <Card style={CustomStyle.cardstyle}>
               <CardItem>
                 <View style={{flexDirection: 'row'}}>
-                <ToggleSwitch
+                {/*<ToggleSwitch
                   isOn={true}
                   onColor="green"
                   offColor="red"
                   labelStyle={{ color: "black", fontWeight: "900" }}
                   size="small"
                   onToggle={isOn => console.log("changed to : ", isOn)}
-                ></ToggleSwitch>
-                
-                <If condition={this.props.auth.user.driver.active}>
-                <Then>
+                ></ToggleSwitch>*/}
+                  <If condition={this.props.auth.user.driver.active}>
+                    <Then>
                   {/*<Text>You are accepting new tasks</Text>*/}
-                  <Button block danger style={{alignItems: 'center', marginTop: 10}} onPress={e => this.updateActive(0)}><Text>INACTIVE</Text></Button>
-                </Then>
-                <Else>
+                      <Button block danger style={{marginLeft: 50, marginRight: 50, borderRadius: 20, width: 200}} onPress={e => this.updateActive(0)}><Text>INACTIVE</Text></Button>
+                    </Then>
+                      <Else>
                   {/*<Text>You are not accepting new tasks</Text>*/}
-                  <Button block success style = {{alignItems:'center', marginTop: 10}} onPress={e => this.updateActive(1)}><Text>ACTIVE</Text></Button>
-                </Else>
-              </If>
-                  </View>
+                      <Button block success style = {{marginLeft: 50, marginRight:50, borderRadius:20, width: 200}} onPress={e => this.updateActive(1)}><Text>ACTIVE</Text></Button>
+                      </Else>
+                  </If>
+                </View>
               </CardItem>
             </Card>
-            {/*<Card style={CustomStyle.cardstyle}>
-              <CardItem>
-              <Grid>
-              <Row>
-              <Col>
-              <Button block small style = {{color: '#008000', alignSelf: 'flex-start'}} onPress={e => this.updateActive()}><Text>OPEN</Text></Button>
-              </Col>
-              <Col>
-              <Button block small style = {{color: '#ff0000', alignSelf: 'flex-end'}} onPress={e => this.updateActive()}><Text>CLOSE</Text></Button>
-              </Col>
-              </Row>
-              </Grid>
-              </CardItem>
-    </Card>*/}
             <Card style = {CustomStyle.cardstyle}>
             <CardItem>
                 <Grid style={CustomStyle.billContainer}>

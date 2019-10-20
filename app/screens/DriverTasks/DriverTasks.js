@@ -3,6 +3,7 @@ import { FlatList } from "react-native";
 import { connect } from "react-redux";
 import { Container, Content, View, Text, Title } from 'native-base';
 import { If, Else, Then } from 'react-if';
+import { RefreshControl} from 'react-native'
 
 import HeaderEx from './../../components/Header';
 import SpinnerBox from './../../components/SpinnerBox';
@@ -19,6 +20,18 @@ import Task from './Task';
 class DriverTasks extends Component {
   componentDidMount() {
     DriverActions.init(this);
+  }
+  constructor(props) {
+    super(props)
+    this.state = {
+      refreshing: false,
+    }
+  }
+   handleRefresh = () => {
+    this.setState({
+      refreshing: true,
+    }),
+    this.update();
   }
   render() {
     let driver = this.props.driver;
@@ -55,6 +68,9 @@ class DriverTasks extends Component {
                   }
                 }}
                 keyExtractor={(item, index) => index.toString()}
+
+                refreshing = {this.state.refreshing}
+                onRefresh = {this.handleRefresh}
                 />
             </Else>
           </If>
@@ -62,6 +78,9 @@ class DriverTasks extends Component {
         <DriverFooter tab='tasks' navigation={this.props.navigation}/>
       </Container>
     )
+  }
+   update() {
+    DriverActions.getActiveOrders();
   }
   renderListTitle = (title) => {
     return(

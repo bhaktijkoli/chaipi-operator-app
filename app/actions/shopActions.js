@@ -27,15 +27,12 @@ getShopProducts = (shopid) => {
 }
 
 
-
 setShopActive = () => {
   BackgroundTimer.runBackgroundTimer(() => {
     Request.post('/shop/set/active');
-    //getActiveShopOrders();
   },
   1*60000);
 }
-//1*60000
 
 module.exports.getActiveShopOrders = getActiveShopOrders;
 module.exports.getShopProducts = getShopProducts;
