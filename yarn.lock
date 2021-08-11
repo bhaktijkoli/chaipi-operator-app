@@ -2099,6 +2099,11 @@ domexception@^1.0.1:
   dependencies:
     webidl-conversions "^4.0.2"
 
+dooboolab-welcome@^1.1.0:
+  version "1.3.2"
+  resolved "https://registry.yarnpkg.com/dooboolab-welcome/-/dooboolab-welcome-1.3.2.tgz#4928595312f0429b4ea1b485ba8767bae6acdab7"
+  integrity sha512-2NbMaIIURElxEf/UAoVUFlXrO+7n/FRhLCiQlk4fkbGRh9cJ3/f8VEMPveR9m4Ug2l2Zey+UCXjd6EcBqHJ5bw==
+
 ecc-jsbn@~0.1.1:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/ecc-jsbn/-/ecc-jsbn-0.1.2.tgz#3a83a904e54353287874c564b7549386849a98c9"
@@ -5119,9 +5124,9 @@ path-key@^2.0.0, path-key@^2.0.1:
   integrity sha1-QRyttXTFoUDTpLGRDUDYDMn0C0A=
 
 path-parse@^1.0.6:
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/path-parse/-/path-parse-1.0.6.tgz#d62dbb5679405d72c4737ec58600e9ddcf06d24c"
-  integrity sha512-GSmOT2EbHrINBf9SR7CDELwlJ8AENk3Qn7OikK4nFYAu3Ote2+JYNVvkpAEQm3/TLNEJFD/xZJjzyxg3KBWOzw==
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/path-parse/-/path-parse-1.0.7.tgz#fbc114b60ca42b30d9daf5858e4bd68bbedb6735"
+  integrity sha512-LDJzPVEEEPR+y48z93A0Ed0yXb8pAByGWo/k5YYdYgpY2/2EsOsksJrq7lOHxryrVOn1ejG6oAp8ahvOIQD8sw==
 
 path-to-regexp@^1.7.0:
   version "1.7.0"
@@ -5273,7 +5278,7 @@ prompts@^2.0.1:
     kleur "^3.0.3"
     sisteransi "^1.0.3"
 
-prop-types@^15.5.10, prop-types@^15.5.8, prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.2:
+prop-types@^15.5.10, prop-types@^15.5.7, prop-types@^15.5.8, prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.2:
   version "15.7.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
@@ -5458,6 +5463,11 @@ react-native-image-picker@^0.28.1:
   resolved "https://registry.yarnpkg.com/react-native-image-picker/-/react-native-image-picker-0.28.1.tgz#1127460522e0c9741fc62f3d040271d298fb6a6e"
   integrity sha512-CW2dm+cjsdW2fjBW2WD/cSufNG0x0UpljwGHrjSzyB0TckoW+tjYv44UWtckCWxr1JtCg+QrYDO/MzlRyFcjwQ==
 
+react-native-image-resizer@^1.0.1:
+  version "1.4.5"
+  resolved "https://registry.yarnpkg.com/react-native-image-resizer/-/react-native-image-resizer-1.4.5.tgz#5a520aa8baa07638b1894a1d87d4d9a0945c8d58"
+  integrity sha512-33EgL3C9pyvjKpullAB6fWyD5QhoYEpNNB9rxNvUsrpAnL2mHBW7PTrUCCZudJeB6Weg7nbweKrSw1nnto5aqg==
+
 react-native-iphone-x-helper@^1.0.3:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/react-native-iphone-x-helper/-/react-native-iphone-x-helper-1.2.1.tgz#645e2ffbbb49e80844bb4cbbe34a126fda1e6772"
@@ -5514,6 +5524,13 @@ react-native-step-indicator@0.0.11:
   integrity sha512-9nDAwN8dyyRp/h9aXw7TXYQkOSGcesfMKU+P3DbrWieFI1wMGzLNTRfND48kyr+AcuCvuJmCIfb66RrSjCB0Og==
   dependencies:
     prop-types "^15.6.0"
+
+react-native-switch-toggle@^1.1.2:
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/react-native-switch-toggle/-/react-native-switch-toggle-1.1.4.tgz#cd565e9db584109f93adde5c6979b2587cbc8cbc"
+  integrity sha512-TMCcZYAt4Rw33j/ZrHqEKr5BotJp+FYaMDzml75UQYDA7vHpnovmBp04RTU/4oimD8E0teIOauRNVtJLeNer+A==
+  dependencies:
+    dooboolab-welcome "^1.1.0"
 
 react-native-tab-view@^1.2.0, react-native-tab-view@^1.4.1:
   version "1.4.1"
@@ -6486,6 +6503,11 @@ supports-color@^6.1.0:
   dependencies:
     has-flag "^3.0.0"
 
+switch-button-react-native@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/switch-button-react-native/-/switch-button-react-native-1.0.3.tgz#a53f468aeb79bc8037e18b79fb0adef2d02891af"
+  integrity sha1-pT9Giut5vIA34Yt5+wre8tAoka8=
+
 symbol-observable@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/symbol-observable/-/symbol-observable-1.2.0.tgz#c22688aed4eab3cdc2dfeacbb561660560a00804"
@@ -6604,6 +6626,13 @@ to-regex@^3.0.1, to-regex@^3.0.2:
     extend-shallow "^3.0.2"
     regex-not "^1.0.2"
     safe-regex "^1.1.0"
+
+toggle-switch-react-native@^2.1.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/toggle-switch-react-native/-/toggle-switch-react-native-2.3.0.tgz#f58e2db1535837f08811d917ebc2c632c8ec883d"
+  integrity sha512-sq5r0Yu7GEwHTVFmL0HOOmliYX7edT1DTS8Zq9R927JaVnWeU5z6+TM5nxU190JkpeACCQVXyioDM/C1GdRitA==
+  dependencies:
+    prop-types "^15.5.7"
 
 toidentifier@1.0.0:
   version "1.0.0"
